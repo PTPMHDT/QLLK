@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E0D017D-8DE0-48CC-9BEC-E6A85B2D533E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PresentationLayer</RootNamespace>
+    <AssemblyName>PresentationLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.2" />
+    <Reference Include="DevExpress.Data.v15.2" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADO_Entity_V3.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADO_Entity_V3.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO_Entity_V3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADO_Entity_V3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADO_Entity_V3.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BAOCAO_DOANHTHU.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BAOCAO_TONKHO.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MyView.cs" />
+    <Compile Include="CT_BAOCAO_TONKHO.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CT_HOADON.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CT_HOADON_NHAPHANG.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CT_HoaDon_DAL.cs" />
+    <Compile Include="DAL\HoaDon_DAL.cs" />
+    <Compile Include="DAL\KhachHang_DAL.cs" />
+    <Compile Include="DAL\Kho_DAL.cs" />
+    <Compile Include="DAL\LinhKien_DAL.cs" />
+    <Compile Include="DAL\LoaiKhachHang_DAL.cs" />
+    <Compile Include="DAL\NguoiDung_DAL.cs" />
+    <Compile Include="DAL\NhacCungCap_DAL.cs" />
+    <Compile Include="DONVITINH.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalVariable\Context.cs" />
+    <Compile Include="GridHelper\DisplaySelection.cs" />
+    <Compile Include="GridHelper\IdSelection.cs" />
+    <Compile Include="HOADON.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOADON_NHAPHANG.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KHACHHANG.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KHO.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LINHKIEN.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOAI.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NGUOIDUNG.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHACUNGCAP.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHANVIEN.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="THUONGHIEU.cs">
+      <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\EventLogin.cs" />
+    <Compile Include="Viewer\FormChiTietPhieuBanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\FormChiTietPhieuBanHang.Designer.cs">
+      <DependentUpon>FormChiTietPhieuBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridHelper\CGrid.cs" />
+    <Compile Include="GridHelper\GridHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewer\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestFolder\HoaDonTmp.cs" />
+    <Compile Include="TestFolder\HoaDonTmps.cs" />
+    <Compile Include="Viewer\UCBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCBanHang.Designer.cs">
+      <DependentUpon>UCBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCChiTietBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCChiTietBanHang.Designer.cs">
+      <DependentUpon>UCChiTietBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCDoanhThuNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCDoanhThuNhanVien.Designer.cs">
+      <DependentUpon>UCDoanhThuNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCKhachHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCKhachHang.Designer.cs">
+      <DependentUpon>UCKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCLinhKien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCLinhKien.Designer.cs">
+      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCNhaCungCap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCNhaCungCap.Designer.cs">
+      <DependentUpon>UCNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCNhanVien.Designer.cs">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\UCPhieuBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCPhieuBanHang.Designer.cs">
+      <DependentUpon>UCPhieuBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewObject\View.cs" />
+    <EmbeddedResource Include="Viewer\FormChiTietPhieuBanHang.resx">
+      <DependentUpon>FormChiTietPhieuBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Viewer\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCBanHang.resx">
+      <DependentUpon>UCBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCChiTietBanHang.resx">
+      <DependentUpon>UCChiTietBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCDoanhThuNhanVien.resx">
+      <DependentUpon>UCDoanhThuNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCKhachHang.resx">
+      <DependentUpon>UCKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCLinhKien.resx">
+      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCNhaCungCap.resx">
+      <DependentUpon>UCNhaCungCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCNhanVien.resx">
+      <DependentUpon>UCNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCPhieuBanHang.resx">
+      <DependentUpon>UCPhieuBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="ADO_Entity_V3.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ADO_Entity_V3.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ADO_Entity_V3.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADO_Entity_V3.edmx</DependentUpon>
+      <LastGenOutput>ADO_Entity_V3.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ADO_Entity_V3.edmx.diagram">
+      <DependentUpon>ADO_Entity_V3.edmx</DependentUpon>
+    </None>
+    <None Include="ADO_Entity_V3.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADO_Entity_V3.edmx</DependentUpon>
+      <LastGenOutput>ADO_Entity_V3.cs</LastGenOutput>
+    </None>
+    <None Include="App.Config" />
+    <None Include="bin\Debug\PresentationLayer.vshost.exe.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\PresentationLayer.exe" />
+    <Content Include="bin\Debug\PresentationLayer.pdb" />
+    <Content Include="bin\Debug\PresentationLayer.vshost.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
