@@ -151,6 +151,7 @@ namespace PresentationLayer
             item.GiaBanLe = Decimal.Parse(txtGiaBanLe.Text);
             item.GiaBanSi = Decimal.Parse(txtGiaBanSi.Text);
             item.MaNhaCungCap = listNhaCungCap[cbNhaCungCap.SelectedIndex].MaNhaCungCap;
+            item.TinhTrang = 1;
             item.ThoiGianBaoHanh = int.Parse(txtThoiGianBH.Text);
 
             if(LinhKien_DAL.Add_LinhKien(item))
