@@ -17,12 +17,14 @@ namespace PresentationLayer.DAL
                            MaLinhKien = lk.MaLinhKien,
                            TenLinhKien = lk.TenLinhKien,
                            DonViTinh = lk.DONVITINH.TenDonViTinh,
-                           MaNhaCungCap = lk.MaNhaCungCap,
-                           MaDonViTinh = lk.MaDonViTinh,
-                           MaThuongHieu = lk.MaThuongHieu,
+                           MaNhaCungCap = lk.NHACUNGCAP.MaNhaCungCap,
+                           NhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
+                           MaDonViTinh = lk.DONVITINH.TenDonViTinh,
+                           MaThuongHieu = lk.THUONGHIEU.TenThuongHieu,
                            GiaBanLe = lk.GiaBanLe,
                            GiaBanSi = lk.GiaBanSi,
                            TinhTrang = lk.TinhTrang,
+                           ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
                            MoTa = lk.MoTa,
                            ThuongHieu = lk.THUONGHIEU.TenThuongHieu
                        };
@@ -59,6 +61,44 @@ namespace PresentationLayer.DAL
             }  
 
             return true;
+        }
+
+        public static bool Add_LinhKien(LinhKien_View item)
+        {
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Context.getInstance().db.LINHKIENs.Add(item.toLinhKien());
+                    Context.getInstance().db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    Context.getInstance().db.LINHKIENs.Local.Clear();
+                    transaction.Rollback();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static string get_LinhKienMax()
+        {
+            try
+            {
+                string result = Context.getInstance().db.LINHKIENs.OrderByDescending(x => x.MaLinhKien).First().MaLinhKien;
+                int index = (Convert.ToInt16((result).Substring(2)) + 1);
+                if (index < 10)
+                    return "LK00" + index;
+                else if (index < 100)
+                    return "LK0" + index;
+                return "LK" + index;
+            }
+            catch (Exception)
+            {
+                return "LK001";
+            }
         }
     }
 }

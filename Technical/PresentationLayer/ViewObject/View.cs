@@ -150,8 +150,9 @@ namespace PresentationLayer.View
         public Decimal GiaBanLe { get; set; }
         public string DonViTinh { get; set; }
         public int TinhTrang { get; set; }
+        public int SoLuong { get; set; }
         public string MoTa { get; set; }
-
+        public int ThoiGianBaoHanh { get; set; }
         public LINHKIEN toLinhKien()
         {
             LINHKIEN lk = new LINHKIEN();
@@ -163,7 +164,8 @@ namespace PresentationLayer.View
             lk.GiaBanSi = GiaBanSi;
             lk.GiaBanLe = GiaBanLe;
             lk.TinhTrang = TinhTrang;
-
+            lk.ThoiGianBaoHanh = ThoiGianBaoHanh;
+            
             return lk;
         }
     }
@@ -196,6 +198,38 @@ namespace PresentationLayer.View
             ncc.MoTa = MoTa;
 
             return ncc;
+        }
+    }
+
+    public class ThuongHieu_View
+    {
+        public string MaThuongHieu { get; set; }
+        public string TenThuongHieu { get; set; }
+        public string MoTa { get; set; }
+        public int TrangThai { get; set; }
+        public THUONGHIEU toTHUONG_HIEU()
+        {
+            THUONGHIEU table = new THUONGHIEU();
+            table.MaThuongHieu = MaThuongHieu;
+            table.TenThuongHieu = TenThuongHieu;
+            table.MoTa = MoTa;
+            table.TrangThai = TrangThai;
+            return table;
+        }
+    }
+    public class DonViTinh_View
+    {
+        public string MaDonViTinh { get; set; }
+        public string TenDonViTinh { get; set; }
+        public string MoTa { get; set; }
+
+        public DONVITINH toDONVITINH()
+        {
+            DONVITINH table = new DONVITINH();
+            table.MaDonViTinh = MaDonViTinh;
+            table.TenDonViTinh = TenDonViTinh;
+            table.MoTa = MoTa;
+            return table;
         }
     }
 }

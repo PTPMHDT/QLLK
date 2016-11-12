@@ -95,6 +95,7 @@
       <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\CT_HoaDon_DAL.cs" />
+    <Compile Include="DAL\DonViTinh_DAL.cs" />
     <Compile Include="DAL\HoaDon_DAL.cs" />
     <Compile Include="DAL\KhachHang_DAL.cs" />
     <Compile Include="DAL\Kho_DAL.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="DAL\LoaiKhachHang_DAL.cs" />
     <Compile Include="DAL\NguoiDung_DAL.cs" />
     <Compile Include="DAL\NhacCungCap_DAL.cs" />
+    <Compile Include="DAL\ThuongHieu_DAL.cs" />
     <Compile Include="DONVITINH.cs">
       <DependentUpon>ADO_Entity_V3.tt</DependentUpon>
     </Compile>
@@ -215,6 +217,7 @@
       <DependentUpon>UCPhieuBanHang.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewObject\View.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Viewer\FormChiTietPhieuBanHang.resx">
       <DependentUpon>FormChiTietPhieuBanHang.cs</DependentUpon>
     </EmbeddedResource>
