@@ -87,6 +87,7 @@ namespace PresentationLayer.DAL
                 catch (Exception ex)
                 {
                     transaction.Rollback();
+                    Context.Refresh();
                     Console.WriteLine("ERROR--------------------------------------" + ex.Message);
                     return false;
                 }

@@ -8,24 +8,22 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PresentationLayer.Classes;
+using PresentationLayer.GlobalVariable;
+using PresentationLayer.DAL;
 
 namespace PresentationLayer
 {
     public partial class formLogin : DevExpress.XtraEditors.XtraForm 
     {
-        EventLogin ev;
-        public string UserName { get { return textID.Text; } set { textID.Text = value; } }
-        public string Password { get { return textPass.Text; } set { textPass.Text = value; } }
-
         public formLogin()
         {
             InitializeComponent();
-            ev = new EventLogin(this);
         }
 
         private void formLogin_Load(object sender, EventArgs e)
         {
-            ev.onLoadDefaultLogin();
+            textID.Text = "hungnv";
+            textPass.Text = "hungnv";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -36,15 +34,14 @@ namespace PresentationLayer
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            bool isOk =  ev.onCheckLogin();
-
-            if (!isOk)
+            Context.getInstance().nv = NguoiDung_DAL.get_NguoiDung_By_IdPass(textID.Text.Trim(), textPass.Text.Trim());
+            if (Context.getInstance().nv == null)
             {
-                ev.onLoginFailure();
+                MessageBox.Show("Đăng nhập không thành công!");
             }
             else
             {
-                ev.onLoginSuccess(this);
+                Context.getInstance().formLogin = this;
                 FormMain fMain = new FormMain();
                 fMain.Show();
                 this.Hide();

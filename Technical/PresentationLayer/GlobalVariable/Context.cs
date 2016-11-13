@@ -1,6 +1,7 @@
 ﻿using PresentationLayer.View;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
@@ -27,6 +28,11 @@ namespace PresentationLayer.GlobalVariable
             db = new OOD_QLLKEntities();
         }
 
+        public static void Refresh()
+        {
+            foreach (var i in Context.getInstance().db.ChangeTracker.Entries())
+                i.State = EntityState.Unchanged;
+        }
        
     }
 }

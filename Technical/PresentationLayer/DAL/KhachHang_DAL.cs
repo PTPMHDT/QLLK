@@ -3,6 +3,9 @@ using PresentationLayer.View;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -107,6 +110,7 @@ namespace PresentationLayer.DAL
                 catch (Exception ex)
                 {
                     transaction.Rollback();
+                    Context.Refresh();
                     Console.WriteLine("ERROR--------------------------------------"+ex.Message);
                     return false;
                 }
@@ -114,6 +118,7 @@ namespace PresentationLayer.DAL
 
             return true;
         }
+
     }
 
  
