@@ -186,17 +186,23 @@
     <Compile Include="Viewer\UCDoanhThuNhanVien.Designer.cs">
       <DependentUpon>UCDoanhThuNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Viewer\UCLinhKien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewer\UCLinhKien.Designer.cs">
+      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Viewer\UCKhachHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Viewer\UCKhachHang.Designer.cs">
       <DependentUpon>UCKhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="Viewer\UCLinhKien.cs">
+    <Compile Include="Viewer\UCKho.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Viewer\UCLinhKien.Designer.cs">
-      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    <Compile Include="Viewer\UCKho.Designer.cs">
+      <DependentUpon>UCKho.cs</DependentUpon>
     </Compile>
     <Compile Include="Viewer\UCNhaCungCap.cs">
       <SubType>UserControl</SubType>
@@ -217,7 +223,6 @@
       <DependentUpon>UCPhieuBanHang.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewObject\View.cs" />
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Viewer\FormChiTietPhieuBanHang.resx">
       <DependentUpon>FormChiTietPhieuBanHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,11 +251,14 @@
     <EmbeddedResource Include="Viewer\UCDoanhThuNhanVien.resx">
       <DependentUpon>UCDoanhThuNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\UCLinhKien.resx">
+      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Viewer\UCKhachHang.resx">
       <DependentUpon>UCKhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Viewer\UCLinhKien.resx">
-      <DependentUpon>UCLinhKien.cs</DependentUpon>
+    <EmbeddedResource Include="Viewer\UCKho.resx">
+      <DependentUpon>UCKho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Viewer\UCNhaCungCap.resx">
       <DependentUpon>UCNhaCungCap.cs</DependentUpon>

@@ -17,16 +17,13 @@ namespace PresentationLayer.DAL
                            MaLinhKien = lk.MaLinhKien,
                            TenLinhKien = lk.TenLinhKien,
                            DonViTinh = lk.DONVITINH.TenDonViTinh,
-                           MaNhaCungCap = lk.NHACUNGCAP.MaNhaCungCap,
-                           NhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
-                           MaDonViTinh = lk.DONVITINH.TenDonViTinh,
-                           MaThuongHieu = lk.THUONGHIEU.TenThuongHieu,
+                           TenNhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
+                           TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
                            GiaBanLe = lk.GiaBanLe,
                            GiaBanSi = lk.GiaBanSi,
                            TinhTrang = lk.TinhTrang,
                            ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
-                           MoTa = lk.MoTa,
-                           ThuongHieu = lk.THUONGHIEU.TenThuongHieu
+                           MoTa = lk.MoTa
                        };
             var lks= lk1.ToList();
             lks.ForEach(x =>  x.InitOldData());

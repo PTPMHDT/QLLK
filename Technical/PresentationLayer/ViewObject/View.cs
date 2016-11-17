@@ -140,15 +140,13 @@ namespace PresentationLayer.View
     public class LinhKien_View : CGrid
     {
         public string MaLinhKien { get; set; }
-        public string ThuongHieu { get; set; }
-        public string MaNhaCungCap { get; set; }
-        public string MaThuongHieu { get; set; }
-        public string MaDonViTinh { get; set; }
-        public string NhaCungCap { get; set; }
+        public string TenThuongHieu { get; set; }
+        public string TenNhaCungCap { get; set; }
+        public string DonViTinh { get; set; }
         public string TenLinhKien { get; set; }
+        public string GiaNhap { get; set; }
         public Decimal  GiaBanSi { get; set; }
         public Decimal GiaBanLe { get; set; }
-        public string DonViTinh { get; set; }
         public int TinhTrang { get; set; }
         public int SoLuong { get; set; }
         public string MoTa { get; set; }
@@ -158,9 +156,9 @@ namespace PresentationLayer.View
             LINHKIEN lk = new LINHKIEN();
             lk.MaLinhKien = MaLinhKien;
             lk.TenLinhKien = TenLinhKien;
-            lk.MaNhaCungCap = MaNhaCungCap;
-            lk.MaThuongHieu = MaThuongHieu;
-            lk.MaDonViTinh = MaDonViTinh;
+            lk.MaNhaCungCap = TenNhaCungCap;
+            lk.MaThuongHieu = TenThuongHieu;
+            lk.MaDonViTinh = DonViTinh;
             lk.GiaBanSi = GiaBanSi;
             lk.GiaBanLe = GiaBanLe;
             lk.TinhTrang = TinhTrang;
@@ -172,11 +170,15 @@ namespace PresentationLayer.View
 
     public class NhaCungCap_View : CGrid
     {
+        [IdSelection]
         public string MaNhaCungCap { get; set; }
+        [DisplaySelection("Nhà Cung Cấp")]
         public string TenNhaCungCap { get; set; }
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
         public string MoTa { get; set; }
+
+        public int TrangThai { get; set; }
 
         public NhaCungCap_View() : base()
         {
@@ -196,14 +198,16 @@ namespace PresentationLayer.View
             ncc.DiaChi = DiaChi;
             ncc.SoDienThoai = SoDienThoai;
             ncc.MoTa = MoTa;
-
+            ncc.TrangThai = TrangThai;
             return ncc;
         }
     }
 
     public class ThuongHieu_View
     {
+        [IdSelection]
         public string MaThuongHieu { get; set; }
+        [DisplaySelection("Thương Hiệu")]
         public string TenThuongHieu { get; set; }
         public string MoTa { get; set; }
         public int TrangThai { get; set; }
@@ -219,16 +223,21 @@ namespace PresentationLayer.View
     }
     public class DonViTinh_View
     {
+        [IdSelection]
         public string MaDonViTinh { get; set; }
+
+        [DisplaySelection("Đơn Vị Tính")]
         public string TenDonViTinh { get; set; }
         public string MoTa { get; set; }
 
+        public int TrangThai { get; set; }
         public DONVITINH toDONVITINH()
         {
             DONVITINH table = new DONVITINH();
             table.MaDonViTinh = MaDonViTinh;
             table.TenDonViTinh = TenDonViTinh;
             table.MoTa = MoTa;
+            
             return table;
         }
     }

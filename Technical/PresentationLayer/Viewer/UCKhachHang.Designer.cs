@@ -57,7 +57,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 6;
-            this.gridColumn5.Width = 79;
+            this.gridColumn5.Width = 83;
             // 
             // gridColumn3
             // 
@@ -66,7 +66,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
-            this.gridColumn3.Width = 123;
+            this.gridColumn3.Width = 131;
             // 
             // gridColumn2
             // 
@@ -75,7 +75,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 132;
+            this.gridColumn2.Width = 70;
             // 
             // gridColumn1
             // 
@@ -84,7 +84,7 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 102;
+            this.gridColumn1.Width = 96;
             // 
             // gridView1
             // 
@@ -113,6 +113,7 @@
             this.Mode.Name = "Mode";
             this.Mode.Visible = true;
             this.Mode.VisibleIndex = 0;
+            this.Mode.Width = 70;
             // 
             // gridColumn6
             // 
@@ -121,6 +122,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.Width = 79;
             // 
             // gridColumn4
             // 
@@ -129,7 +131,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
-            this.gridColumn4.Width = 119;
+            this.gridColumn4.Width = 126;
             // 
             // Xoa
             // 
@@ -137,7 +139,7 @@
             this.Xoa.Name = "Xoa";
             this.Xoa.Visible = true;
             this.Xoa.VisibleIndex = 7;
-            this.Xoa.Width = 39;
+            this.Xoa.Width = 47;
             // 
             // btnXoa_Grid
             // 

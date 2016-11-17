@@ -27,6 +27,7 @@ namespace PresentationLayer
         {
             panelMain.Controls.Clear();
             var ucLinhKien = new UCLinhKien();
+            ucLinhKien.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucLinhKien);
         }
 

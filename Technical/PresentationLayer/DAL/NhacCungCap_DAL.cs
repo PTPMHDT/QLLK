@@ -18,10 +18,10 @@ namespace PresentationLayer.DAL
                           TenNhaCungCap = item.TenNhaCungCap,
                           DiaChi = item.DiaChi,
                           SoDienThoai = item.SoDienThoai,
-                          MoTa = item.MoTa
+                          MoTa = item.MoTa,
+                          TrangThai = (int)item.TrangThai
                       };
             var khp = temp.ToList();
-            khp.ForEach(k => k.InitOldData());
             return khp;
         }
 

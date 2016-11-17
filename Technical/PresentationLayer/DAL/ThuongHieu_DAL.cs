@@ -21,7 +21,6 @@ namespace PresentationLayer.DAL
                          TrangThai = (int)lk.TrangThai,
                       };
             var lks = lk1.ToList();
-            //lks.ForEach(x => x.InitOldData());
             return lks;
         }
     }
