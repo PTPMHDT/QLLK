@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.GlobalVariable;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,5 +19,7 @@ namespace PresentationLayer.ViewObject
         public int TinhTrangLK { get; set; }
         public string MoTaLK { get; set; }
         public string ThoiGianBaoHanh { get; set; }
+
+
     }
 }

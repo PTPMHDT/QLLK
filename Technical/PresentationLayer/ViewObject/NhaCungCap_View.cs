@@ -14,6 +14,7 @@ namespace PresentationLayer.ViewObject
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
         public string MoTa { get; set; }
+        public int TrangThai { get; set; }
 
         public NhaCungCap_View()
             : base()

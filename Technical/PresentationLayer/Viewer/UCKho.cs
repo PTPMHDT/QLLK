@@ -101,23 +101,23 @@ namespace PresentationLayer
 
         void Load_ComboBox_NhaCungCap()
         {
-            listNhaCungCap = new List<NhaCungCap_View>();
-            listNhaCungCap = NhaCungCap_DAL.getAll_NhaCungCap();
-            ComboBoxItemCollection items = cbNhaCungCap.Properties.Items;
-            items.BeginUpdate();
+            //listNhaCungCap = new List<NhaCungCap_View>();
+            //listNhaCungCap = NhaCungCap_DAL.getAll_NhaCungCap();
+            //ComboBoxItemCollection items = cbNhaCungCap.Properties.Items;
+            //items.BeginUpdate();
 
-            try
-            {
-                for (int i = 0; i < listNhaCungCap.Count; i++)
-                {
-                    items.Add(listNhaCungCap[i].TenNhaCungCap.ToString());
-                }
-            }
-            finally
-            {
-                items.EndUpdate();
-            }
-            cbNhaCungCap.Properties.AutoComplete = true;
+            //try
+            //{
+            //    for (int i = 0; i < listNhaCungCap.Count; i++)
+            //    {
+            //        items.Add(listNhaCungCap[i].TenNhaCungCap.ToString());
+            //    }
+            //}
+            //finally
+            //{
+            //    items.EndUpdate();
+            //}
+            //cbNhaCungCap.Properties.AutoComplete = true;
         }
         #endregion
         private void gridView_LinhKien_Click(object sender, EventArgs e)
