@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCNhapKho));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.btnThemNCC = new DevExpress.XtraEditors.SimpleButton();
@@ -53,6 +53,7 @@
             this.gridViewLoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.txtTongTien = new DevExpress.XtraEditors.TextEdit();
@@ -74,7 +75,6 @@
             this.bnt_arrowLeft = new DevExpress.XtraEditors.SimpleButton();
             this.bnt_arrowRight = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -105,7 +105,7 @@
             // 
             this.btnXoa.AutoHeight = false;
             this.btnXoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -150,7 +150,7 @@
             this.btnThemNCC.Size = new System.Drawing.Size(139, 23);
             this.btnThemNCC.TabIndex = 15;
             this.btnThemNCC.Text = "Thêm NCC";
-            this.btnThemNCC.Click += new System.EventHandler(this.btnThemKhachHang_Click);
+            this.btnThemNCC.Click += new System.EventHandler(this.btnThemNCC_Click);
             // 
             // btnKiemTraKho
             // 
@@ -338,6 +338,14 @@
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 100;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "NCC";
+            this.gridColumn3.FieldName = "TenNhaCungCap";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
             // 
             // repositoryItemTextEdit1
             // 
@@ -563,14 +571,6 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(790, 51);
             this.panelControl2.TabIndex = 15;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "NCC";
-            this.gridColumn3.FieldName = "TenNhaCungCap";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
             // 
             // UCNhapKho
             // 

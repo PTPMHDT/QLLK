@@ -22,6 +22,11 @@ namespace PresentationLayer.ViewObject
             MaNhaCungCap = NhaCungCap_DAL.get_NCCMax();
         }
 
+        public override String ToString()
+        {
+            return TenNhaCungCap.Trim() + "   (" + MaNhaCungCap.Trim() + ")";
+        }
+
         public NHACUNGCAP toNhaCungCap()
         {
             NHACUNGCAP ncc = Context.getInstance().db.NHACUNGCAPs.Where(key => key.MaNhaCungCap == MaNhaCungCap).FirstOrDefault();

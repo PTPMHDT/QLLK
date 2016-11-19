@@ -95,12 +95,14 @@ namespace PresentationLayer
 
         private void setGridCtrl_LinhKien()
         {
-            gridCtrlLoc.DataSource = LinhKien_DAL.getAll_LinhKien();
+            string item = cbxTenNCC.SelectedItem.ToString().Trim();
+            string maCNN = item.Substring(item.Length - 6, 5);
+            gridCtrlLoc.DataSource = LinhKien_DAL.getAll_LinhKien_ByNCC(maCNN);
         }
 
         private void setGroupBox_NCC()
         {
-            setCbxKhachHang("");
+            setCbxNCC("");
             if (!isNew)
             {
                 NhaCungCap_View ncc_v = NhaCungCap_DAL.get_NCC_By_MaNCC(hoadonnhap.MaNhaCungCap);
@@ -111,21 +113,21 @@ namespace PresentationLayer
 
         }
 
-        private void setCbxKhachHang(string maKH_WantSelected)
+        private void setCbxNCC(string maNCC_WantSelected)
         {
             int selected_Index = 0;
             cbxTenNCC.Properties.Items.Clear();
             ComboBoxItemCollection itemsCollection = cbxTenNCC.Properties.Items;
             itemsCollection.BeginUpdate();
-            List<KhachHang_View> list_KH = KhachHang_DAL.getAll_KhachHang();
+            List<NhaCungCap_View> list_NCC = NhaCungCap_DAL.getAll_NhaCungCap();
             try
             {
                 //khong load khach hang vang lai 
-                for (int i = 1; i < list_KH.Count; i++)
+                for (int i = 1; i < list_NCC.Count; i++)
                 {
-                    if (maKH_WantSelected.Equals(list_KH[i].MaKhachHang))
+                    if (maNCC_WantSelected.Equals(list_NCC[i].MaNhaCungCap))
                         selected_Index = i - 1;
-                    itemsCollection.Add(list_KH[i].ToString());
+                    itemsCollection.Add(list_NCC[i].ToString());
                 }
             }
             finally
@@ -282,19 +284,9 @@ namespace PresentationLayer
              }
         }
 
-        private void btnThemKhachHang_Click(object sender, EventArgs e)
+        private void btnThemNCC_Click(object sender, EventArgs e)
         {
-            //AddKhachHang f = new AddKhachHang();
-            //f.Owner = Context.getInstance().formMain;
-            //f.ShowDialog();
-            using (var form = new AddKhachHang())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    setCbxKhachHang(form.maKH_Return);           
-                }
-            }
+
         }
 
     }
