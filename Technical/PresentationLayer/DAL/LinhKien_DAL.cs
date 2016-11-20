@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +21,7 @@ namespace PresentationLayer.DAL
                            TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
                            GiaBanLe = lk.GiaBanLe,
                            GiaBanSi = lk.GiaBanSi,
+                           GiaNhap = (decimal)lk.GiaNhap,
                            TinhTrang = lk.TinhTrang,
                            ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
                            MoTa = lk.MoTa
@@ -28,6 +29,27 @@ namespace PresentationLayer.DAL
             var lks= lk1.ToList();
             lks.ForEach(x =>  x.InitOldData());
             return lks;
+        }
+
+        public static List<LinhKien_View> getAll_LinhKien_ByNCC(string MaNCC)
+        {
+            var lk1 = from lk in Context.getInstance().db.LINHKIENs
+                      where lk.MaNhaCungCap == MaNCC
+                      select new LinhKien_View()
+                      {
+                          MaLinhKien = lk.MaLinhKien,
+                          TenLinhKien = lk.TenLinhKien,
+                          DonViTinh = lk.DONVITINH.TenDonViTinh,
+                          TenNhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
+                          TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
+                          GiaBanLe = lk.GiaBanLe,
+                          GiaBanSi = lk.GiaBanSi,
+                          GiaNhap = (decimal)lk.GiaNhap,
+                          TinhTrang = lk.TinhTrang,
+                          ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
+                          MoTa = lk.MoTa
+                      };
+            return lk1.ToList();
         }
 
         public static bool saves(DataUpdate<LinhKien_View> list)

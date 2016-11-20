@@ -18,6 +18,7 @@ namespace PresentationLayer.ViewObject
         public string TenLinhKien { get; set; }
         public Decimal GiaBanSi { get; set; }
         public Decimal GiaBanLe { get; set; }
+        public Decimal GiaNhap { get; set; }
         public string DonViTinh { get; set; }
         public int TinhTrang { get; set; }
         public int SoLuong { get; set; }
@@ -35,7 +36,7 @@ namespace PresentationLayer.ViewObject
             lk.GiaBanLe = GiaBanLe;
             lk.TinhTrang = TinhTrang;
             lk.ThoiGianBaoHanh = ThoiGianBaoHanh;
-
+            lk.GiaNhap = GiaNhap;
             return lk;
         }
     }

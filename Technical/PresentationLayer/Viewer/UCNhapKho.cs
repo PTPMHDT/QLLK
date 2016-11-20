@@ -53,7 +53,7 @@ namespace PresentationLayer
                 hoadonnhap = new HoaDonNhap_View();
                 hoadonnhap.NhanVien = Context.getInstance().nv.TenNhanVien;
                 hoadonnhap.MaNhanVien = Context.getInstance().nv.MaNhanVien;
-                hoadonnhap.MaHoaDon = HoaDon_DAL.get_HoaDonMax();
+                hoadonnhap.MaHoaDon = HoaDonNhap_DAL.get_HoaDonNhapMax();
                 hoadonnhap.NgayLap = DateTime.Today;
                 hoadonnhap.GhiChu = "";
             }
@@ -98,6 +98,7 @@ namespace PresentationLayer
             string item = cbxTenNCC.SelectedItem.ToString().Trim();
             string maCNN = item.Substring(item.Length - 6, 5);
             gridCtrlLoc.DataSource = LinhKien_DAL.getAll_LinhKien_ByNCC(maCNN);
+            gridCtrlLoc.RefreshDataSource();
         }
 
         private void setGroupBox_NCC()
@@ -123,7 +124,7 @@ namespace PresentationLayer
             try
             {
                 //khong load khach hang vang lai 
-                for (int i = 1; i < list_NCC.Count; i++)
+                for (int i = 0; i < list_NCC.Count; i++)
                 {
                     if (maNCC_WantSelected.Equals(list_NCC[i].MaNhaCungCap))
                         selected_Index = i - 1;
@@ -159,7 +160,7 @@ namespace PresentationLayer
             }
         }
 
-        private void cbTenKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbTenNCC_SelectedIndexChanged(object sender, EventArgs e)
         {
             string item = cbxTenNCC.SelectedItem.ToString().Trim();
             string maCNN = item.Substring(item.Length - 6, 5);
@@ -167,6 +168,8 @@ namespace PresentationLayer
 
             txtSoDienThoai.Text = ncc.SoDienThoai;
             txtDiaChi.Text = ncc.DiaChi;
+            setGridCtrl_LinhKien();
+            hoadonnhap.MaNhaCungCap = maCNN;
         }
 
         private void gridViewLoc_DoubleClick(object sender, EventArgs e)
@@ -202,8 +205,8 @@ namespace PresentationLayer
                 ct_hd.MaLinhKien = lk.MaLinhKien;
                 ct_hd.TenLinhKien = lk.TenLinhKien;
                 ct_hd.DonViTinh = lk.DonViTinh;
-//                ct_hd.GiaNhap = lk.GiaBanLe;
                 ct_hd.SoLuong = 1;
+                ct_hd.GiaNhap = lk.GiaNhap;
                 ct_hd.ThanhTien = ct_hd.GiaNhap * ct_hd.SoLuong;
                 ls_cthd.Add(ct_hd);
 
@@ -255,38 +258,78 @@ namespace PresentationLayer
                     tongtien += (Int32)(item.GiaNhap * item.SoLuong);
                 }
             }
-            return tongtien; 
+            return tongtien;
         }
 
         private void btnHoanTat_Click(object sender, EventArgs e)
         {
-             var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
-             if (result == DialogResult.Yes)
-             {
-                 if (ls_cthd.Count == 0)
-                     MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
-                 else
-                 {
-                     hoadonnhap.GhiChu = txtGhiChu.Text.Trim();
-                     hoadonnhap.NgayLap = dateNgayBan.Value;
-                     hoadonnhap.TongTien = Decimal.Parse(txtTongTien.Text);
-                     //bien trang thai hoa don
-                     hoadonnhap.TrangThai = 1;
-                     if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
-                     {
-                         MessageBox.Show("Lưu thông tin thành công!");
-                     }
-                     else
-                     {
-                         MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
-                     }
-                 }
-             }
+            var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (ls_cthd.Count == 0)
+                    MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
+                else
+                {
+                    hoadonnhap.MaHoaDon = txtMaPhieu.Text.Trim();
+                    hoadonnhap.GhiChu = txtGhiChu.Text.Trim();
+                    hoadonnhap.NgayLap = dateNgayBan.Value;
+                    hoadonnhap.TongTien = Decimal.Parse(txtTongTien.Text);
+                    //bien trang thai hoa don
+                    hoadonnhap.TrangThai = 1;
+
+                    List<Kho_View> list_LK_In_Kho = Kho_DAL.getAll_LinhKien();
+                    Kho_View kho_v;
+                    foreach (var cthd in ls_cthd)
+                    {
+                        //tinh lai gia nhap
+                        kho_v = list_LK_In_Kho.Where(temp => temp.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                        if (! (kho_v.GiaNhap == cthd.GiaNhap))
+                        {
+                            cthd.GiaNhap = ((kho_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong); 
+                        }
+                    }
+
+                    if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
+                    {
+                        MessageBox.Show("Lưu thông tin thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                    }
+                }
+            }
         }
 
         private void btnThemNCC_Click(object sender, EventArgs e)
         {
+            using (var form = new AddNhaCungCap())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    setCbxNCC(form.maNCC_Return);
+                }
+            }
+        }
 
+        private void text_money_EditValueChanged(object sender, EventArgs e)
+        {
+            decimal giaNhap = Decimal.Parse(((DevExpress.XtraEditors.TextEdit)sender).Text);
+            CT_HoaDonNhap_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDonNhap_View;
+
+            foreach (CT_HoaDonNhap_View item in ls_cthd)
+            {
+                if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
+                {
+                    item.GiaNhap = giaNhap;
+                    item.ThanhTien = item.SoLuong * item.GiaNhap;
+                    gridControl1.DataSource = ls_cthd;
+                    gridControl1.RefreshDataSource();
+                    txtTongTien.Text = count_TongTien().ToString();
+                    break;
+                }
+            }
         }
 
     }

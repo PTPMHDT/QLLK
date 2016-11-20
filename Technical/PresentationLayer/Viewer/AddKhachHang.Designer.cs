@@ -59,8 +59,9 @@
             // 
             this.txt_maKH.Location = new System.Drawing.Point(104, 32);
             this.txt_maKH.Name = "txt_maKH";
+            this.txt_maKH.Properties.AllowFocused = false;
             this.txt_maKH.Size = new System.Drawing.Size(100, 20);
-            this.txt_maKH.TabIndex = 0;
+            this.txt_maKH.TabIndex = 100;
             // 
             // labelControl1
             // 
@@ -78,12 +79,12 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(639, 276);
+            this.panelControl1.Size = new System.Drawing.Size(602, 276);
             this.panelControl1.TabIndex = 3;
             // 
             // btn_Thoat
             // 
-            this.btn_Thoat.Location = new System.Drawing.Point(478, 239);
+            this.btn_Thoat.Location = new System.Drawing.Point(443, 239);
             this.btn_Thoat.Name = "btn_Thoat";
             this.btn_Thoat.Size = new System.Drawing.Size(75, 32);
             this.btn_Thoat.TabIndex = 6;
@@ -92,7 +93,7 @@
             // 
             // btn_Luu
             // 
-            this.btn_Luu.Location = new System.Drawing.Point(559, 239);
+            this.btn_Luu.Location = new System.Drawing.Point(524, 239);
             this.btn_Luu.Name = "btn_Luu";
             this.btn_Luu.Size = new System.Drawing.Size(75, 32);
             this.btn_Luu.TabIndex = 5;
@@ -115,7 +116,7 @@
             this.groupControl1.Controls.Add(this.txt_Ghichu);
             this.groupControl1.Location = new System.Drawing.Point(5, 5);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(629, 228);
+            this.groupControl1.Size = new System.Drawing.Size(594, 228);
             this.groupControl1.TabIndex = 4;
             this.groupControl1.Text = "Thêm thông tin khách hàng mới";
             // 
@@ -125,7 +126,7 @@
             this.cbx_LoaiKH.Location = new System.Drawing.Point(402, 32);
             this.cbx_LoaiKH.Name = "cbx_LoaiKH";
             this.cbx_LoaiKH.Size = new System.Drawing.Size(173, 21);
-            this.cbx_LoaiKH.TabIndex = 3;
+            this.cbx_LoaiKH.TabIndex = 2;
             // 
             // labelControl6
             // 
@@ -159,7 +160,7 @@
             this.txt_SoDT.Properties.Mask.EditMask = " \\d\\d\\d\\d\\d-\\d\\d\\d-\\d\\d\\d";
             this.txt_SoDT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Regular;
             this.txt_SoDT.Size = new System.Drawing.Size(173, 20);
-            this.txt_SoDT.TabIndex = 4;
+            this.txt_SoDT.TabIndex = 3;
             // 
             // labelControl3
             // 
@@ -183,7 +184,7 @@
             this.txt_TenKH.Name = "txt_TenKH";
             this.txt_TenKH.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.txt_TenKH.Size = new System.Drawing.Size(173, 20);
-            this.txt_TenKH.TabIndex = 1;
+            this.txt_TenKH.TabIndex = 0;
             // 
             // txt_DiaChi
             // 
@@ -192,20 +193,20 @@
             this.txt_DiaChi.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_DiaChi.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.txt_DiaChi.Size = new System.Drawing.Size(173, 92);
-            this.txt_DiaChi.TabIndex = 2;
+            this.txt_DiaChi.TabIndex = 1;
             // 
             // txt_Ghichu
             // 
             this.txt_Ghichu.Location = new System.Drawing.Point(402, 105);
             this.txt_Ghichu.Name = "txt_Ghichu";
             this.txt_Ghichu.Size = new System.Drawing.Size(173, 92);
-            this.txt_Ghichu.TabIndex = 5;
+            this.txt_Ghichu.TabIndex = 4;
             // 
             // AddKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 276);
+            this.ClientSize = new System.Drawing.Size(602, 276);
             this.Controls.Add(this.panelControl1);
             this.Name = "AddKhachHang";
             this.Load += new System.EventHandler(this.AddKhachHang_Load);

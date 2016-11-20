@@ -19,7 +19,7 @@ namespace PresentationLayer.ViewObject
         public string MaKhachHang { get; set; }
         public string SoDienThoai { get; set; }
         public string GhiChu { get; set; }
-        public List<CT_HoaDon_View> list_CT_HoaDon { get; set; }
+        public List<CT_HoaDon_View> ChiTietHoaDon { get; set; }
 
         public HOADON toHoaDon()
         {

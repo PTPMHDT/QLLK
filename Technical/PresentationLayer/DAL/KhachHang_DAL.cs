@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +17,7 @@ namespace PresentationLayer.DAL
         public static List<KhachHang_View> getAll_KhachHang()
         {
             var kh1 = from kh in Context.getInstance().db.KHACHHANGs
+                      where kh.TrangThai == 1
                       select new KhachHang_View
                       {
                           MaKhachHang = kh.MaKhachHang,
@@ -41,6 +42,7 @@ namespace PresentationLayer.DAL
                           MaKhachHang = kh.MaKhachHang,
                           TenKhachHang = kh.TenKhachHang,
                           TenLoaiKhachHang = kh.LOAI.TenLoai,
+                          MaLoaiKhachHang = kh.LOAI.MaLoai,
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
                           GhiChu = kh.GhiChu
@@ -58,6 +60,7 @@ namespace PresentationLayer.DAL
                           TenKhachHang = kh.TenKhachHang,
                           TenLoaiKhachHang = kh.LOAI.TenLoai,
                           SoDienThoai = kh.SoDienThoai,
+                          MaLoaiKhachHang = kh.LOAI.MaLoai,
                           DiaChi = kh.DiaChi,
                           GhiChu = kh.GhiChu
                       };
@@ -90,7 +93,8 @@ namespace PresentationLayer.DAL
                 {
                     list.Inserts.ForEach(x =>
                     {
-                        Context.getInstance().db.KHACHHANGs.Add(x.toKhachHang());
+                        //Context.getInstance().db.KHACHHANGs.Add(x.toKhachHang());
+                        Context.getInstance().db.Entry(x.toKhachHang()).State = System.Data.Entity.EntityState.Added;
                     });
 
                     list.Updates.ForEach(x =>
@@ -100,7 +104,7 @@ namespace PresentationLayer.DAL
 
                     list.Deletes.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toKhachHang()).State = System.Data.Entity.EntityState.Deleted;
+                        Context.getInstance().db.Entry(x.toKhachHang_Del()).State = System.Data.Entity.EntityState.Modified;
                     });
                   
                     Context.getInstance().db.SaveChanges();
@@ -119,6 +123,29 @@ namespace PresentationLayer.DAL
             return true;
         }
 
+        public static bool add(KhachHang_View kh)
+        {
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Context.getInstance().db.Entry(kh.toKhachHang()).State = System.Data.Entity.EntityState.Added;
+                    
+                    Context.getInstance().db.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
  

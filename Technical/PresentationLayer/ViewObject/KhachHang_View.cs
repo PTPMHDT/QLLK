@@ -42,6 +42,24 @@ namespace PresentationLayer.ViewObject
             kh.SoDienThoai = SoDienThoai;
             kh.DiaChi = DiaChi;
             kh.GhiChu = GhiChu;
+            kh.TrangThai = 1;
+            return kh;
+        }
+
+        public KHACHHANG toKhachHang_Del()
+        {
+            KHACHHANG kh = Context.getInstance().db.KHACHHANGs.Where(key => key.MaKhachHang == MaKhachHang).FirstOrDefault();
+            if (kh == null)
+            {
+                kh = new KHACHHANG();
+                kh.MaKhachHang = MaKhachHang;
+            }
+            kh.TenKhachHang = TenKhachHang;
+            kh.MaLoai = MaLoaiKhachHang;
+            kh.SoDienThoai = SoDienThoai;
+            kh.DiaChi = DiaChi;
+            kh.GhiChu = GhiChu;
+            kh.TrangThai = 0;
             return kh;
         }
     }

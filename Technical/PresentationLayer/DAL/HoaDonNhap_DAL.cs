@@ -51,17 +51,17 @@ namespace PresentationLayer.DAL
         {
             try
             {
-                string result = Context.getInstance().db.HOADONs.OrderByDescending(x => x.MaHoaDon).First().MaHoaDon;
+                string result = Context.getInstance().db.HOADON_NHAPHANG.OrderByDescending(x => x.MaHoaDon).First().MaHoaDon;
                 int index = (Convert.ToInt16((result).Substring(2)) + 1);
                 if (index < 10)
-                    return "HN00" + index;
+                    return "HD00" + index;
                 else if (index < 100)
-                    return "HN0" + index;
-                return "HN" + index;
+                    return "HD0" + index;
+                return "HD" + index;
             }
             catch (Exception)
             {
-                return "HN001";
+                return "HD001";
             }
         }
 
@@ -73,9 +73,19 @@ namespace PresentationLayer.DAL
                 {
                     Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Added;
                     KHO kho;
+                    LINHKIEN lk;
                     ct_hds.ForEach(x =>
                     {
                         Context.getInstance().db.Entry(x.toCT_HoaDonNhap()).State = System.Data.Entity.EntityState.Added;
+                        lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
+                        if(!(lk.GiaNhap == x.GiaNhap))
+                        {
+                            lk.GiaNhap = x.GiaNhap;
+                            lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanLe);
+                            lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanBuon);
+                        }
+                        Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
+
                         kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
                         kho.SoLuong = kho.SoLuong + x.SoLuong;
                         Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;

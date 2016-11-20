@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ namespace PresentationLayer.DAL
         public static List<NhaCungCap_View> getAll_NhaCungCap()
         {
             var temp = from item in Context.getInstance().db.NHACUNGCAPs
+                       where item.TrangThai == 1
                       select new NhaCungCap_View
                       {
                           MaNhaCungCap = item.MaNhaCungCap,
@@ -25,21 +26,21 @@ namespace PresentationLayer.DAL
             return khp;
         }
 
-        //public static NhaCungCap_View get_KhachHang_By_MaKhachHang(string maKhachHang)
-        //{
-        //    var kh1 = from kh in Context.getInstance().db.KHACHHANGs
-        //              where kh.MaKhachHang == maKhachHang
-        //              select new KhachHang_View()
-        //              {
-        //                  MaKhachHang = kh.MaKhachHang,
-        //                  TenKhachHang = kh.TenKhachHang,
-        //                  TenLoaiKhachHang = kh.LOAI.TenLoai,
-        //                  SoDienThoai = kh.SoDienThoai,
-        //                  DiaChi = kh.DiaChi,
-        //                  GhiChu = kh.GhiChu
-        //              };
-        //    return kh1.ToList()[0];
-        //}
+        public static NhaCungCap_View get_NCC_By_MaNCC(string maNCC)
+        {
+            var ncc1 = from ncc in Context.getInstance().db.NHACUNGCAPs
+                      where ncc.MaNhaCungCap == maNCC
+                      select new NhaCungCap_View()
+                      {
+                          MaNhaCungCap = ncc.MaNhaCungCap,
+                          TenNhaCungCap = ncc.TenNhaCungCap,
+                          SoDienThoai = ncc.SoDienThoai,
+                          DiaChi = ncc.DiaChi,
+                          MoTa = ncc.MoTa,
+                          TrangThai = (int)ncc.TrangThai
+                      };
+            return ncc1.ToList()[0];
+        }
 
         public static string get_NCCMax()
         {
@@ -57,6 +58,30 @@ namespace PresentationLayer.DAL
             {
                 return "CC001";
             }
+        }
+
+        public static bool add(NhaCungCap_View ncc)
+        {
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
+            {
+                try
+                {
+                    Context.getInstance().db.Entry(ncc.toNhaCungCap()).State = System.Data.Entity.EntityState.Added;
+
+                    Context.getInstance().db.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static bool saves(DataUpdate<NhaCungCap_View> list)
@@ -77,7 +102,7 @@ namespace PresentationLayer.DAL
 
                     list.Deletes.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toNhaCungCap()).State = System.Data.Entity.EntityState.Deleted;
+                        Context.getInstance().db.Entry(x.toNhaCungCap_Del()).State = System.Data.Entity.EntityState.Modified;
                     });
 
                     Context.getInstance().db.SaveChanges();

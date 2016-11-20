@@ -168,6 +168,7 @@
             this.btnPhieuBanHang.Id = 4;
             this.btnPhieuBanHang.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnPhieuBanHang.LargeGlyph")));
             this.btnPhieuBanHang.Name = "btnPhieuBanHang";
+            this.btnPhieuBanHang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhieuBanHang_ItemClick);
             // 
             // btnNhanVien
             // 
@@ -213,6 +214,7 @@
             toolTipTitleItem1.Text = "Danh sách các phiếu nhập kho";
             superToolTip1.Items.Add(toolTipTitleItem1);
             this.btnNhapKho.SuperTip = superToolTip1;
+            this.btnNhapKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNhapKho_ItemClick);
             // 
             // btnXuatKho
             // 

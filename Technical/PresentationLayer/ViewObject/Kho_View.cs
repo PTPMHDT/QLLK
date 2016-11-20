@@ -15,6 +15,7 @@ namespace PresentationLayer.ViewObject
         public string NhaCungCap { get; set; }
         public Decimal GiaBanSi { get; set; }
         public Decimal GiaBanLe { get; set; }
+        public Decimal GiaNhap { get; set; }
         public string DonViTinh { get; set; }
         public int TinhTrangLK { get; set; }
         public string MoTaLK { get; set; }

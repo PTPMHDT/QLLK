@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ namespace PresentationLayer.DAL
                            DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
                            GiaBanLe = kho.LINHKIEN.GiaBanLe,
                            GiaBanSi = kho.LINHKIEN.GiaBanSi,
+                           GiaNhap = (decimal)kho.LINHKIEN.GiaNhap,
                            TinhTrangLK = kho.LINHKIEN.TinhTrang,
                            MoTaLK = kho.LINHKIEN.MoTa,
                            ThuongHieu = kho.LINHKIEN.THUONGHIEU.TenThuongHieu
@@ -48,6 +49,7 @@ namespace PresentationLayer.DAL
                        };
             return kho1.ToList()[0];
         }
+
     }
 
 }

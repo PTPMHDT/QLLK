@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +25,7 @@ namespace PresentationLayer.DAL
                            MaKhachHang = hoadon.MaKhachHang,
                            SoDienThoai = hoadon.KHACHHANG.SoDienThoai
                        };
+            
             return hd.ToList();
         }
 
@@ -67,30 +68,56 @@ namespace PresentationLayer.DAL
             }
         }
 
+        internal static object getAll_HoaDon_TheoThoiGian(DateTime startD, DateTime endD)
+        {
+            var hd = from hoadon in Context.getInstance().db.HOADONs
+                     where hoadon.NgayLap >= startD.Date 
+                     where hoadon.NgayLap <= endD.Date
+                     select new HoaDon_View
+                     {
+                         MaHoaDon = hoadon.MaHoaDon,
+                         MaPhieu = hoadon.MaPhieu,
+                         NgayLap = hoadon.NgayLap,
+                         NhanVien = hoadon.NHANVIEN.TenNhanVien,
+                         MaNhanVien = hoadon.MaNguoiLap,
+                         TongTien = hoadon.TongTien,
+                         TrangThai = hoadon.TrangThai,
+                         KhachHang = hoadon.KHACHHANG.TenKhachHang,
+                         MaKhachHang = hoadon.MaKhachHang,
+                         SoDienThoai = hoadon.KHACHHANG.SoDienThoai
+                     };
+            var khp = hd.ToList();
+            khp.ForEach(k => k.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(k.MaHoaDon));
+            return khp.ToList();
+        }
+
         public static bool add_HoaDon( HoaDon_View hd, List<CT_HoaDon_View> ct_hds)
         {
             using (var transaction = Context.getInstance().db.Database.BeginTransaction())
             {
                 try
                 {
-                    Context.getInstance().db.HOADONs.Add(hd.toHoaDon());
-                    Context.getInstance().db.SaveChanges();
-
+                    Context.getInstance().db.Entry(hd.toHoaDon()).State = System.Data.Entity.EntityState.Added;
+                    KHO kho;
                     ct_hds.ForEach(x =>
                     {
-                        Context.getInstance().db.CT_HOADON.Add(x.toCT_HoaDon());
+                        Context.getInstance().db.Entry(x.toCT_HoaDon()).State = System.Data.Entity.EntityState.Added;
+                        kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
+                        kho.SoLuong = kho.SoLuong - x.SoLuong;
+                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
                     });
-
+                    //update so tien mua hang cua khach hang
                     Context.getInstance().db.SaveChanges();
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
-                    Context.getInstance().db.HOADONs.Local.Clear();
-                    Context.getInstance().db.CT_HOADON.Local.Clear();
                     transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
                     return false;
                 }
+
             }
             return true;
         }
@@ -140,5 +167,7 @@ namespace PresentationLayer.DAL
             }
             return true;
         }
+
+
     }
 }

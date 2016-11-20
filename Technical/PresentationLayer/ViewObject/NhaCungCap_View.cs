@@ -40,7 +40,23 @@ namespace PresentationLayer.ViewObject
             ncc.DiaChi = DiaChi;
             ncc.SoDienThoai = SoDienThoai;
             ncc.MoTa = MoTa;
-
+            ncc.TrangThai = 1;
+            return ncc;
+        }
+        public NHACUNGCAP toNhaCungCap_Del()
+        {
+            NHACUNGCAP ncc = Context.getInstance().db.NHACUNGCAPs.Where(key => key.MaNhaCungCap == MaNhaCungCap).FirstOrDefault();
+            if (ncc == null)
+            {
+                ncc = new NHACUNGCAP();
+                ncc.MaNhaCungCap = MaNhaCungCap;
+            }
+            ncc.MaNhaCungCap = MaNhaCungCap;
+            ncc.TenNhaCungCap = TenNhaCungCap;
+            ncc.DiaChi = DiaChi;
+            ncc.SoDienThoai = SoDienThoai;
+            ncc.MoTa = MoTa;
+            ncc.TrangThai = 0;
             return ncc;
         }
     }

@@ -43,6 +43,7 @@ namespace PresentationLayer
             {
                 Context.getInstance().formLogin = this;
                 FormMain fMain = new FormMain();
+                Context.getInstance().formMain = fMain;
                 fMain.Show();
                 this.Hide();
             }

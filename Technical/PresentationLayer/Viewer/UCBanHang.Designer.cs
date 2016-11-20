@@ -77,6 +77,7 @@
             this.bnt_arrowLeft = new DevExpress.XtraEditors.SimpleButton();
             this.bnt_arrowRight = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -102,6 +103,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             this.SuspendLayout();
             // 
             // btnXoa
@@ -431,7 +433,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemSpinEdit1});
+            this.repositoryItemSpinEdit1,
+            this.text_money});
             this.gridControl1.Size = new System.Drawing.Size(786, 331);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -505,6 +508,7 @@
             // GiaBan
             // 
             this.GiaBan.Caption = "Giá Bán";
+            this.GiaBan.ColumnEdit = this.text_money;
             this.GiaBan.FieldName = "GiaBan";
             this.GiaBan.Name = "GiaBan";
             this.GiaBan.Visible = true;
@@ -595,6 +599,13 @@
             this.panelControl2.Size = new System.Drawing.Size(790, 51);
             this.panelControl2.TabIndex = 15;
             // 
+            // text_money
+            // 
+            this.text_money.AutoHeight = false;
+            this.text_money.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.text_money.Name = "text_money";
+            this.text_money.EditValueChanged += new System.EventHandler(this.text_money_EditValueChanged);
+            // 
             // UCBanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -633,6 +644,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,5 +698,6 @@
         private DevExpress.XtraEditors.SimpleButton bnt_arrowRight;
         private DevExpress.XtraGrid.Columns.GridColumn ThanhTien;
         private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
     }
 }

@@ -20,10 +20,12 @@ namespace PresentationLayer
     public partial class UCBanHang : UserControl
     {
         DataTable dt_linhKien = new DataTable();
+        List<Kho_View> list_LK_inKho;
         List<CT_HoaDon_View> ls_cthd;
         HoaDon_View hoadon;
         KhachHang_View kh_vanglai;
         bool isNew;     //bien kiem tra xem dang o che do New hay la update
+        string loaiKH;     //bien kiem tra xem kh la loai nao
 
         public UCBanHang() { }
 
@@ -97,7 +99,8 @@ namespace PresentationLayer
 
         private void setGridCtrl_LinhKien()
         {
-            gridCtrlLoc.DataSource = Kho_DAL.getAll_LinhKien();
+            list_LK_inKho = Kho_DAL.getAll_LinhKien();
+            gridCtrlLoc.DataSource = list_LK_inKho;
         }
 
         private void setGroupBox_KhachHang()
@@ -110,6 +113,7 @@ namespace PresentationLayer
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
                 hoadon.MaKhachHang = kh_vanglai.MaKhachHang;
+                loaiKH = kh_vanglai.MaLoaiKhachHang;
             }
             else
             {
@@ -121,6 +125,7 @@ namespace PresentationLayer
                 txtLoaiKhach.Text = kh_v.TenLoaiKhachHang;
                 txtSoDienThoai.Text = kh_v.SoDienThoai;
                 txtDiaChi.Text = kh_v.DiaChi;
+                loaiKH = kh_v.MaLoaiKhachHang;
             }
         }
 
@@ -189,6 +194,9 @@ namespace PresentationLayer
                 txtLoaiKhach.Text = kh.TenLoaiKhachHang;
                 txtSoDienThoai.Text = kh.SoDienThoai;
                 txtDiaChi.Text = kh.DiaChi;
+                hoadon.MaKhachHang = maKH;
+                loaiKH = kh.MaLoaiKhachHang;
+
             }
             else
             {
@@ -197,7 +205,32 @@ namespace PresentationLayer
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
                 hoadon.MaKhachHang = kh_vanglai.MaKhachHang;
+                loaiKH = kh_vanglai.MaLoaiKhachHang;
             }
+            change_GiaBan();
+        }
+
+        private void change_GiaBan()
+        {
+            Kho_View kho;
+            foreach (var cthd in ls_cthd)
+            {
+                kho = list_LK_inKho.Where(key => key.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                switch (loaiKH)
+                {
+                    case "L001":
+                        cthd.GiaBan = kho.GiaBanLe;
+                        break;
+                    case "L002":
+                        cthd.GiaBan = kho.GiaBanSi;
+                        break;
+                    case "L003":
+                        break;
+                }
+                cthd.ThanhTien = cthd.GiaBan * cthd.SoLuong;
+            }
+            txtTongTien.Text = count_TongTien().ToString();
+            gridControl1.RefreshDataSource();
         }
 
         private void gridViewLoc_DoubleClick(object sender, EventArgs e)
@@ -238,7 +271,17 @@ namespace PresentationLayer
                 ct_hd.MaLinhKien = kho.MaLinhKien;
                 ct_hd.TenLinhKien = kho.TenLinhKien;
                 ct_hd.DonViTinh = kho.DonViTinh;
-                ct_hd.GiaBan = kho.GiaBanLe;
+                switch (loaiKH)
+                {
+                    case "L001":
+                        ct_hd.GiaBan = kho.GiaBanLe;
+                        break;
+                    case "L002":
+                        ct_hd.GiaBan = kho.GiaBanSi;
+                        break;
+                    case "L003":
+                        break;
+                }
                 ct_hd.SoLuong = 1;
                 ct_hd.ThanhTien = ct_hd.GiaBan * ct_hd.SoLuong;
                 ct_hd.SoLuong_TrongKho = kho.SoLuong;
@@ -324,15 +367,31 @@ namespace PresentationLayer
 
         private void btnThemKhachHang_Click(object sender, EventArgs e)
         {
-            //AddKhachHang f = new AddKhachHang();
-            //f.Owner = Context.getInstance().formMain;
-            //f.ShowDialog();
             using (var form = new AddKhachHang())
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     setCbxKhachHang(form.maKH_Return);           
+                }
+            }
+        }
+
+        private void text_money_EditValueChanged(object sender, EventArgs e)
+        {
+            decimal giaBan = Decimal.Parse(((DevExpress.XtraEditors.TextEdit)sender).Text);
+            CT_HoaDon_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDon_View;
+
+            foreach (CT_HoaDon_View item in ls_cthd)
+            {
+                if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
+                {
+                    item.GiaBan = giaBan;
+                    item.ThanhTien = item.SoLuong * item.GiaBan;
+                    gridControl1.DataSource = ls_cthd;
+                    gridControl1.RefreshDataSource();
+                    txtTongTien.Text = count_TongTien().ToString();
+                    break;
                 }
             }
         }

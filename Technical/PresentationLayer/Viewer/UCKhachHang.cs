@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PresentationLayer.DAL;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 
 namespace PresentationLayer
 {

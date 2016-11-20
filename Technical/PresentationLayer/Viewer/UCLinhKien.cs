@@ -44,15 +44,15 @@ namespace PresentationLayer
             {
                 DataUpdate<LinhKien_View> listUpdate = gridThaoTac.update();
 
-                if (LinhKien_DAL.saves(listUpdate))
-                {
-                    MessageBox.Show("Lưu thông tin thành công!");
-                    InitVal();
-                }
-                else
-                {
-                    MessageBox.Show("Lưu thông tin thất bại!");
-                }
+                //if (LinhKien_DAL.saves(listUpdate))
+                //{
+                //    MessageBox.Show("Lưu thông tin thành công!");
+                //    InitVal();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Lưu thông tin thất bại!");
+                //}
             }         
         }
 

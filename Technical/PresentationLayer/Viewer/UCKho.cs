@@ -44,7 +44,7 @@ namespace PresentationLayer
         {
             Clear();
             ls_linhKien = new List<LinhKien_View>();
-            ls_linhKien = LinhKien_DAL.getAll_LinhKien();
+            //ls_linhKien = LinhKien_DAL.getAll_LinhKien();
 
             //gridCtrlLinhKien.DataSource = ls_linhKien;
 
@@ -154,15 +154,15 @@ namespace PresentationLayer
             //item.TinhTrang = 1;
             //item.ThoiGianBaoHanh = int.Parse(txtThoiGianBH.Text);
 
-            if(LinhKien_DAL.Add_LinhKien(item))
-            {
-                MessageBox.Show("Đã thêm thanh công");
-                SetDataLoad();
-            }
-            else
-            {
-                MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra lại");
-            }
+            //if(LinhKien_DAL.Add_LinhKien(item))
+            //{
+            //    MessageBox.Show("Đã thêm thanh công");
+            //    SetDataLoad();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra lại");
+            //}
         }
         void Clear()
         {

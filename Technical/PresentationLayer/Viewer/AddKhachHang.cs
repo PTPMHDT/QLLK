@@ -24,6 +24,7 @@ namespace PresentationLayer.Viewer
         private void AddKhachHang_Load(object sender, EventArgs e)
         {
             txt_maKH.ReadOnly = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txt_maKH.Text = KhachHang_DAL.get_KhachHangMax();
             cbx_LoaiKH.DataSource = LoaiKhachHang_DAL.getAll_LoaiKhachHang();
             cbx_LoaiKH.DisplayMember = "TenLoai";
