@@ -204,7 +204,7 @@ namespace PresentationLayer
                 ct_hd.MaHoaDon = txtMaPhieu.Text.Trim();
                 ct_hd.MaLinhKien = lk.MaLinhKien;
                 ct_hd.TenLinhKien = lk.TenLinhKien;
-                ct_hd.DonViTinh = lk.DonViTinh;
+                ct_hd.DonViTinh = lk.TenDonViTinh;
                 ct_hd.SoLuong = 1;
                 ct_hd.GiaNhap = lk.GiaNhap;
                 ct_hd.ThanhTien = ct_hd.GiaNhap * ct_hd.SoLuong;

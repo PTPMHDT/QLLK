@@ -15,7 +15,6 @@ namespace PresentationLayer.DAL
                        select new HoaDon_View
                        {
                            MaHoaDon = hoadon.MaHoaDon,
-                           MaPhieu = hoadon.MaPhieu,
                            NgayLap = hoadon.NgayLap,
                            NhanVien = hoadon.NHANVIEN.TenNhanVien,
                            MaNhanVien = hoadon.MaNguoiLap,
@@ -36,7 +35,6 @@ namespace PresentationLayer.DAL
                      select new HoaDon_View
                      {
                          MaHoaDon = hoadon.MaHoaDon,
-                         MaPhieu = hoadon.MaPhieu,
                          NgayLap = hoadon.NgayLap,
                          NhanVien = hoadon.NHANVIEN.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,
@@ -76,7 +74,6 @@ namespace PresentationLayer.DAL
                      select new HoaDon_View
                      {
                          MaHoaDon = hoadon.MaHoaDon,
-                         MaPhieu = hoadon.MaPhieu,
                          NgayLap = hoadon.NgayLap,
                          NhanVien = hoadon.NHANVIEN.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,

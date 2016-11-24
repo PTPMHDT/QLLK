@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PresentationLayer.ViewObject
 {
-    public class HoaDon_View
+    public class HoaDon_View 
     {
         public string MaHoaDon { get; set; }
         public string MaPhieu { get; set; }
@@ -29,7 +29,6 @@ namespace PresentationLayer.ViewObject
                 hd = new HOADON();
                 hd.MaHoaDon = MaHoaDon;
             }
-            hd.MaPhieu = "maphieu";
             hd.NgayLap = NgayLap;
             hd.MaNguoiLap = MaNhanVien;
             hd.TongTien = TongTien;

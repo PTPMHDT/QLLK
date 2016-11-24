@@ -1,5 +1,5 @@
 ﻿using PresentationLayer.GlobalVariable;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections;
 using System.Collections.Generic;

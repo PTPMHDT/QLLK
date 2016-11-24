@@ -69,6 +69,7 @@
             this.SoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.GiaBan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThoiGianBaoHanh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa_Row = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -77,7 +78,7 @@
             this.bnt_arrowLeft = new DevExpress.XtraEditors.SimpleButton();
             this.bnt_arrowRight = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.btn_XuatHD = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -97,13 +98,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             this.SuspendLayout();
             // 
             // btnXoa
@@ -515,6 +516,13 @@
             this.GiaBan.VisibleIndex = 4;
             this.GiaBan.Width = 130;
             // 
+            // text_money
+            // 
+            this.text_money.AutoHeight = false;
+            this.text_money.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.text_money.Name = "text_money";
+            this.text_money.EditValueChanged += new System.EventHandler(this.text_money_EditValueChanged);
+            // 
             // ThanhTien
             // 
             this.ThanhTien.Caption = "Thành Tiền";
@@ -591,6 +599,7 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.btn_XuatHD);
             this.panelControl2.Controls.Add(this.btnHoanTat);
             this.panelControl2.Controls.Add(this.labelControl10);
             this.panelControl2.Controls.Add(this.txtTongTien);
@@ -599,12 +608,21 @@
             this.panelControl2.Size = new System.Drawing.Size(790, 51);
             this.panelControl2.TabIndex = 15;
             // 
-            // text_money
+            // btn_XuatHD
             // 
-            this.text_money.AutoHeight = false;
-            this.text_money.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.text_money.Name = "text_money";
-            this.text_money.EditValueChanged += new System.EventHandler(this.text_money_EditValueChanged);
+            this.btn_XuatHD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_XuatHD.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_XuatHD.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.btn_XuatHD.Appearance.Options.UseFont = true;
+            this.btn_XuatHD.Appearance.Options.UseForeColor = true;
+            this.btn_XuatHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XuatHD.Image")));
+            this.btn_XuatHD.Location = new System.Drawing.Point(444, 5);
+            this.btn_XuatHD.Name = "btn_XuatHD";
+            this.btn_XuatHD.Size = new System.Drawing.Size(180, 40);
+            this.btn_XuatHD.TabIndex = 12;
+            this.btn_XuatHD.Text = "XUẤT HÓA ĐƠN";
+            this.btn_XuatHD.Click += new System.EventHandler(this.btn_XuatHD_Click);
             // 
             // UCBanHang
             // 
@@ -637,6 +655,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -644,7 +663,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -699,5 +717,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn ThanhTien;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
+        private DevExpress.XtraEditors.SimpleButton btn_XuatHD;
     }
 }

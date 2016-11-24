@@ -14,6 +14,7 @@ using PresentationLayer.ViewObject;
 using PresentationLayer.DAL;
 using PresentationLayer.GlobalVariable;
 using PresentationLayer.Viewer;
+using DevExpress.XtraReports.UI;
 
 namespace PresentationLayer
 {
@@ -152,6 +153,7 @@ namespace PresentationLayer
             }
             cbTenKhachHang.Properties.AutoComplete = true;
             cbTenKhachHang.SelectedIndex = selected_Index;
+            hoadon.MaKhachHang = maKH_WantSelected;
         }
 
         //thay doi so luong lk
@@ -394,6 +396,24 @@ namespace PresentationLayer
                     break;
                 }
             }
+        }
+
+        private void btn_XuatHD_Click(object sender, EventArgs e)
+        {
+            List<HoaDon_View> lst = new List<HoaDon_View>();
+            hoadon.ChiTietHoaDon = ls_cthd;
+            hoadon.GhiChu = txtGhiChu.Text.Trim();
+            hoadon.NgayLap = dateNgayBan.Value;
+            hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
+            hoadon.MaPhieu = "fsd";
+            //bien trang thai hoa don
+            hoadon.TrangThai = 1;
+            lst.Add(hoadon);
+            //r = HoaDon_DAL.getAll_HoaDon();
+            RHoaDon r = new RHoaDon(lst);
+
+            var tool = new ReportPrintTool(r);
+            tool.ShowPreview();
         }
     }
 }
