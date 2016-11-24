@@ -66,7 +66,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Nhà Cung Cấp";
-            this.gridColumn3.FieldName = "TenNhaCungCap";
+            this.gridColumn3.FieldName = "MaNhaCungCap";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
@@ -125,7 +125,7 @@
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Đơn Vị Tính";
-            this.gridColumn8.FieldName = "DonViTinh";
+            this.gridColumn8.FieldName = "MaDonViTinh";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 8;
@@ -133,7 +133,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Thương Hiệu";
-            this.gridColumn6.FieldName = "TenThuongHieu";
+            this.gridColumn6.FieldName = "MaThuongHieu";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 3;

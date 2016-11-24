@@ -16,14 +16,17 @@ namespace PresentationLayer.DAL
                        {
                            MaLinhKien = lk.MaLinhKien,
                            TenLinhKien = lk.TenLinhKien,
-                           DonViTinh = lk.DONVITINH.TenDonViTinh,
+                           MaDonViTinh = lk.DONVITINH.MaDonViTinh,
+                           TenDonViTinh = lk.DONVITINH.TenDonViTinh,
+                           MaNhaCungCap = lk.NHACUNGCAP.MaNhaCungCap,
                            TenNhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
+                           MaThuongHieu = lk.THUONGHIEU.MaThuongHieu,
                            TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
                            GiaBanLe = lk.GiaBanLe,
                            GiaBanSi = lk.GiaBanSi,
-                           GiaNhap = (decimal)lk.GiaNhap,
+                           GiaNhap = lk.GiaNhap,
                            TinhTrang = lk.TinhTrang,
-                           ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
+                           ThoiGianBaoHanh = lk.ThoiGianBaoHanh,
                            MoTa = lk.MoTa
                        };
             var lks= lk1.ToList();
@@ -39,7 +42,7 @@ namespace PresentationLayer.DAL
                       {
                           MaLinhKien = lk.MaLinhKien,
                           TenLinhKien = lk.TenLinhKien,
-                          DonViTinh = lk.DONVITINH.TenDonViTinh,
+                          TenDonViTinh = lk.DONVITINH.TenDonViTinh,
                           TenNhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
                           TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
                           GiaBanLe = lk.GiaBanLe,

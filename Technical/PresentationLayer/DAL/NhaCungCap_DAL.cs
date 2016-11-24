@@ -20,7 +20,7 @@ namespace PresentationLayer.DAL
                           DiaChi = item.DiaChi,
                           SoDienThoai = item.SoDienThoai,
                           MoTa = item.MoTa,
-                          TrangThai = (int)item.TrangThai
+                          TrangThai = item.TrangThai
                       };
             var khp = temp.ToList();
             return khp;

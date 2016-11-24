@@ -9,7 +9,11 @@ namespace PresentationLayer.ViewObject
 {
     public class NhaCungCap_View : CGrid
     {
+
+        [IdSelection]
         public string MaNhaCungCap { get; set; }
+
+        [DisplaySelection("Loại Khách Hàng")]
         public string TenNhaCungCap { get; set; }
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }

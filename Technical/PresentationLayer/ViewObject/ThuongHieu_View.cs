@@ -7,7 +7,9 @@ namespace PresentationLayer.ViewObject
 {
     public class ThuongHieu_View
     {
+        [IdSelection]
         public string MaThuongHieu { get; set; }
+        [DisplaySelection("Thương Hiệu")]
         public string TenThuongHieu { get; set; }
         public string MoTa { get; set; }
         public int TrangThai { get; set; }

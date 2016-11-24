@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PresentationLayer.DAL;
-using PresentationLayer.View;
+using PresentationLayer.ViewObject;
 
 namespace PresentationLayer
 {
@@ -27,9 +27,9 @@ namespace PresentationLayer
             gridControl1.DataSource = LinhKien_DAL.getAll_LinhKien();
 
             gridThaoTac = new GridHelper<LinhKien_View>(gridControl1);
-            gridThaoTac.Mapping("TenThuongHieu", ThuongHieu_DAL.getAll_ThuongHieu());
-            gridThaoTac.Mapping("TenNhaCungCap", NhaCungCap_DAL.getAll_NhaCungCap());
-            //gridThaoTac.Mapping("DonViTinh", DonViTinh_DAL.getAll_DonViTinh());
+            gridThaoTac.Mapping("MaThuongHieu", ThuongHieu_DAL.getAll_ThuongHieu());
+            gridThaoTac.Mapping("MaNhaCungCap", NhaCungCap_DAL.getAll_NhaCungCap());
+            gridThaoTac.Mapping("MaDonViTinh", DonViTinh_DAL.getAll_DonViTinh());
         }
 
         private void btnThem_Click(object sender, EventArgs e)

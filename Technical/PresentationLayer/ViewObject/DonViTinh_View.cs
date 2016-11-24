@@ -7,7 +7,10 @@ namespace PresentationLayer.ViewObject
 {
     public class DonViTinh_View
     {
+        [IdSelection]
         public string MaDonViTinh { get; set; }
+
+        [DisplaySelection("Đơn Vị Tính")]
         public string TenDonViTinh { get; set; }
         public string MoTa { get; set; }
 

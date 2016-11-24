@@ -26,7 +26,7 @@ namespace PresentationLayer.ViewObject
         public KhachHang_View()
             : base()
         {
-            MaKhachHang = KhachHang_DAL.get_KhachHangMax();
+            //MaKhachHang = KhachHang_DAL.get_KhachHangMax();
         }
 
         public KHACHHANG toKhachHang()
