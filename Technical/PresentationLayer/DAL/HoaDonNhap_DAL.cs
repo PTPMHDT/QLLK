@@ -78,7 +78,7 @@ namespace PresentationLayer.DAL
                     {
                         Context.getInstance().db.Entry(x.toCT_HoaDonNhap()).State = System.Data.Entity.EntityState.Added;
                         lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        if(!(lk.GiaNhap == x.GiaNhap))
+                        if (!(lk.GiaNhap == x.GiaNhap))
                         {
                             lk.GiaNhap = x.GiaNhap;
                             lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanLe);
@@ -86,9 +86,24 @@ namespace PresentationLayer.DAL
                         }
                         Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
 
+                        //neu da co san trong kho roi
                         kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        kho.SoLuong = kho.SoLuong + x.SoLuong;
-                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                        if (kho != null)
+                        {
+                            kho.SoLuong = kho.SoLuong + x.SoLuong;
+                            Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                        }
+                        else
+                        {
+                            kho = new KHO();
+                            kho.MaLinhKien = x.MaLinhKien;
+                            kho.MaKho = "KHO001";
+                            kho.SoLuong = x.SoLuong;
+                            kho.TenKho = "Kho chung";
+                            kho.TrangThai = 1;
+                            Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Added;
+                        }
+
                     });
                     //update so tien nhap hang cua nha cc
                     Context.getInstance().db.SaveChanges();

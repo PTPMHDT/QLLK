@@ -32,13 +32,13 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cbxTenNCC = new System.Windows.Forms.ComboBox();
             this.btnThemNCC = new DevExpress.XtraEditors.SimpleButton();
             this.btnKiemTraKho = new DevExpress.XtraEditors.SimpleButton();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.txtSoDienThoai = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.cbxTenNCC = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtGhiChu = new DevExpress.XtraEditors.TextEdit();
             this.txtNhanVien = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -82,7 +82,6 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoDienThoai.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTenNCC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhanVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieu.Properties)).BeginInit();
@@ -122,13 +121,13 @@
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl1.Controls.Add(this.cbxTenNCC);
             this.groupControl1.Controls.Add(this.btnThemNCC);
             this.groupControl1.Controls.Add(this.btnKiemTraKho);
             this.groupControl1.Controls.Add(this.txtDiaChi);
             this.groupControl1.Controls.Add(this.txtSoDienThoai);
             this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.Controls.Add(this.labelControl7);
-            this.groupControl1.Controls.Add(this.cbxTenNCC);
             this.groupControl1.Controls.Add(this.txtGhiChu);
             this.groupControl1.Controls.Add(this.txtNhanVien);
             this.groupControl1.Controls.Add(this.labelControl6);
@@ -143,6 +142,15 @@
             this.groupControl1.Size = new System.Drawing.Size(1077, 155);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông Tin Phiếu Nhập Kho";
+            // 
+            // cbxTenNCC
+            // 
+            this.cbxTenNCC.FormattingEnabled = true;
+            this.cbxTenNCC.Location = new System.Drawing.Point(387, 37);
+            this.cbxTenNCC.Name = "cbxTenNCC";
+            this.cbxTenNCC.Size = new System.Drawing.Size(181, 21);
+            this.cbxTenNCC.TabIndex = 16;
+            this.cbxTenNCC.SelectedIndexChanged += new System.EventHandler(this.cbTenNCC_SelectedIndexChanged);
             // 
             // btnThemNCC
             // 
@@ -199,16 +207,6 @@
             this.labelControl7.Size = new System.Drawing.Size(73, 13);
             this.labelControl7.TabIndex = 12;
             this.labelControl7.Text = "Số Điện Thoại :";
-            // 
-            // cbxTenNCC
-            // 
-            this.cbxTenNCC.Location = new System.Drawing.Point(387, 37);
-            this.cbxTenNCC.Name = "cbxTenNCC";
-            this.cbxTenNCC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbxTenNCC.Size = new System.Drawing.Size(181, 20);
-            this.cbxTenNCC.TabIndex = 3;
-            this.cbxTenNCC.SelectedIndexChanged += new System.EventHandler(this.cbTenNCC_SelectedIndexChanged);
             // 
             // txtGhiChu
             // 
@@ -616,7 +614,6 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoDienThoai.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbxTenNCC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhanVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieu.Properties)).EndInit();
@@ -651,7 +648,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateNgayBan;
-        private DevExpress.XtraEditors.ComboBoxEdit cbxTenNCC;
         private DevExpress.XtraEditors.TextEdit txtGhiChu;
         private DevExpress.XtraEditors.TextEdit txtNhanVien;
         private DevExpress.XtraEditors.LabelControl labelControl6;
@@ -692,5 +688,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
+        private System.Windows.Forms.ComboBox cbxTenNCC;
     }
 }

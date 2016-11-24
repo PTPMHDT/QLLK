@@ -119,7 +119,7 @@ namespace PresentationLayer
             else
             {
                 KhachHang_View kh_v = KhachHang_DAL.get_KhachHang_By_MaKhachHang(hoadon.MaKhachHang);
-                if(kh_v.MaKhachHang.Equals(kh_vanglai.MaKhachHang))
+                if (kh_v.MaKhachHang.Equals(kh_vanglai.MaKhachHang))
                     cbTenKhachHang.Text = kh_v.TenKhachHang;
                 else
                     cbTenKhachHang.Text = kh_v.ToString();
@@ -133,27 +133,25 @@ namespace PresentationLayer
         private void setCbxKhachHang(string maKH_WantSelected)
         {
             int selected_Index = 0;
-            cbTenKhachHang.Properties.Items.Clear();
-            ComboBoxItemCollection itemsCollection = cbTenKhachHang.Properties.Items;
-            itemsCollection.BeginUpdate();
+            cbTenKhachHang.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbTenKhachHang.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbTenKhachHang.DisplayMember = "TenKhachHangShow";
+            cbTenKhachHang.ValueMember = "MaKhachHang";
+
             List<KhachHang_View> list_KH = KhachHang_DAL.getAll_KhachHang();
-            try
+
+            //khong load khach hang vang lai 
+            for (int i = 0; i < list_KH.Count; i++)
             {
-                //khong load khach hang vang lai 
-                for (int i = 1; i < list_KH.Count; i++)
+                if (maKH_WantSelected.Equals(list_KH[i].MaKhachHang))
                 {
-                    if (maKH_WantSelected.Equals(list_KH[i].MaKhachHang))
-                        selected_Index = i - 1;
-                    itemsCollection.Add(list_KH[i].ToString());
+                    selected_Index = i - 1;
+                    break;
                 }
             }
-            finally
-            {
-                itemsCollection.EndUpdate();
-            }
-            cbTenKhachHang.Properties.AutoComplete = true;
+            cbTenKhachHang.DataSource = list_KH;
             cbTenKhachHang.SelectedIndex = selected_Index;
-            hoadon.MaKhachHang = maKH_WantSelected;
+            hoadon.MaKhachHang = cbTenKhachHang.SelectedValue.ToString().Trim();
         }
 
         //thay doi so luong lk
@@ -189,8 +187,7 @@ namespace PresentationLayer
         {
             if (cbTenKhachHang.SelectedIndex >= 0)
             {
-                string item = cbTenKhachHang.SelectedItem.ToString().Trim();
-                string maKH = item.Substring(item.Length - 6, 5);
+                string maKH = cbTenKhachHang.SelectedValue.ToString().Trim();
                 KhachHang_View kh = KhachHang_DAL.get_KhachHang_By_MaKhachHang(maKH);
 
                 txtLoaiKhach.Text = kh.TenLoaiKhachHang;
@@ -202,7 +199,7 @@ namespace PresentationLayer
             }
             else
             {
-                cbTenKhachHang.Text = kh_vanglai.TenKhachHang;
+                cbTenKhachHang.SelectedIndex = 0;
                 txtLoaiKhach.Text = kh_vanglai.TenLoaiKhachHang;
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
@@ -337,34 +334,34 @@ namespace PresentationLayer
                     tongtien += (Int32)(item.GiaBan * item.SoLuong);
                 }
             }
-            return tongtien; 
+            return tongtien;
         }
 
         private void btnHoanTat_Click(object sender, EventArgs e)
         {
-             var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
-             if (result == DialogResult.Yes)
-             {
-                 if (ls_cthd.Count == 0)
-                     MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
-                 else
-                 {
-                     hoadon.GhiChu = txtGhiChu.Text.Trim();
-                     hoadon.NgayLap = dateNgayBan.Value;
-                     hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
-                     hoadon.MaPhieu = "fsd";
-                     //bien trang thai hoa don
-                     hoadon.TrangThai = 1;
-                     if (HoaDon_DAL.add_HoaDon(hoadon, ls_cthd))
-                     {
-                         MessageBox.Show("Lưu thông tin thành công!");
-                     }
-                     else
-                     {
-                         MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
-                     }
-                 }
-             }
+            var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (ls_cthd.Count == 0)
+                    MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
+                else
+                {
+                    hoadon.GhiChu = txtGhiChu.Text.Trim();
+                    hoadon.NgayLap = dateNgayBan.Value;
+                    hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
+                    hoadon.MaPhieu = "fsd";
+                    //bien trang thai hoa don
+                    hoadon.TrangThai = 1;
+                    if (HoaDon_DAL.add_HoaDon(hoadon, ls_cthd))
+                    {
+                        MessageBox.Show("Lưu thông tin thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                    }
+                }
+            }
         }
 
         private void btnThemKhachHang_Click(object sender, EventArgs e)
@@ -374,14 +371,23 @@ namespace PresentationLayer
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    setCbxKhachHang(form.maKH_Return);           
+                    setCbxKhachHang(form.maKH_Return);
                 }
             }
         }
 
         private void text_money_EditValueChanged(object sender, EventArgs e)
         {
-            decimal giaBan = Decimal.Parse(((DevExpress.XtraEditors.TextEdit)sender).Text);
+            decimal giaBan;
+            string strGB = ((DevExpress.XtraEditors.TextEdit)sender).Text;
+            if (strGB.Equals(""))
+            {
+                giaBan = 0;
+            }
+            else
+            {
+                giaBan = Decimal.Parse(strGB);
+            }
             CT_HoaDon_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDon_View;
 
             foreach (CT_HoaDon_View item in ls_cthd)
@@ -415,5 +421,20 @@ namespace PresentationLayer
             var tool = new ReportPrintTool(r);
             tool.ShowPreview();
         }
+
+        private void cbTenKhachHang_TextChanged(object sender, EventArgs e)
+        {
+            if(cbTenKhachHang.Text.Trim().Equals(""))
+            {
+                cbTenKhachHang.SelectedIndex = 0;
+                txtLoaiKhach.Text = kh_vanglai.TenLoaiKhachHang;
+                txtSoDienThoai.Text = "";
+                txtDiaChi.Text = "";
+                hoadon.MaKhachHang = kh_vanglai.MaKhachHang;
+                loaiKH = kh_vanglai.MaLoaiKhachHang;
+                change_GiaBan();
+            }
+        }
+
     }
 }

@@ -22,6 +22,7 @@ namespace PresentationLayer.DAL
                       {
                           MaKhachHang = kh.MaKhachHang,
                           TenKhachHang = kh.TenKhachHang,
+                          TenKhachHangShow = kh.TenKhachHang + "  (" + kh.SoDienThoai+")",
                           TenLoaiKhachHang = kh.LOAI.TenLoai,
                           MaLoaiKhachHang = kh.LOAI.MaLoai,
                           SoDienThoai = kh.SoDienThoai,

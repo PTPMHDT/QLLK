@@ -44,6 +44,7 @@
             this.txt_TenKH = new DevExpress.XtraEditors.TextEdit();
             this.txt_DiaChi = new DevExpress.XtraEditors.MemoEdit();
             this.txt_Ghichu = new DevExpress.XtraEditors.MemoEdit();
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_maKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -53,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_TenKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DiaChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Ghichu.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_maKH
@@ -102,6 +104,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.lookUpEdit1);
             this.groupControl1.Controls.Add(this.cbx_LoaiKH);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl4);
@@ -202,6 +205,15 @@
             this.txt_Ghichu.Size = new System.Drawing.Size(173, 92);
             this.txt_Ghichu.TabIndex = 4;
             // 
+            // lookUpEdit1
+            // 
+            this.lookUpEdit1.Location = new System.Drawing.Point(294, 203);
+            this.lookUpEdit1.Name = "lookUpEdit1";
+            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit1.Size = new System.Drawing.Size(105, 20);
+            this.lookUpEdit1.TabIndex = 7;
+            // 
             // AddKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_TenKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DiaChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Ghichu.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,5 +255,6 @@
         private DevExpress.XtraEditors.TextEdit txt_TenKH;
         private DevExpress.XtraEditors.MemoEdit txt_DiaChi;
         private DevExpress.XtraEditors.MemoEdit txt_Ghichu;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
     }
 }

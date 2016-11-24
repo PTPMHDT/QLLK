@@ -34,6 +34,23 @@ namespace PresentationLayer
             InnitVal(maHoaDon);
             this.btnXoa.Click += btnXoa_Click;
             this.repositoryItemSpinEdit1.EditValueChanged += repositoryItemSpinEdit1_EditValueChanged;
+            cbxTenNCC.LostFocus += cbxTenNCC_LostFocus;
+        }
+
+        void cbxTenNCC_LostFocus(object sender, EventArgs e)
+        {
+            if (cbxTenNCC.Text.Trim().Equals(""))
+            {
+                cbxTenNCC.SelectedIndex = 0;
+            }
+            else
+            {
+                if (cbxTenNCC.SelectedIndex < 0)
+                {
+                    gridCtrlLoc.DataSource = null;
+                    gridCtrlLoc.RefreshDataSource();
+                }
+            }
         }
 
         void UCBanHang_Load(object sender, EventArgs e)
@@ -72,7 +89,6 @@ namespace PresentationLayer
             dateNgayBan.Text = hoadonnhap.NgayLap.ToString();
             txtGhiChu.Text = hoadonnhap.GhiChu;
             setGroupBox_NCC();
-            setGridCtrl_LinhKien();
             if (isNew)
                 ls_cthd = new List<CT_HoaDonNhap_View>();
             else
@@ -95,8 +111,7 @@ namespace PresentationLayer
 
         private void setGridCtrl_LinhKien()
         {
-            string item = cbxTenNCC.SelectedItem.ToString().Trim();
-            string maCNN = item.Substring(item.Length - 6, 5);
+            string maCNN = cbxTenNCC.SelectedValue.ToString().Trim();
             gridCtrlLoc.DataSource = LinhKien_DAL.getAll_LinhKien_ByNCC(maCNN);
             gridCtrlLoc.RefreshDataSource();
         }
@@ -110,6 +125,7 @@ namespace PresentationLayer
                 cbxTenNCC.Text = ncc_v.TenNhaCungCap;
                 txtSoDienThoai.Text = ncc_v.SoDienThoai;
                 txtDiaChi.Text = ncc_v.DiaChi;
+                hoadonnhap.MaNhaCungCap = ncc_v.MaNhaCungCap;
             }
 
         }
@@ -117,26 +133,23 @@ namespace PresentationLayer
         private void setCbxNCC(string maNCC_WantSelected)
         {
             int selected_Index = 0;
-            cbxTenNCC.Properties.Items.Clear();
-            ComboBoxItemCollection itemsCollection = cbxTenNCC.Properties.Items;
-            itemsCollection.BeginUpdate();
+            cbxTenNCC.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbxTenNCC.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbxTenNCC.DisplayMember = "TenNhaCungCap";
+            cbxTenNCC.ValueMember = "MaNhaCungCap";
             List<NhaCungCap_View> list_NCC = NhaCungCap_DAL.getAll_NhaCungCap();
-            try
+
+            for (int i = 0; i < list_NCC.Count; i++)
             {
-                //khong load khach hang vang lai 
-                for (int i = 0; i < list_NCC.Count; i++)
+                if (maNCC_WantSelected.Equals(list_NCC[i].MaNhaCungCap))
                 {
-                    if (maNCC_WantSelected.Equals(list_NCC[i].MaNhaCungCap))
-                        selected_Index = i - 1;
-                    itemsCollection.Add(list_NCC[i].ToString());
+                    selected_Index = i - 1;
+                    break;
                 }
             }
-            finally
-            {
-                itemsCollection.EndUpdate();
-            }
-            cbxTenNCC.Properties.AutoComplete = true;
+            cbxTenNCC.DataSource = list_NCC;
             cbxTenNCC.SelectedIndex = selected_Index;
+            hoadonnhap.MaNhaCungCap = cbxTenNCC.SelectedValue.ToString().Trim();
         }
 
         //thay doi so luong lk
@@ -162,13 +175,15 @@ namespace PresentationLayer
 
         private void cbTenNCC_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string item = cbxTenNCC.SelectedItem.ToString().Trim();
-            string maCNN = item.Substring(item.Length - 6, 5);
+            string maCNN = cbxTenNCC.SelectedValue.ToString().Trim();
             NhaCungCap_View ncc = NhaCungCap_DAL.get_NCC_By_MaNCC(maCNN);
 
             txtSoDienThoai.Text = ncc.SoDienThoai;
             txtDiaChi.Text = ncc.DiaChi;
             setGridCtrl_LinhKien();
+            ls_cthd.Clear();
+            gridControl1.DataSource = ls_cthd;
+            gridControl1.RefreshDataSource();
             hoadonnhap.MaNhaCungCap = maCNN;
         }
 
@@ -208,6 +223,7 @@ namespace PresentationLayer
                 ct_hd.SoLuong = 1;
                 ct_hd.GiaNhap = lk.GiaNhap;
                 ct_hd.ThanhTien = ct_hd.GiaNhap * ct_hd.SoLuong;
+                ct_hd.TinhTrang = 1;
                 ls_cthd.Add(ct_hd);
 
                 gridControl1.DataSource = ls_cthd;
@@ -283,10 +299,16 @@ namespace PresentationLayer
                     {
                         //tinh lai gia nhap
                         kho_v = list_LK_In_Kho.Where(temp => temp.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
-                        if (! (kho_v.GiaNhap == cthd.GiaNhap))
+
+                        if (kho_v != null)
                         {
-                            cthd.GiaNhap = ((kho_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong); 
+                            if (!(kho_v.GiaNhap == cthd.GiaNhap))
+                            {
+                                cthd.GiaNhap = ((kho_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
+                            }
+
                         }
+
                     }
 
                     if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
@@ -315,7 +337,16 @@ namespace PresentationLayer
 
         private void text_money_EditValueChanged(object sender, EventArgs e)
         {
-            decimal giaNhap = Decimal.Parse(((DevExpress.XtraEditors.TextEdit)sender).Text);
+            string strGN = ((DevExpress.XtraEditors.TextEdit)sender).Text;
+            decimal giaNhap;
+            if (strGN.Equals(""))
+            {
+                giaNhap = 0;
+            }
+            else
+            {
+                giaNhap = Decimal.Parse(strGN);
+            }
             CT_HoaDonNhap_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDonNhap_View;
 
             foreach (CT_HoaDonNhap_View item in ls_cthd)

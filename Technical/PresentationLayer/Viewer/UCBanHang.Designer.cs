@@ -32,6 +32,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cbTenKhachHang = new System.Windows.Forms.ComboBox();
             this.btnThemKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.btnKiemTraKho = new DevExpress.XtraEditors.SimpleButton();
             this.btnThemMoiSP = new DevExpress.XtraEditors.SimpleButton();
@@ -39,7 +40,6 @@
             this.txtSoDienThoai = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.cbTenKhachHang = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtGhiChu = new DevExpress.XtraEditors.TextEdit();
             this.txtNhanVien = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -84,7 +84,6 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoDienThoai.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTenKhachHang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhanVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLoaiKhach.Properties)).BeginInit();
@@ -123,6 +122,7 @@
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl1.Controls.Add(this.cbTenKhachHang);
             this.groupControl1.Controls.Add(this.btnThemKhachHang);
             this.groupControl1.Controls.Add(this.btnKiemTraKho);
             this.groupControl1.Controls.Add(this.btnThemMoiSP);
@@ -130,7 +130,6 @@
             this.groupControl1.Controls.Add(this.txtSoDienThoai);
             this.groupControl1.Controls.Add(this.labelControl8);
             this.groupControl1.Controls.Add(this.labelControl7);
-            this.groupControl1.Controls.Add(this.cbTenKhachHang);
             this.groupControl1.Controls.Add(this.txtGhiChu);
             this.groupControl1.Controls.Add(this.txtNhanVien);
             this.groupControl1.Controls.Add(this.labelControl6);
@@ -147,6 +146,16 @@
             this.groupControl1.Size = new System.Drawing.Size(1077, 155);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông Tin Phiếu Bán Hàng";
+            // 
+            // cbTenKhachHang
+            // 
+            this.cbTenKhachHang.FormattingEnabled = true;
+            this.cbTenKhachHang.Location = new System.Drawing.Point(387, 37);
+            this.cbTenKhachHang.Name = "cbTenKhachHang";
+            this.cbTenKhachHang.Size = new System.Drawing.Size(181, 21);
+            this.cbTenKhachHang.TabIndex = 16;
+            this.cbTenKhachHang.SelectedIndexChanged += new System.EventHandler(this.cbTenKhachHang_SelectedIndexChanged);
+            this.cbTenKhachHang.TextChanged += new System.EventHandler(this.cbTenKhachHang_TextChanged);
             // 
             // btnThemKhachHang
             // 
@@ -215,16 +224,6 @@
             this.labelControl7.Size = new System.Drawing.Size(73, 13);
             this.labelControl7.TabIndex = 12;
             this.labelControl7.Text = "Số Điện Thoại :";
-            // 
-            // cbTenKhachHang
-            // 
-            this.cbTenKhachHang.Location = new System.Drawing.Point(387, 37);
-            this.cbTenKhachHang.Name = "cbTenKhachHang";
-            this.cbTenKhachHang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbTenKhachHang.Size = new System.Drawing.Size(181, 20);
-            this.cbTenKhachHang.TabIndex = 3;
-            this.cbTenKhachHang.SelectedIndexChanged += new System.EventHandler(this.cbTenKhachHang_SelectedIndexChanged);
             // 
             // txtGhiChu
             // 
@@ -641,7 +640,6 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoDienThoai.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbTenKhachHang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhanVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLoaiKhach.Properties)).EndInit();
@@ -677,7 +675,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateNgayBan;
-        private DevExpress.XtraEditors.ComboBoxEdit cbTenKhachHang;
         private DevExpress.XtraEditors.TextEdit txtGhiChu;
         private DevExpress.XtraEditors.TextEdit txtNhanVien;
         private DevExpress.XtraEditors.LabelControl labelControl6;
@@ -718,5 +715,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
         private DevExpress.XtraEditors.SimpleButton btn_XuatHD;
+        private System.Windows.Forms.ComboBox cbTenKhachHang;
     }
 }
