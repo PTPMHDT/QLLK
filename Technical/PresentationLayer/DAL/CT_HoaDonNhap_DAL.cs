@@ -21,7 +21,7 @@ namespace PresentationLayer.DAL
                          LoaiLinhLien = "",
                          DonViTinh = ct_hoadon.LINHKIEN.DONVITINH.TenDonViTinh,
                          SoLuong = ct_hoadon.SoLuong,
-                         //GiaBan = ct_hoadon.LINHKIEN.GiaBanLe,
+                         GiaNhap = ct_hoadon.LINHKIEN.GiaNhap,
                          ThanhTien = ct_hoadon.ThanhTien,
                          GhiChu = ct_hoadon.GhiChu
                      };

@@ -99,11 +99,17 @@ namespace PresentationLayer.DAL
                     ct_hds.ForEach(x =>
                     {
                         Context.getInstance().db.Entry(x.toCT_HoaDon()).State = System.Data.Entity.EntityState.Added;
+                        //giam so luong trong kho
                         kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
                         kho.SoLuong = kho.SoLuong - x.SoLuong;
                         Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
                     });
                     //update so tien mua hang cua khach hang
+                    KHACHHANG kh = Context.getInstance().db.KHACHHANGs.Where(key => key.MaKhachHang == hd.MaKhachHang).FirstOrDefault();
+                    kh.Tong += hd.TongTien;
+                    Context.getInstance().db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
+
+                    //update so luong ban hang cua nhan vien
                     Context.getInstance().db.SaveChanges();
                     transaction.Commit();
                 }

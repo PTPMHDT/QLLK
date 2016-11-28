@@ -69,7 +69,6 @@
             this.GiaNhap = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ThoiGianBaoHanh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa_Row = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -249,7 +248,7 @@
             // 
             // dateNgayBan
             // 
-            this.dateNgayBan.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateNgayBan.CustomFormat = "dd/MM/yyyy";
             this.dateNgayBan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayBan.Location = new System.Drawing.Point(93, 63);
             this.dateNgayBan.Name = "dateNgayBan";
@@ -428,7 +427,6 @@
             this.SoLuong,
             this.GiaNhap,
             this.ThanhTien,
-            this.ThoiGianBaoHanh,
             this.btnXoa_Row});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -443,7 +441,7 @@
             this.MaLinhKien.OptionsColumn.AllowFocus = false;
             this.MaLinhKien.Visible = true;
             this.MaLinhKien.VisibleIndex = 0;
-            this.MaLinhKien.Width = 102;
+            this.MaLinhKien.Width = 81;
             // 
             // TenLinhKien
             // 
@@ -454,7 +452,7 @@
             this.TenLinhKien.OptionsColumn.AllowFocus = false;
             this.TenLinhKien.Visible = true;
             this.TenLinhKien.VisibleIndex = 1;
-            this.TenLinhKien.Width = 153;
+            this.TenLinhKien.Width = 169;
             // 
             // DonViTinh
             // 
@@ -465,7 +463,7 @@
             this.DonViTinh.OptionsColumn.AllowFocus = false;
             this.DonViTinh.Visible = true;
             this.DonViTinh.VisibleIndex = 2;
-            this.DonViTinh.Width = 86;
+            this.DonViTinh.Width = 94;
             // 
             // SoLuong
             // 
@@ -475,7 +473,7 @@
             this.SoLuong.Name = "SoLuong";
             this.SoLuong.Visible = true;
             this.SoLuong.VisibleIndex = 3;
-            this.SoLuong.Width = 57;
+            this.SoLuong.Width = 62;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -492,7 +490,7 @@
             this.GiaNhap.Name = "GiaNhap";
             this.GiaNhap.Visible = true;
             this.GiaNhap.VisibleIndex = 4;
-            this.GiaNhap.Width = 130;
+            this.GiaNhap.Width = 142;
             // 
             // text_money
             // 
@@ -512,18 +510,7 @@
             this.ThanhTien.OptionsColumn.AllowFocus = false;
             this.ThanhTien.Visible = true;
             this.ThanhTien.VisibleIndex = 5;
-            this.ThanhTien.Width = 121;
-            // 
-            // ThoiGianBaoHanh
-            // 
-            this.ThoiGianBaoHanh.Caption = "Thời Gian Bảo Hành";
-            this.ThoiGianBaoHanh.FieldName = "ThoiGianBaoHanh";
-            this.ThoiGianBaoHanh.Name = "ThoiGianBaoHanh";
-            this.ThoiGianBaoHanh.OptionsColumn.AllowEdit = false;
-            this.ThoiGianBaoHanh.OptionsColumn.AllowFocus = false;
-            this.ThoiGianBaoHanh.Visible = true;
-            this.ThoiGianBaoHanh.VisibleIndex = 6;
-            this.ThoiGianBaoHanh.Width = 79;
+            this.ThanhTien.Width = 133;
             // 
             // btnXoa_Row
             // 
@@ -531,8 +518,8 @@
             this.btnXoa_Row.ColumnEdit = this.btnXoa;
             this.btnXoa_Row.Name = "btnXoa_Row";
             this.btnXoa_Row.Visible = true;
-            this.btnXoa_Row.VisibleIndex = 7;
-            this.btnXoa_Row.Width = 40;
+            this.btnXoa_Row.VisibleIndex = 6;
+            this.btnXoa_Row.Width = 49;
             // 
             // groupControl3
             // 
@@ -676,7 +663,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn DonViTinh;
         private DevExpress.XtraGrid.Columns.GridColumn SoLuong;
         private DevExpress.XtraGrid.Columns.GridColumn GiaNhap;
-        private DevExpress.XtraGrid.Columns.GridColumn ThoiGianBaoHanh;
         private DevExpress.XtraGrid.Columns.GridColumn btnXoa_Row;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;

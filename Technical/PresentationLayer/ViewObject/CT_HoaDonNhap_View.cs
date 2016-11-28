@@ -11,13 +11,13 @@ namespace PresentationLayer.ViewObject
         public string MaHoaDon { get; set; }
         public string MaLinhKien { get; set; }
         public string TenLinhKien { get; set; }
-        public string LoaiLinhLien { get; set; }
+        public string LoaiLinhLien;
         public string DonViTinh { get; set; }
         public int SoLuong { get; set; }
         public Decimal GiaNhap { get; set; }
         public Decimal ThanhTien { get; set; }
         public string GhiChu { get; set; }
-        public int TinhTrang { get; set; }
+        public int TinhTrang;
 
         public CT_HOADON_NHAPHANG toCT_HoaDonNhap()
         {

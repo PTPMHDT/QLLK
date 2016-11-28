@@ -72,6 +72,7 @@ namespace PresentationLayer.DAL
                 try
                 {
                     Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Added;
+                    Context.getInstance().db.SaveChanges();
                     KHO kho;
                     LINHKIEN lk;
                     ct_hds.ForEach(x =>
@@ -97,7 +98,7 @@ namespace PresentationLayer.DAL
                         {
                             kho = new KHO();
                             kho.MaLinhKien = x.MaLinhKien;
-                            kho.MaKho = "KHO001";
+                            kho.MaKho = Kho_DAL.get_KhoMax();
                             kho.SoLuong = x.SoLuong;
                             kho.TenKho = "Kho chung";
                             kho.TrangThai = 1;
@@ -106,6 +107,10 @@ namespace PresentationLayer.DAL
 
                     });
                     //update so tien nhap hang cua nha cc
+                    NHACUNGCAP ncc = Context.getInstance().db.NHACUNGCAPs.Where(key => key.MaNhaCungCap == hd.MaNhaCungCap).FirstOrDefault();
+                    ncc.Tong += hd.TongTien;
+                    Context.getInstance().db.Entry(ncc).State = System.Data.Entity.EntityState.Modified;
+
                     Context.getInstance().db.SaveChanges();
                     transaction.Commit();
                 }
@@ -165,6 +170,29 @@ namespace PresentationLayer.DAL
                 }
             }
             return true;
+        }
+
+        internal static object getAll_HoaDonNhap_TheoThoiGian(DateTime startD, DateTime endD)
+        {
+            var hd = from hoadon in Context.getInstance().db.HOADON_NHAPHANG
+                     where hoadon.NgayLap >= startD.Date
+                     where hoadon.NgayLap <= endD.Date
+                     select new HoaDonNhap_View
+                     {
+                         MaHoaDon = hoadon.MaHoaDon,
+                         NgayLap = hoadon.NgayLap,
+                         NhanVien = hoadon.NHANVIEN.TenNhanVien,
+                         MaNhanVien = hoadon.MaNguoiLap,
+                         TongTien = hoadon.TongTien,
+                         TrangThai = hoadon.TrangThai,
+                         NhaCungCap = hoadon.NHACUNGCAP.TenNhaCungCap,
+                         MaNhaCungCap = hoadon.MaNhaCungCap,
+                         SoDienThoai = hoadon.NHACUNGCAP.SoDienThoai,
+                         GhiChu = hoadon.GhiChu
+                     };
+            var khp = hd.ToList();
+            khp.ForEach(k => k.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(k.MaHoaDon));
+            return khp.ToList();
         }
     }
 }

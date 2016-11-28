@@ -26,6 +26,7 @@ namespace PresentationLayer.DAL
                            GiaNhap = (decimal)kho.LINHKIEN.GiaNhap,
                            TinhTrangLK = kho.LINHKIEN.TinhTrang,
                            MoTaLK = kho.LINHKIEN.MoTa,
+                           ThoiGianBaoHanh = kho.LINHKIEN.ThoiGianBaoHanh,
                            ThuongHieu = kho.LINHKIEN.THUONGHIEU.TenThuongHieu
                        };
             return kho1.ToList();
@@ -50,6 +51,23 @@ namespace PresentationLayer.DAL
             return kho1.ToList()[0];
         }
 
+        public static string get_KhoMax()
+        {
+            try
+            {
+                string result = Context.getInstance().db.KHOes.OrderByDescending(x => x.MaKho).First().MaKho;
+                int index = (Convert.ToInt16((result).Substring(3)) + 1);
+                if (index < 10)
+                    return "KHO00" + index;
+                else if (index < 100)
+                    return "KHO0" + index;
+                return "KHO" + index;
+            }
+            catch (Exception)
+            {
+                return "KHO001";
+            }
+        }
     }
 
 }

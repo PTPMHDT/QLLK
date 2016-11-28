@@ -19,6 +19,7 @@ namespace PresentationLayer.Viewer
         {
             InitializeComponent();
             this.DataSource = hd;
+            
         }
     }
 }

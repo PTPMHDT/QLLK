@@ -17,7 +17,7 @@ namespace PresentationLayer.ViewObject
         public Decimal GiaBan { get; set; }
         public Decimal ThanhTien { get; set; }
         public string GhiChu { get; set; }
-        public int SoLuong_TrongKho { get; set; }
+        public int ThoiGianBaoHanh { get; set; }
 
         public CT_HOADON toCT_HoaDon()
         {
@@ -31,7 +31,6 @@ namespace PresentationLayer.ViewObject
             cthd.SoLuong = SoLuong;
             cthd.ThanhTien = ThanhTien;
             cthd.GhiChu = GhiChu;
-
             return cthd;
         }
     }

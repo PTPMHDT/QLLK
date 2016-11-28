@@ -18,6 +18,7 @@ namespace PresentationLayer.ViewObject
         public string DiaChi { get; set; }
         public string GhiChu { get; set; }
         public string TenKhachHangShow { get; set; }
+        public decimal Tong { get; set; }
 
         public override String ToString()
         {
@@ -27,7 +28,7 @@ namespace PresentationLayer.ViewObject
         public KhachHang_View()
             : base()
         {
-            //MaKhachHang = KhachHang_DAL.get_KhachHangMax();
+            MaKhachHang = KhachHang_DAL.get_KhachHangMax();
         }
 
         public KHACHHANG toKhachHang()
@@ -44,6 +45,7 @@ namespace PresentationLayer.ViewObject
             kh.DiaChi = DiaChi;
             kh.GhiChu = GhiChu;
             kh.TrangThai = 1;
+            kh.Tong = Tong;
             return kh;
         }
 
@@ -60,6 +62,7 @@ namespace PresentationLayer.ViewObject
             kh.SoDienThoai = SoDienThoai;
             kh.DiaChi = DiaChi;
             kh.GhiChu = GhiChu;
+            kh.Tong = Tong;
             kh.TrangThai = 0;
             return kh;
         }

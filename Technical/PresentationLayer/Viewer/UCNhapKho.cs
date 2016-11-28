@@ -127,7 +127,6 @@ namespace PresentationLayer
                 txtDiaChi.Text = ncc_v.DiaChi;
                 hoadonnhap.MaNhaCungCap = ncc_v.MaNhaCungCap;
             }
-
         }
 
         private void setCbxNCC(string maNCC_WantSelected)
@@ -306,14 +305,13 @@ namespace PresentationLayer
                             {
                                 cthd.GiaNhap = ((kho_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
                             }
-
                         }
-
                     }
 
                     if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
                     {
                         MessageBox.Show("Lưu thông tin thành công!");
+                        f_Clear();
                     }
                     else
                     {
@@ -363,5 +361,17 @@ namespace PresentationLayer
             }
         }
 
+        private void f_Clear()
+        {
+            hoadonnhap = new HoaDonNhap_View();
+            ls_cthd = new List<CT_HoaDonNhap_View>();
+
+            txtMaPhieu.Text = HoaDonNhap_DAL.get_HoaDonNhapMax();
+            dateNgayBan.Value = DateTime.Now;
+            cbxTenNCC.SelectedIndex = 0;
+            txtTongTien.Text = "0";
+            gridControl1.DataSource = ls_cthd;
+            gridControl1.RefreshDataSource();
+        }
     }
 }

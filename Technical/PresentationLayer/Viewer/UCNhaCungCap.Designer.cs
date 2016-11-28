@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCNhaCungCap));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
@@ -43,6 +43,7 @@
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -57,7 +58,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 5;
-            this.gridColumn5.Width = 111;
+            this.gridColumn5.Width = 96;
             // 
             // btnLuu
             // 
@@ -92,7 +93,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
-            this.gridColumn3.Width = 131;
+            this.gridColumn3.Width = 95;
             // 
             // gridColumn2
             // 
@@ -101,7 +102,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 141;
+            this.gridColumn2.Width = 111;
             // 
             // gridColumn1
             // 
@@ -112,7 +113,7 @@
             this.gridColumn1.OptionsColumn.AllowFocus = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 108;
+            this.gridColumn1.Width = 100;
             // 
             // gridView1
             // 
@@ -123,6 +124,7 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
+            this.gridColumn6,
             this.Xoa});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -143,7 +145,7 @@
             this.Mode.OptionsColumn.ReadOnly = true;
             this.Mode.Visible = true;
             this.Mode.VisibleIndex = 0;
-            this.Mode.Width = 67;
+            this.Mode.Width = 62;
             // 
             // gridColumn4
             // 
@@ -152,21 +154,21 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 127;
+            this.gridColumn4.Width = 104;
             // 
             // Xoa
             // 
             this.Xoa.ColumnEdit = this.btnXoa;
             this.Xoa.Name = "Xoa";
             this.Xoa.Visible = true;
-            this.Xoa.VisibleIndex = 6;
-            this.Xoa.Width = 38;
+            this.Xoa.VisibleIndex = 7;
+            this.Xoa.Width = 36;
             // 
             // btnXoa
             // 
             this.btnXoa.AutoHeight = false;
             this.btnXoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -198,6 +200,17 @@
             this.groupControl1.Size = new System.Drawing.Size(767, 451);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Thông Tin Nhà Cung Cấp";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Tổng tiền giao dịch";
+            this.gridColumn6.FieldName = "Tong";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowFocus = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.Width = 141;
             // 
             // UCNhaCungCap
             // 
@@ -232,5 +245,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Mode;
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

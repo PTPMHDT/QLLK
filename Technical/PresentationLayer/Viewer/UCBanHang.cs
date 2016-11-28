@@ -59,7 +59,7 @@ namespace PresentationLayer
                 hoadon.NhanVien = Context.getInstance().nv.TenNhanVien;
                 hoadon.MaNhanVien = Context.getInstance().nv.MaNhanVien;
                 hoadon.MaHoaDon = HoaDon_DAL.get_HoaDonMax();
-                hoadon.NgayLap = DateTime.Today;
+                hoadon.NgayLap =DateTime.Now;
                 hoadon.GhiChu = "";
             }
             else
@@ -114,6 +114,7 @@ namespace PresentationLayer
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
                 hoadon.MaKhachHang = kh_vanglai.MaKhachHang;
+                hoadon.KhachHang = kh_vanglai.TenKhachHang;
                 loaiKH = kh_vanglai.MaLoaiKhachHang;
             }
             else
@@ -152,6 +153,7 @@ namespace PresentationLayer
             cbTenKhachHang.DataSource = list_KH;
             cbTenKhachHang.SelectedIndex = selected_Index;
             hoadon.MaKhachHang = cbTenKhachHang.SelectedValue.ToString().Trim();
+            hoadon.KhachHang = cbTenKhachHang.Text.Trim() ;
         }
 
         //thay doi so luong lk
@@ -194,8 +196,8 @@ namespace PresentationLayer
                 txtSoDienThoai.Text = kh.SoDienThoai;
                 txtDiaChi.Text = kh.DiaChi;
                 hoadon.MaKhachHang = maKH;
+                hoadon.KhachHang = kh.TenKhachHang;
                 loaiKH = kh.MaLoaiKhachHang;
-
             }
             else
             {
@@ -204,6 +206,7 @@ namespace PresentationLayer
                 txtSoDienThoai.Text = "";
                 txtDiaChi.Text = "";
                 hoadon.MaKhachHang = kh_vanglai.MaKhachHang;
+                hoadon.KhachHang = kh_vanglai.TenKhachHang;
                 loaiKH = kh_vanglai.MaLoaiKhachHang;
             }
             change_GiaBan();
@@ -270,6 +273,7 @@ namespace PresentationLayer
                 ct_hd.MaLinhKien = kho.MaLinhKien;
                 ct_hd.TenLinhKien = kho.TenLinhKien;
                 ct_hd.DonViTinh = kho.DonViTinh;
+                ct_hd.ThoiGianBaoHanh = kho.ThoiGianBaoHanh;
                 switch (loaiKH)
                 {
                     case "L001":
@@ -283,7 +287,6 @@ namespace PresentationLayer
                 }
                 ct_hd.SoLuong = 1;
                 ct_hd.ThanhTien = ct_hd.GiaBan * ct_hd.SoLuong;
-                ct_hd.SoLuong_TrongKho = kho.SoLuong;
                 ls_cthd.Add(ct_hd);
 
                 gridControl1.DataSource = ls_cthd;
@@ -379,7 +382,7 @@ namespace PresentationLayer
         private void text_money_EditValueChanged(object sender, EventArgs e)
         {
             decimal giaBan;
-            string strGB = ((DevExpress.XtraEditors.TextEdit)sender).Text;
+            string strGB = ((DevExpress.XtraEditors.TextEdit)sender).Text.Trim();
             if (strGB.Equals(""))
             {
                 giaBan = 0;
@@ -409,9 +412,10 @@ namespace PresentationLayer
             List<HoaDon_View> lst = new List<HoaDon_View>();
             hoadon.ChiTietHoaDon = ls_cthd;
             hoadon.GhiChu = txtGhiChu.Text.Trim();
-            hoadon.NgayLap = dateNgayBan.Value;
+            hoadon.NgayLap = DateTime.Parse(dateNgayBan.Value.ToShortDateString()) ;
+            
             hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
-            hoadon.MaPhieu = "fsd";
+            hoadon.KhachHang = cbTenKhachHang.Text.Trim();
             //bien trang thai hoa don
             hoadon.TrangThai = 1;
             lst.Add(hoadon);

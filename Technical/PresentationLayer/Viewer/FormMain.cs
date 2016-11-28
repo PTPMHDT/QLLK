@@ -70,5 +70,13 @@ namespace PresentationLayer
             ucChiTietBanHang.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucChiTietBanHang);
         }
+
+        private void btnPhieuNhapKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucDSNhapHang = new UCDSPhieuNhap();
+            ucDSNhapHang.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucDSNhapHang);
+        }
     }
 }

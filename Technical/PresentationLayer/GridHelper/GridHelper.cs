@@ -3,6 +3,7 @@ using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -18,11 +19,40 @@ namespace PresentationLayer
             this.gc = gc;
             mainView = gc.MainView as GridView;
             mainView.CellValueChanged += mainView_CellValueChanged;
+            mainView.RowCellStyle += mainView_RowCellStyle;
+        }
+
+        void mainView_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            //doi mau row chan
+            if (e.Column.FieldName == "Mode")
+            {
+                string mode = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Mode"]);
+                switch (mode)
+                {
+                    case "NEW":
+                        e.Appearance.BackColor = Color.Green;
+                        break;
+                    case "UPDATE":
+                        e.Appearance.BackColor = Color.Red;
+                        break;
+                    case "DELETE":
+                        e.Appearance.BackColor = Color.Gray;
+                        break;
+                    case "NONE":
+                        e.Appearance.BackColor = Color.White;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         void mainView_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             CGrid tmp = mainView.GetFocusedRow() as CGrid;
+           
             if ((tmp.Mode == TT.NEW)
                 || (tmp.Mode == TT.DELETE)) return;
 

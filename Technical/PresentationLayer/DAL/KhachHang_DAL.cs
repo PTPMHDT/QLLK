@@ -27,6 +27,7 @@ namespace PresentationLayer.DAL
                           MaLoaiKhachHang = kh.LOAI.MaLoai,
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
+                          Tong = kh.Tong,
                           GhiChu = kh.GhiChu
                       };
             var khp = kh1.ToList();
@@ -46,6 +47,7 @@ namespace PresentationLayer.DAL
                           MaLoaiKhachHang = kh.LOAI.MaLoai,
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
+                          Tong = kh.Tong,
                           GhiChu = kh.GhiChu
                       };
             return kh1.ToList()[0];
@@ -63,6 +65,7 @@ namespace PresentationLayer.DAL
                           SoDienThoai = kh.SoDienThoai,
                           MaLoaiKhachHang = kh.LOAI.MaLoai,
                           DiaChi = kh.DiaChi,
+                          Tong = kh.Tong,
                           GhiChu = kh.GhiChu
                       };
             return kh1.ToList()[0];

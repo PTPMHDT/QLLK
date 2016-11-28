@@ -20,9 +20,11 @@ namespace PresentationLayer.DAL
                           DiaChi = item.DiaChi,
                           SoDienThoai = item.SoDienThoai,
                           MoTa = item.MoTa,
+                          Tong = (decimal)item.Tong,
                           TrangThai = item.TrangThai
                       };
             var khp = temp.ToList();
+            khp.ForEach(k => k.InitOldData());
             return khp;
         }
 
@@ -37,6 +39,7 @@ namespace PresentationLayer.DAL
                           SoDienThoai = ncc.SoDienThoai,
                           DiaChi = ncc.DiaChi,
                           MoTa = ncc.MoTa,
+                          Tong = (decimal)ncc.Tong,
                           TrangThai = (int)ncc.TrangThai
                       };
             return ncc1.ToList()[0];

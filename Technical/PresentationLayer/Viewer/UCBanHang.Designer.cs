@@ -282,7 +282,7 @@
             // 
             // dateNgayBan
             // 
-            this.dateNgayBan.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateNgayBan.CustomFormat = "dd/MM/yyyy";
             this.dateNgayBan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayBan.Location = new System.Drawing.Point(93, 63);
             this.dateNgayBan.Name = "dateNgayBan";
@@ -507,7 +507,7 @@
             // 
             // GiaBan
             // 
-            this.GiaBan.Caption = "Giá Bán";
+            this.GiaBan.Caption = "Giá Bán (vnđ)";
             this.GiaBan.ColumnEdit = this.text_money;
             this.GiaBan.FieldName = "GiaBan";
             this.GiaBan.Name = "GiaBan";
@@ -524,7 +524,7 @@
             // 
             // ThanhTien
             // 
-            this.ThanhTien.Caption = "Thành Tiền";
+            this.ThanhTien.Caption = "Thành Tiền (vnđ)";
             this.ThanhTien.FieldName = "ThanhTien";
             this.ThanhTien.Name = "ThanhTien";
             this.ThanhTien.OptionsColumn.AllowEdit = false;
@@ -535,7 +535,7 @@
             // 
             // ThoiGianBaoHanh
             // 
-            this.ThoiGianBaoHanh.Caption = "Thời Gian Bảo Hành";
+            this.ThoiGianBaoHanh.Caption = "Thời Gian Bảo Hành (tháng)";
             this.ThoiGianBaoHanh.FieldName = "ThoiGianBaoHanh";
             this.ThoiGianBaoHanh.Name = "ThoiGianBaoHanh";
             this.ThoiGianBaoHanh.OptionsColumn.AllowEdit = false;

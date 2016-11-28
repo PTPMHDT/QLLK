@@ -23,6 +23,7 @@ namespace PresentationLayer.DAL
                          SoLuong = ct_hoadon.SoLuong,
                          GiaBan = ct_hoadon.LINHKIEN.GiaBanLe,
                          ThanhTien = ct_hoadon.ThanhTien,
+                         ThoiGianBaoHanh = ct_hoadon.LINHKIEN.ThoiGianBaoHanh,
                          GhiChu = ct_hoadon.GhiChu
                      };
             return hd.ToList();

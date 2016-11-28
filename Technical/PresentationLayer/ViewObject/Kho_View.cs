@@ -19,8 +19,6 @@ namespace PresentationLayer.ViewObject
         public string DonViTinh { get; set; }
         public int TinhTrangLK { get; set; }
         public string MoTaLK { get; set; }
-        public string ThoiGianBaoHanh { get; set; }
-
-
+        public int ThoiGianBaoHanh { get; set; }
     }
 }

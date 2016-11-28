@@ -19,6 +19,7 @@ namespace PresentationLayer.ViewObject
         public string SoDienThoai { get; set; }
         public string MoTa { get; set; }
         public int TrangThai { get; set; }
+        public decimal Tong { get; set; }
 
         public NhaCungCap_View()
             : base()
@@ -44,6 +45,7 @@ namespace PresentationLayer.ViewObject
             ncc.DiaChi = DiaChi;
             ncc.SoDienThoai = SoDienThoai;
             ncc.MoTa = MoTa;
+            ncc.Tong = Tong;
             ncc.TrangThai = 1;
             return ncc;
         }
@@ -60,6 +62,7 @@ namespace PresentationLayer.ViewObject
             ncc.DiaChi = DiaChi;
             ncc.SoDienThoai = SoDienThoai;
             ncc.MoTa = MoTa;
+            ncc.Tong = Tong;
             ncc.TrangThai = 0;
             return ncc;
         }

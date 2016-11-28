@@ -237,6 +237,7 @@
             toolTipTitleItem3.Text = "Tạo phiếu nhập kho";
             superToolTip3.Items.Add(toolTipTitleItem3);
             this.btnPhieuNhapKho.SuperTip = superToolTip3;
+            this.btnPhieuNhapKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhieuNhapKho_ItemClick);
             // 
             // btnPhieuXuatKho
             // 

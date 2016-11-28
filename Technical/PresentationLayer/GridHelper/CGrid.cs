@@ -34,7 +34,7 @@ namespace PresentationLayer
 
             for (int i = 0; i < fields.Length; i++)
             {
-                if ((oldDataFields[i].Name != "TrangThai") && (oldDataFields[i].Name != "OldData"))
+                if ((oldDataFields[i].Name != "Mode") && (oldDataFields[i].Name != "OldData"))
                 {
                     oldDataFields[i].SetValue(OldData, fields[i].GetValue(this, null), null);
                 }
