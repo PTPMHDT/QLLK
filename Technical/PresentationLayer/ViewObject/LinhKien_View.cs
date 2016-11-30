@@ -52,6 +52,7 @@ namespace PresentationLayer.ViewObject
             lk.TinhTrang = TinhTrang;
             lk.ThoiGianBaoHanh = ThoiGianBaoHanh;
             lk.GiaNhap = GiaNhap;
+            lk.MoTa = MoTa;
             return lk;
         }
     }

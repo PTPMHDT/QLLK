@@ -373,5 +373,17 @@ namespace PresentationLayer
             gridControl1.DataSource = ls_cthd;
             gridControl1.RefreshDataSource();
         }
+
+        private void btnThemMoiSP_Click(object sender, EventArgs e)
+        {
+            using (var form = new Add_LinhKien())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    setGridCtrl_LinhKien();
+                }
+            }
+        }
     }
 }

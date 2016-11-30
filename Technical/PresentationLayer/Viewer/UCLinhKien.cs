@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using PresentationLayer.DAL;
 using PresentationLayer.ViewObject;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraEditors.Repository;
 
 namespace PresentationLayer
 {
@@ -20,6 +23,40 @@ namespace PresentationLayer
             InitializeComponent();
             InitVal();
             btnXoa_Grid.Click += btnXoa_Grid_Click;
+            gridView1.ValidatingEditor += gridView1_ValidatingEditor;
+            gridView1.ValidateRow += gridView1_ValidateRow;
+        }
+
+        void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            //GridView view = sender as GridView;
+            //GridColumn tenLK_Col = view.Columns["TenLinhKien"];
+            //string thuongHieu_Col = view.Columns["MaThuongHieu"].SummaryText ;
+            
+            //string tenLK = view.GetRowCellValue(e.RowHandle, tenLK_Col).ToString().Trim();
+            //if(tenLK.Equals(""))
+            //{
+            //    view.SetColumnError(tenLK_Col, "Tên Linh Kiện không được rỗng!");
+            //}  
+        }
+
+        void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
+        {
+            GridView view = sender as GridView;
+            string fieldName = view.FocusedColumn.FieldName;
+            switch (fieldName)
+            {
+                case "TenLinhKien":
+                    if(e.Value.ToString().Trim().Equals(""))
+                    {
+                        e.Valid = false;
+                        e.ErrorText = "Nhập vào tên Linh Kiện";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         private void InitVal()
@@ -44,15 +81,15 @@ namespace PresentationLayer
             {
                 DataUpdate<LinhKien_View> listUpdate = gridThaoTac.update();
 
-                //if (LinhKien_DAL.saves(listUpdate))
-                //{
-                //    MessageBox.Show("Lưu thông tin thành công!");
-                //    InitVal();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Lưu thông tin thất bại!");
-                //}
+                if (LinhKien_DAL.saves(listUpdate))
+                {
+                    MessageBox.Show("Lưu thông tin thành công!");
+                    InitVal();
+                }
+                else
+                {
+                    MessageBox.Show("Lưu thông tin thất bại!");
+                }
             }         
         }
 

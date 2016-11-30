@@ -95,7 +95,8 @@ namespace PresentationLayer.DAL
                 {
                     list.Inserts.ForEach(x =>
                     {
-                        Context.getInstance().db.NHACUNGCAPs.Add(x.toNhaCungCap());
+                        x.TrangThai = 1;
+                        Context.getInstance().db.Entry(x.toNhaCungCap()).State = System.Data.Entity.EntityState.Added;
                     });
 
                     list.Updates.ForEach(x =>
@@ -105,7 +106,8 @@ namespace PresentationLayer.DAL
 
                     list.Deletes.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toNhaCungCap_Del()).State = System.Data.Entity.EntityState.Modified;
+                        x.TrangThai = 0;
+                        Context.getInstance().db.Entry(x.toNhaCungCap()).State = System.Data.Entity.EntityState.Modified;
                     });
 
                     Context.getInstance().db.SaveChanges();

@@ -97,7 +97,7 @@ namespace PresentationLayer.DAL
                 {
                     list.Inserts.ForEach(x =>
                     {
-                        //Context.getInstance().db.KHACHHANGs.Add(x.toKhachHang());
+                        x.TrangThai = 1;
                         Context.getInstance().db.Entry(x.toKhachHang()).State = System.Data.Entity.EntityState.Added;
                     });
 
@@ -108,7 +108,8 @@ namespace PresentationLayer.DAL
 
                     list.Deletes.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toKhachHang_Del()).State = System.Data.Entity.EntityState.Modified;
+                        x.TrangThai = 0;
+                        Context.getInstance().db.Entry(x.toKhachHang()).State = System.Data.Entity.EntityState.Modified;
                     });
                   
                     Context.getInstance().db.SaveChanges();

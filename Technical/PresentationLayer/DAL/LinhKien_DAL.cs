@@ -12,6 +12,7 @@ namespace PresentationLayer.DAL
         public static List<LinhKien_View> getAll_LinhKien()
         {
             var lk1 = from lk in Context.getInstance().db.LINHKIENs
+                      where lk.TinhTrang == 1
                        select new LinhKien_View()
                        {
                            MaLinhKien = lk.MaLinhKien,
@@ -61,23 +62,32 @@ namespace PresentationLayer.DAL
             {
                 try
                 {
-                    //list.Inserts.ForEach(x => {
-                    //    Context.getInstance().db.LINHKIENs.Add(x.toLinhKien());
-                    //});
+                    list.Inserts.ForEach(x =>
+                    {
+                        x.TinhTrang = 1;
+                        Context.getInstance().db.Entry(x.toLinhKien()).State = System.Data.Entity.EntityState.Added;
+                    });
 
-                    LINHKIEN lk = new LINHKIEN() {MaLinhKien= "LK006", MaThuongHieu= "SONY", MaNhaCungCap = "CC001",TenLinhKien =  "ten",GiaBanLe =  6456,GiaBanSi= 43434,MaDonViTinh = "DV003",TinhTrang= 1 };
-                    LINHKIEN lk1 = new LINHKIEN() { MaLinhKien = "LK006", MaThuongHieu = "SONY", MaNhaCungCap = "CC001", TenLinhKien = "ten", GiaBanLe = 6456, GiaBanSi = 43434, MaDonViTinh = "DV003", TinhTrang = 1 };
-                    LINHKIEN lk2 = new LINHKIEN() { MaLinhKien = "LK006", MaThuongHieu = "SONY", MaNhaCungCap = "CC001", TenLinhKien = "ten", GiaBanLe = 6456, GiaBanSi = 43434, MaDonViTinh = "DV003", TinhTrang = 1 };
-                    Context.getInstance().db.LINHKIENs.Add(lk);
-                   // Context.getInstance().db.LINHKIENs.Add(lk1);
-                    //Context.getInstance().db.LINHKIENs.Add(lk2);
+                    list.Updates.ForEach(x =>
+                    {
+                        Context.getInstance().db.Entry(x.toLinhKien()).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+                    list.Deletes.ForEach(x =>
+                    {
+                        x.TinhTrang = 0;
+                        Context.getInstance().db.Entry(x.toLinhKien()).State = System.Data.Entity.EntityState.Modified;
+                    });
 
                     Context.getInstance().db.SaveChanges();
+
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
                     return false;
                 }
             }  

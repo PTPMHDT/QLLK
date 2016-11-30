@@ -290,6 +290,7 @@
             this.btnThemMoiSP.Size = new System.Drawing.Size(145, 40);
             this.btnThemMoiSP.TabIndex = 9;
             this.btnThemMoiSP.Text = "Thêm sản phẩm mới";
+            this.btnThemMoiSP.Click += new System.EventHandler(this.btnThemMoiSP_Click);
             // 
             // gridCtrlLoc
             // 
