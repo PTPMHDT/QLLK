@@ -9,6 +9,7 @@ namespace PresentationLayer.ViewObject
     public class Kho_View
     {
         public string MaLinhKien { get; set; }
+        public string Seri { get; set; }
         public string TenLinhKien { get; set; }
         public int SoLuong { get; set; }
         public string ThuongHieu { get; set; }

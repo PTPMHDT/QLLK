@@ -18,6 +18,7 @@ namespace PresentationLayer.ViewObject
         public Decimal ThanhTien { get; set; }
         public string GhiChu { get; set; }
         public int TinhTrang;
+        public List<string> SoSeri { get; set; }
 
         public CT_HOADON_NHAPHANG toCT_HoaDonNhap()
         {
@@ -32,6 +33,23 @@ namespace PresentationLayer.ViewObject
             cthd.ThanhTien = ThanhTien;
             cthd.GhiChu = GhiChu;
             cthd.TinhTrang = TinhTrang;
+            return cthd;
+        }
+
+        public CT_HOADON_NHAPHANG toCT_HoaDonNhap(string seri)
+        {
+            CT_HOADON_NHAPHANG cthd = Context.getInstance().db.CT_HOADON_NHAPHANG.Where(key => key.MaHoaDon == MaHoaDon).Where(key => key.MaLinhKien == MaLinhKien).FirstOrDefault();
+            if (cthd == null)
+            {
+                cthd = new CT_HOADON_NHAPHANG();
+                cthd.MaHoaDon = MaHoaDon;
+                cthd.MaLinhKien = MaLinhKien;
+            }
+            cthd.SoLuong = SoLuong;
+            cthd.ThanhTien = ThanhTien;
+            cthd.GhiChu = GhiChu;
+            cthd.TinhTrang = TinhTrang;
+            cthd.Seri = seri;
             return cthd;
         }
     }

@@ -23,8 +23,8 @@ namespace PresentationLayer.DAL
                           MaKhachHang = kh.MaKhachHang,
                           TenKhachHang = kh.TenKhachHang,
                           TenKhachHangShow = kh.TenKhachHang + "  (" + kh.SoDienThoai+")",
-                          TenLoaiKhachHang = kh.LOAI.TenLoai,
-                          MaLoaiKhachHang = kh.LOAI.MaLoai,
+                          TenLoaiKhachHang = kh.LOAIKHACHHANG.TenLoaiKhachHang,
+                          MaLoaiKhachHang = kh.LOAIKHACHHANG.MaLoaiKhachHang,
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
                           Tong = kh.Tong,
@@ -43,8 +43,8 @@ namespace PresentationLayer.DAL
                       {
                           MaKhachHang = kh.MaKhachHang,
                           TenKhachHang = kh.TenKhachHang,
-                          TenLoaiKhachHang = kh.LOAI.TenLoai,
-                          MaLoaiKhachHang = kh.LOAI.MaLoai,
+                          TenLoaiKhachHang = kh.LOAIKHACHHANG.TenLoaiKhachHang,
+                          MaLoaiKhachHang = kh.LOAIKHACHHANG.MaLoaiKhachHang,
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
                           Tong = kh.Tong,
@@ -61,9 +61,9 @@ namespace PresentationLayer.DAL
                       {
                           MaKhachHang = kh.MaKhachHang,
                           TenKhachHang = kh.TenKhachHang,
-                          TenLoaiKhachHang = kh.LOAI.TenLoai,
+                          TenLoaiKhachHang = kh.LOAIKHACHHANG.TenLoaiKhachHang,
                           SoDienThoai = kh.SoDienThoai,
-                          MaLoaiKhachHang = kh.LOAI.MaLoai,
+                          MaLoaiKhachHang = kh.LOAIKHACHHANG.MaLoaiKhachHang,
                           DiaChi = kh.DiaChi,
                           Tong = kh.Tong,
                           GhiChu = kh.GhiChu
@@ -71,12 +71,12 @@ namespace PresentationLayer.DAL
             return kh1.ToList()[0];
         }
 
-        public static string get_KhachHangMax()
+        public static string get_KhachHangMax(int c)
         {
             try
             {
                 string result = Context.getInstance().db.KHACHHANGs.OrderByDescending(x => x.MaKhachHang).First().MaKhachHang;
-                int index = (Convert.ToInt16((result).Substring(2)) + 1);
+                int index = (Convert.ToInt16((result).Substring(2)) + 1) + c;
                 if (index < 10)
                     return "KH00" + index;
                 else if (index < 100)
@@ -103,6 +103,7 @@ namespace PresentationLayer.DAL
 
                     list.Updates.ForEach(x =>
                     {
+                        x.TrangThai = 1;
                         Context.getInstance().db.Entry( x.toKhachHang()).State = System.Data.Entity.EntityState.Modified;
                     });
 

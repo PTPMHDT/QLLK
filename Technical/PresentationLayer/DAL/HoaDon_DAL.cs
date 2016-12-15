@@ -101,7 +101,6 @@ namespace PresentationLayer.DAL
                         Context.getInstance().db.Entry(x.toCT_HoaDon()).State = System.Data.Entity.EntityState.Added;
                         //giam so luong trong kho
                         kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        kho.SoLuong = kho.SoLuong - x.SoLuong;
                         Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
                     });
                     //update so tien mua hang cua khach hang

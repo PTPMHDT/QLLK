@@ -39,16 +39,18 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Mode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Xoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtSDT = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).BeginInit();
             this.SuspendLayout();
             // 
             // gridColumn5
@@ -89,6 +91,7 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Số Điện Thoại";
+            this.gridColumn3.ColumnEdit = this.txtSDT;
             this.gridColumn3.FieldName = "SoDienThoai";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -156,10 +159,22 @@
             this.gridColumn4.VisibleIndex = 4;
             this.gridColumn4.Width = 104;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Tổng tiền giao dịch";
+            this.gridColumn6.FieldName = "Tong";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowFocus = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.Width = 141;
+            // 
             // Xoa
             // 
             this.Xoa.ColumnEdit = this.btnXoa;
             this.Xoa.Name = "Xoa";
+            this.Xoa.OptionsColumn.TabStop = false;
             this.Xoa.Visible = true;
             this.Xoa.VisibleIndex = 7;
             this.Xoa.Width = 36;
@@ -179,7 +194,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnXoa});
+            this.btnXoa,
+            this.txtSDT});
             this.gridControl1.Size = new System.Drawing.Size(763, 426);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -201,16 +217,12 @@
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Thông Tin Nhà Cung Cấp";
             // 
-            // gridColumn6
+            // txtSDT
             // 
-            this.gridColumn6.Caption = "Tổng tiền giao dịch";
-            this.gridColumn6.FieldName = "Tong";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.OptionsColumn.AllowFocus = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 141;
+            this.txtSDT.AutoHeight = false;
+            this.txtSDT.Mask.EditMask = "f0";
+            this.txtSDT.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSDT.Name = "txtSDT";
             // 
             // UCNhaCungCap
             // 
@@ -226,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -246,5 +259,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtSDT;
     }
 }

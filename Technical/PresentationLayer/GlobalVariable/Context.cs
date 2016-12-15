@@ -11,12 +11,11 @@ namespace PresentationLayer.GlobalVariable
     {
         static Context context =null;
         public OOD_QLLKEntities db { get; set; }
-        public NguoiDung_View nv { get; set; }
+        public NhanVien_View nv { get; set; }
         public formLogin formLogin { get; set; }
         public FormMain formMain { get; set; }
         public decimal phanTram_LoiNhuan_BanBuon { get; set; }
         public decimal phanTram_LoiNhuan_BanLe { get; set; }
-        public string next_MaLK { get; set; }
 
         public static Context getInstance()
         {
@@ -32,7 +31,6 @@ namespace PresentationLayer.GlobalVariable
             db = new OOD_QLLKEntities();
             phanTram_LoiNhuan_BanBuon = (decimal)0.05;
             phanTram_LoiNhuan_BanLe = (decimal)0.1;
-            next_MaLK = "";
         }
 
         public static void Refresh()

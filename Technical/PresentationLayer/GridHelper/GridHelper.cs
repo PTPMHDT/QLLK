@@ -83,11 +83,17 @@ namespace PresentationLayer
             return false;
         }
 
-        public void addRow()
+        public CGrid addRow(int c)
         {
-            CGrid cData = CGrid.Create<T>();
+            CGrid cData = CGrid.Create<T>(c);
             cData.Mode = TT.NEW;
             getDatas().Add(cData.ToType<T>());
+            mainView.RefreshData();
+            return cData;
+        }
+
+        public void refreshData()
+        {
             mainView.RefreshData();
         }
 
@@ -124,7 +130,6 @@ namespace PresentationLayer
             else
             {
                 tmp.Mode = TT.DELETE;
-
             }
             mainView.RefreshData();
         }

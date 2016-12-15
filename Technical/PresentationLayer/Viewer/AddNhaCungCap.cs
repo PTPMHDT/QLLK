@@ -25,7 +25,7 @@ namespace PresentationLayer.Viewer
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             txt_maNCC.ReadOnly = true;
-            txt_maNCC.Text = NhaCungCap_DAL.get_NCCMax();
+            txt_maNCC.Text = NhaCungCap_DAL.get_NCCMax(0);
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)

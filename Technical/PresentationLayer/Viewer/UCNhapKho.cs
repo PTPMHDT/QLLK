@@ -29,12 +29,28 @@ namespace PresentationLayer
         public UCNhapKho(string maHoaDon)
         {
             InitializeComponent();
-            this.Load += UCBanHang_Load;
+            this.Load += UCNhapKho_Load;
 
             InnitVal(maHoaDon);
             this.btnXoa.Click += btnXoa_Click;
             this.repositoryItemSpinEdit1.EditValueChanged += repositoryItemSpinEdit1_EditValueChanged;
             cbxTenNCC.LostFocus += cbxTenNCC_LostFocus;
+            add_seriNumber.Click += add_seriNumber_Click;
+        }
+
+        void add_seriNumber_Click(object sender, EventArgs e)
+        {
+            CT_HoaDonNhap_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDonNhap_View;
+            using (var form = new Add_SeriNumber(ct_hd.MaLinhKien, ct_hd.TenLinhKien,ct_hd.SoLuong))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ct_hd.SoSeri = form.list_Seri;
+                    gridControl1.DataSource = ls_cthd;
+                    gridControl1.RefreshDataSource();
+                }
+            }
         }
 
         void cbxTenNCC_LostFocus(object sender, EventArgs e)
@@ -53,7 +69,7 @@ namespace PresentationLayer
             }
         }
 
-        void UCBanHang_Load(object sender, EventArgs e)
+        void UCNhapKho_Load(object sender, EventArgs e)
         {
             this.repositoryItemSpinEdit1.MinValue = 1;
             this.repositoryItemSpinEdit1.MaxValue = 1000;
@@ -376,7 +392,7 @@ namespace PresentationLayer
 
         private void btnThemMoiSP_Click(object sender, EventArgs e)
         {
-            using (var form = new Add_LinhKien())
+            using (var form = new Add_LinhKien(cbxTenNCC.SelectedValue.ToString().Trim()))
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)

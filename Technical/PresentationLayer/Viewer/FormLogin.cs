@@ -34,7 +34,7 @@ namespace PresentationLayer
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            Context.getInstance().nv = NguoiDung_DAL.get_NguoiDung_By_IdPass(textID.Text.Trim(), textPass.Text.Trim());
+            Context.getInstance().nv = NhanVien_DAL.get_NhanVien_By_TenDN_And_Pass(textID.Text.Trim(), textPass.Text.Trim());
             if (Context.getInstance().nv == null)
             {
                 MessageBox.Show("Đăng nhập không thành công!");

@@ -180,6 +180,7 @@ namespace PresentationLayer
                     gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
                     txtTongTien.Text = count_TongTien().ToString();
+                    add_LinhKienSeri(item.MaLinhKien);
                     break;
                 }
             }
@@ -214,17 +215,18 @@ namespace PresentationLayer
 
         private void change_GiaBan()
         {
-            Kho_View kho;
+            //Kho_View kho;
             foreach (var cthd in ls_cthd)
             {
-                kho = list_LK_inKho.Where(key => key.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                //kho = list_LK_inKho.Where(key => key.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                LinhKien_View lk_view = LinhKien_DAL.get_LinhKien_ByMaLK(cthd.MaLinhKien);
                 switch (loaiKH)
                 {
                     case "L001":
-                        cthd.GiaBan = kho.GiaBanLe;
+                        cthd.GiaBan = lk_view.GiaBanLe;
                         break;
                     case "L002":
-                        cthd.GiaBan = kho.GiaBanSi;
+                        cthd.GiaBan = lk_view.GiaBanSi;
                         break;
                     case "L003":
                         break;
@@ -248,6 +250,7 @@ namespace PresentationLayer
             if (ls_cthd.Count > 0)
             {
                 int sl = 0;
+
                 foreach (CT_HoaDon_View item in ls_cthd)
                 {
                     if (item.MaLinhKien.Equals(kho.MaLinhKien))
@@ -260,6 +263,7 @@ namespace PresentationLayer
                         }
                         item.SoLuong = sl;
                         item.ThanhTien = item.SoLuong * item.GiaBan;
+                        add_LinhKienSeri(item.MaLinhKien);
                         flat = true;
                         break;
                     }
@@ -268,19 +272,20 @@ namespace PresentationLayer
 
             if (!flat)
             {
+                LinhKien_View lk_view = LinhKien_DAL.get_LinhKien_ByMaLK(kho.MaLinhKien);
                 CT_HoaDon_View ct_hd = new CT_HoaDon_View();
                 ct_hd.MaHoaDon = txtMaPhieu.Text.Trim();
-                ct_hd.MaLinhKien = kho.MaLinhKien;
-                ct_hd.TenLinhKien = kho.TenLinhKien;
-                ct_hd.DonViTinh = kho.DonViTinh;
-                ct_hd.ThoiGianBaoHanh = kho.ThoiGianBaoHanh;
+                ct_hd.MaLinhKien = lk_view.MaLinhKien;
+                ct_hd.TenLinhKien = lk_view.TenLinhKien;
+                ct_hd.DonViTinh = lk_view.MaDonViTinh;
+                ct_hd.ThoiGianBaoHanh = lk_view.ThoiGianBaoHanh;
                 switch (loaiKH)
                 {
                     case "L001":
-                        ct_hd.GiaBan = kho.GiaBanLe;
+                        ct_hd.GiaBan = lk_view.GiaBanLe;
                         break;
                     case "L002":
-                        ct_hd.GiaBan = kho.GiaBanSi;
+                        ct_hd.GiaBan = lk_view.GiaBanSi;
                         break;
                     case "L003":
                         break;
@@ -288,12 +293,24 @@ namespace PresentationLayer
                 ct_hd.SoLuong = 1;
                 ct_hd.ThanhTien = ct_hd.GiaBan * ct_hd.SoLuong;
                 ls_cthd.Add(ct_hd);
+                add_LinhKienSeri(ct_hd.MaLinhKien);
 
                 gridControl1.DataSource = ls_cthd;
             }
 
             gridControl1.RefreshDataSource();
             txtTongTien.Text = count_TongTien().ToString();
+        }
+
+        private void add_LinhKienSeri(string maLK)
+        {
+            List<Kho_View> lK_v = Kho_DAL.get_AllLinhKien_By_MaLinhKien(maLK);
+            CT_HoaDon_View cthd = ls_cthd.Where(key => key.MaLinhKien == maLK).FirstOrDefault();
+            cthd.SoSeri = new List<string>();
+            for (int i = 0; i < cthd.SoLuong; i++)
+            {
+                cthd.SoSeri.Add(lK_v[i].Seri);
+            }
         }
 
         private void RemoveRowGrid_CT_HoaDon()

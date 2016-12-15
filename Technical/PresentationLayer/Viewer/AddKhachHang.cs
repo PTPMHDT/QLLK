@@ -25,7 +25,7 @@ namespace PresentationLayer.Viewer
         {
             txt_maKH.ReadOnly = true;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            txt_maKH.Text = KhachHang_DAL.get_KhachHangMax();
+            txt_maKH.Text = KhachHang_DAL.get_KhachHangMax(0);
             cbx_LoaiKH.DataSource = LoaiKhachHang_DAL.getAll_LoaiKhachHang();
             cbx_LoaiKH.DisplayMember = "TenLoai";
             cbx_LoaiKH.ValueMember = "MaLoai";

@@ -26,10 +26,15 @@ namespace PresentationLayer.ViewObject
             return TenKhachHang.Trim() + "   (" + MaKhachHang.Trim() + ")";
         }
 
+        public KhachHang_View(int c)
+            : base()
+        {
+            MaKhachHang = KhachHang_DAL.get_KhachHangMax(c);
+        }
+
         public KhachHang_View()
             : base()
         {
-            MaKhachHang = KhachHang_DAL.get_KhachHangMax();
         }
 
         public KHACHHANG toKhachHang()

@@ -56,6 +56,29 @@ namespace PresentationLayer.DAL
             return lk1.ToList();
         }
 
+        public static LinhKien_View get_LinhKien_ByMaLK(string MaLK)
+        {
+            var lk1 = from lk in Context.getInstance().db.LINHKIENs
+                      where lk.MaLinhKien == MaLK
+                      select new LinhKien_View()
+                      {
+                          MaLinhKien = lk.MaLinhKien,
+                          TenLinhKien = lk.TenLinhKien,
+                          TenDonViTinh = lk.DONVITINH.TenDonViTinh,
+                          TenNhaCungCap = lk.NHACUNGCAP.TenNhaCungCap,
+                          TenThuongHieu = lk.THUONGHIEU.TenThuongHieu,
+                          GiaBanLe = lk.GiaBanLe,
+                          GiaBanSi = lk.GiaBanSi,
+                          GiaNhap = (decimal)lk.GiaNhap,
+                          TinhTrang = lk.TinhTrang,
+                          ThoiGianBaoHanh = (int)lk.ThoiGianBaoHanh,
+                          MoTa = lk.MoTa
+                      };
+            if (lk1 != null)
+                return lk1.ToList()[0];
+            return null;
+        }
+
         public static bool saves(DataUpdate<LinhKien_View> list)
         {
             using (var transaction = Context.getInstance().db.Database.BeginTransaction())
@@ -70,6 +93,7 @@ namespace PresentationLayer.DAL
 
                     list.Updates.ForEach(x =>
                     {
+                        x.TinhTrang = 1;
                         Context.getInstance().db.Entry(x.toLinhKien()).State = System.Data.Entity.EntityState.Modified;
                     });
 
@@ -115,12 +139,14 @@ namespace PresentationLayer.DAL
             return true;
         }
 
-        public static string get_LinhKienMax()
+        public static string get_LinhKienMax(int c)
         {
             try
             {
                 string result = Context.getInstance().db.LINHKIENs.OrderByDescending(x => x.MaLinhKien).First().MaLinhKien;
                 int index = (Convert.ToInt16((result).Substring(2)) + 1);
+                if (c != 0)
+                    index += c;
                 if (index < 10)
                     return "LK00" + index;
                 else if (index < 100)

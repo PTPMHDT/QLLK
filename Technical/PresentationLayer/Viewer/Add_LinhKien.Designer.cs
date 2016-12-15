@@ -50,6 +50,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Xoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa_Grid = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.txt_TenLK = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_TenLK)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -78,6 +80,7 @@
             this.bnt_AddRow.Size = new System.Drawing.Size(88, 32);
             this.bnt_AddRow.TabIndex = 7;
             this.bnt_AddRow.Text = "Thêm Dòng";
+            this.bnt_AddRow.Click += new System.EventHandler(this.bnt_AddRow_Click);
             // 
             // btn_Thoat
             // 
@@ -111,12 +114,14 @@
             // 
             // gridControl1
             // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Location = new System.Drawing.Point(2, 20);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnXoa_Grid});
-            this.gridControl1.Size = new System.Drawing.Size(690, 320);
+            this.btnXoa_Grid,
+            this.txt_TenLK});
+            this.gridControl1.Size = new System.Drawing.Size(894, 483);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -143,6 +148,7 @@
             this.gridView1.OptionsFind.ShowCloseButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // Mode
             // 
@@ -169,6 +175,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Tên Linh Kiện";
+            this.gridColumn2.ColumnEdit = this.txt_TenLK;
             this.gridColumn2.FieldName = "TenLinhKien";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -251,6 +258,7 @@
             // 
             this.Xoa.ColumnEdit = this.btnXoa_Grid;
             this.Xoa.Name = "Xoa";
+            this.Xoa.OptionsColumn.TabStop = false;
             this.Xoa.Visible = true;
             this.Xoa.VisibleIndex = 11;
             this.Xoa.Width = 37;
@@ -263,6 +271,11 @@
             this.btnXoa_Grid.Name = "btnXoa_Grid";
             this.btnXoa_Grid.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // txt_TenLK
+            // 
+            this.txt_TenLK.AutoHeight = false;
+            this.txt_TenLK.Name = "txt_TenLK";
+            // 
             // Add_LinhKien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,7 +283,6 @@
             this.ClientSize = new System.Drawing.Size(898, 548);
             this.Controls.Add(this.panelControl1);
             this.Name = "Add_LinhKien";
-            this.Load += new System.EventHandler(this.Add_LinhKien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -278,6 +290,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_TenLK)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +317,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa_Grid;
         private DevExpress.XtraEditors.SimpleButton bnt_AddRow;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txt_TenLK;
     }
 }

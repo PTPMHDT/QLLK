@@ -29,11 +29,16 @@ namespace PresentationLayer.ViewObject
             return TenLinhKien.Trim() + "   (" + TenLinhKien.Trim() + ")";
         }
 
-        public LinhKien_View()
+        public LinhKien_View(int c)
             : base()
         {
-            MaLinhKien = LinhKien_DAL.get_LinhKienMax();
+            MaLinhKien = LinhKien_DAL.get_LinhKienMax(c);
         }
+
+        public LinhKien_View()
+            : base()
+        { }
+
         public LINHKIEN toLinhKien()
         {
             LINHKIEN lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == MaLinhKien).FirstOrDefault();

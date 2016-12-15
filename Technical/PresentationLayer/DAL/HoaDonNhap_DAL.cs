@@ -77,32 +77,22 @@ namespace PresentationLayer.DAL
                     LINHKIEN lk;
                     ct_hds.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toCT_HoaDonNhap()).State = System.Data.Entity.EntityState.Added;
+                        foreach (var seri in x.SoSeri)
+                        {
+                            Context.getInstance().db.Entry(x.toCT_HoaDonNhap(seri)).State = System.Data.Entity.EntityState.Added;
+                            //nhap kho
+                            KHO myK = new KHO();
+                            myK.MaLinhKien = x.MaLinhKien;
+                            myK.Seri = seri;
+                            Context.getInstance().db.Entry(myK).State = System.Data.Entity.EntityState.Added;
+                        }
                         lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
                         if (!(lk.GiaNhap == x.GiaNhap))
                         {
                             lk.GiaNhap = x.GiaNhap;
                             lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanLe);
                             lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanBuon);
-                        }
-                        Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
-
-                        //neu da co san trong kho roi
-                        kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        if (kho != null)
-                        {
-                            kho.SoLuong = kho.SoLuong + x.SoLuong;
-                            Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
-                        }
-                        else
-                        {
-                            kho = new KHO();
-                            kho.MaLinhKien = x.MaLinhKien;
-                            kho.MaKho = Kho_DAL.get_KhoMax();
-                            kho.SoLuong = x.SoLuong;
-                            kho.TenKho = "Kho chung";
-                            kho.TrangThai = 1;
-                            Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Added;
+                            Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
                         }
 
                     });

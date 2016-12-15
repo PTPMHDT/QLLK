@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCNhapKho));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cbxTenNCC = new System.Windows.Forms.ComboBox();
@@ -69,6 +70,8 @@
             this.GiaNhap = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.add_seriNumber = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnXoa_Row = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -94,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.add_seriNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -413,7 +417,8 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
-            this.text_money});
+            this.text_money,
+            this.add_seriNumber});
             this.gridControl1.Size = new System.Drawing.Size(748, 331);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -428,6 +433,7 @@
             this.SoLuong,
             this.GiaNhap,
             this.ThanhTien,
+            this.gridColumn4,
             this.btnXoa_Row});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -513,13 +519,29 @@
             this.ThanhTien.VisibleIndex = 5;
             this.ThanhTien.Width = 133;
             // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Số Seri";
+            this.gridColumn4.ColumnEdit = this.add_seriNumber;
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 6;
+            // 
+            // add_seriNumber
+            // 
+            this.add_seriNumber.AutoHeight = false;
+            this.add_seriNumber.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("add_seriNumber.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            this.add_seriNumber.Name = "add_seriNumber";
+            this.add_seriNumber.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // btnXoa_Row
             // 
             this.btnXoa_Row.Caption = "Xóa";
             this.btnXoa_Row.ColumnEdit = this.btnXoa;
             this.btnXoa_Row.Name = "btnXoa_Row";
             this.btnXoa_Row.Visible = true;
-            this.btnXoa_Row.VisibleIndex = 6;
+            this.btnXoa_Row.VisibleIndex = 7;
             this.btnXoa_Row.Width = 49;
             // 
             // groupControl3
@@ -615,6 +637,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.add_seriNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -676,5 +699,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
         private System.Windows.Forms.ComboBox cbxTenNCC;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit add_seriNumber;
     }
 }

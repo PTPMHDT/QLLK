@@ -64,9 +64,9 @@ namespace PresentationLayer
 
             return false;
         }
-        public static CGrid Create<T>()
+        public static CGrid Create<T>(int c)
         {
-           return (CGrid)Activator.CreateInstance(typeof(T));
+           return (CGrid)Activator.CreateInstance(typeof(T), c);
         }
         public static CGrid Create(Type type)
         {

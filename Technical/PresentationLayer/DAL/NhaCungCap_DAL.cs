@@ -45,12 +45,12 @@ namespace PresentationLayer.DAL
             return ncc1.ToList()[0];
         }
 
-        public static string get_NCCMax()
+        public static string get_NCCMax(int c)
         {
             try
             {
                 string result = Context.getInstance().db.NHACUNGCAPs.OrderByDescending(x => x.MaNhaCungCap).First().MaNhaCungCap;
-                int index = (Convert.ToInt16((result).Substring(2)) + 1);
+                int index = (Convert.ToInt16((result).Substring(2)) + 1) + c;
                 if (index < 10)
                     return "CC00" + index;
                 else if (index < 100)
@@ -101,6 +101,7 @@ namespace PresentationLayer.DAL
 
                     list.Updates.ForEach(x =>
                     {
+                        x.TrangThai = 1;
                         Context.getInstance().db.Entry(x.toNhaCungCap()).State = System.Data.Entity.EntityState.Modified;
                     });
 

@@ -13,7 +13,7 @@ namespace PresentationLayer.ViewObject
         [IdSelection]
         public string MaNhaCungCap { get; set; }
 
-        [DisplaySelection("Loại Khách Hàng")]
+        [DisplaySelection("Nhà Cung Cấp")]
         public string TenNhaCungCap { get; set; }
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
@@ -21,10 +21,15 @@ namespace PresentationLayer.ViewObject
         public int TrangThai { get; set; }
         public decimal Tong { get; set; }
 
+        public NhaCungCap_View(int c)
+            : base()
+        {
+            MaNhaCungCap = NhaCungCap_DAL.get_NCCMax(c);
+        }
+
         public NhaCungCap_View()
             : base()
         {
-            MaNhaCungCap = NhaCungCap_DAL.get_NCCMax();
         }
 
         public override String ToString()

@@ -32,6 +32,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtSDT = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -45,6 +46,7 @@
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -64,11 +66,20 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Số Điện Thoại";
+            this.gridColumn3.ColumnEdit = this.txtSDT;
             this.gridColumn3.FieldName = "SoDienThoai";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
             this.gridColumn3.Width = 85;
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.AutoHeight = false;
+            this.txtSDT.Mask.EditMask = "f0";
+            this.txtSDT.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSDT.Mask.PlaceHolder = ' ';
+            this.txtSDT.Name = "txtSDT";
             // 
             // gridColumn2
             // 
@@ -155,6 +166,7 @@
             // 
             this.Xoa.ColumnEdit = this.btnXoa_Grid;
             this.Xoa.Name = "Xoa";
+            this.Xoa.OptionsColumn.TabStop = false;
             this.Xoa.Visible = true;
             this.Xoa.VisibleIndex = 8;
             this.Xoa.Width = 58;
@@ -174,7 +186,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnXoa_Grid});
+            this.btnXoa_Grid,
+            this.txtSDT});
             this.gridControl1.Size = new System.Drawing.Size(720, 402);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -231,6 +244,7 @@
             this.Controls.Add(this.btnLuu);
             this.Name = "UCKhachHang";
             this.Size = new System.Drawing.Size(730, 474);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -257,5 +271,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa_Grid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtSDT;
     }
 }
