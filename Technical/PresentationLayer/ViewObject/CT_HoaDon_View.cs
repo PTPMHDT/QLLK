@@ -11,13 +11,16 @@ namespace PresentationLayer.ViewObject
         public string MaHoaDon { get; set; }
         public string MaLinhKien { get; set; }
         public string TenLinhKien { get; set; }
-        public string LoaiLinhLien { get; set; }
+        public string LoaiLinhKien { get; set; }
         public string DonViTinh { get; set; }
         public int SoLuong { get; set; }
         public Decimal GiaBan { get; set; }
+        public float Thue { get; set; }
         public Decimal ThanhTien { get; set; }
+        public Decimal LoiNhuan { get; set; }
         public string GhiChu { get; set; }
         public int ThoiGianBaoHanh { get; set; }
+        public string Seri { get; set; }
         public List<string> SoSeri { get; set; }
 
         public CT_HOADON toCT_HoaDon()
@@ -47,6 +50,9 @@ namespace PresentationLayer.ViewObject
             cthd.ThanhTien = ThanhTien;
             cthd.GhiChu = GhiChu;
             cthd.Seri = seri;
+            cthd.Thue = Thue;
+            cthd.LoiNhuan = LoiNhuan;
+            cthd.GiaBan = GiaBan;
             return cthd;
         }
     }

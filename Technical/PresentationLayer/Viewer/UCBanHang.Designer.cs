@@ -70,6 +70,8 @@
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.GiaBan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtThue = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ThoiGianBaoHanh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa_Row = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -98,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtThue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -434,7 +437,8 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
-            this.text_money});
+            this.text_money,
+            this.txtThue});
             this.gridControl1.Size = new System.Drawing.Size(786, 331);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -448,6 +452,7 @@
             this.DonViTinh,
             this.SoLuong,
             this.GiaBan,
+            this.gridColumn4,
             this.ThanhTien,
             this.ThoiGianBaoHanh,
             this.btnXoa_Row});
@@ -464,7 +469,7 @@
             this.MaLinhKien.OptionsColumn.AllowFocus = false;
             this.MaLinhKien.Visible = true;
             this.MaLinhKien.VisibleIndex = 0;
-            this.MaLinhKien.Width = 102;
+            this.MaLinhKien.Width = 92;
             // 
             // TenLinhKien
             // 
@@ -475,7 +480,7 @@
             this.TenLinhKien.OptionsColumn.AllowFocus = false;
             this.TenLinhKien.Visible = true;
             this.TenLinhKien.VisibleIndex = 1;
-            this.TenLinhKien.Width = 153;
+            this.TenLinhKien.Width = 139;
             // 
             // DonViTinh
             // 
@@ -486,7 +491,7 @@
             this.DonViTinh.OptionsColumn.AllowFocus = false;
             this.DonViTinh.Visible = true;
             this.DonViTinh.VisibleIndex = 2;
-            this.DonViTinh.Width = 86;
+            this.DonViTinh.Width = 78;
             // 
             // SoLuong
             // 
@@ -496,7 +501,7 @@
             this.SoLuong.Name = "SoLuong";
             this.SoLuong.Visible = true;
             this.SoLuong.VisibleIndex = 3;
-            this.SoLuong.Width = 57;
+            this.SoLuong.Width = 51;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -513,7 +518,7 @@
             this.GiaBan.Name = "GiaBan";
             this.GiaBan.Visible = true;
             this.GiaBan.VisibleIndex = 4;
-            this.GiaBan.Width = 130;
+            this.GiaBan.Width = 127;
             // 
             // text_money
             // 
@@ -521,6 +526,24 @@
             this.text_money.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.text_money.Name = "text_money";
             this.text_money.EditValueChanged += new System.EventHandler(this.text_money_EditValueChanged);
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Thuế(%)";
+            this.gridColumn4.ColumnEdit = this.txtThue;
+            this.gridColumn4.FieldName = "Thue";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.Width = 63;
+            // 
+            // txtThue
+            // 
+            this.txtThue.AutoHeight = false;
+            this.txtThue.Mask.EditMask = "P0";
+            this.txtThue.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtThue.Name = "txtThue";
+            this.txtThue.EditValueChanged += new System.EventHandler(this.txtThue_EditValueChanged);
             // 
             // ThanhTien
             // 
@@ -530,8 +553,8 @@
             this.ThanhTien.OptionsColumn.AllowEdit = false;
             this.ThanhTien.OptionsColumn.AllowFocus = false;
             this.ThanhTien.Visible = true;
-            this.ThanhTien.VisibleIndex = 5;
-            this.ThanhTien.Width = 121;
+            this.ThanhTien.VisibleIndex = 6;
+            this.ThanhTien.Width = 106;
             // 
             // ThoiGianBaoHanh
             // 
@@ -541,8 +564,8 @@
             this.ThoiGianBaoHanh.OptionsColumn.AllowEdit = false;
             this.ThoiGianBaoHanh.OptionsColumn.AllowFocus = false;
             this.ThoiGianBaoHanh.Visible = true;
-            this.ThoiGianBaoHanh.VisibleIndex = 6;
-            this.ThoiGianBaoHanh.Width = 79;
+            this.ThoiGianBaoHanh.VisibleIndex = 7;
+            this.ThoiGianBaoHanh.Width = 68;
             // 
             // btnXoa_Row
             // 
@@ -550,8 +573,8 @@
             this.btnXoa_Row.ColumnEdit = this.btnXoa;
             this.btnXoa_Row.Name = "btnXoa_Row";
             this.btnXoa_Row.Visible = true;
-            this.btnXoa_Row.VisibleIndex = 7;
-            this.btnXoa_Row.Width = 40;
+            this.btnXoa_Row.VisibleIndex = 8;
+            this.btnXoa_Row.Width = 44;
             // 
             // groupControl3
             // 
@@ -654,6 +677,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtThue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -716,5 +740,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
         private DevExpress.XtraEditors.SimpleButton btn_XuatHD;
         private System.Windows.Forms.ComboBox cbTenKhachHang;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtThue;
     }
 }

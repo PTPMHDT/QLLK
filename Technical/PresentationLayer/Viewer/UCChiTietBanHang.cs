@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using PresentationLayer.ViewObject;
 using PresentationLayer.DAL;
+using PresentationLayer.Viewer;
 
 namespace PresentationLayer
 {
@@ -63,6 +64,22 @@ namespace PresentationLayer
             else
             {
                 setGridControl();
+            }
+        }
+
+        private void btn_Update_Click(object sender, EventArgs e)
+        {
+            HoaDon_View hd = gridView1.GetFocusedRow() as HoaDon_View;
+            if (hd != null)
+            {
+                using (var form = new Update_BanHang(hd.MaHoaDon))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        //setCbxKhachHang(form.maKH_Return);
+                    }
+                }
             }
         }
     }

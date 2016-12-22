@@ -15,22 +15,58 @@ namespace PresentationLayer.DAL
         public static List<Kho_View> getAll_LinhKien()
         {
             var kho1 = from kho in Context.getInstance().db.KHOes
-                       group kho by kho.MaLinhKien into x
                        select new Kho_View
                        {
-                           MaLinhKien = x.Key,
-                           SoLuong = x.Select(y=> y.MaLinhKien).Count(),
-                           TenLinhKien = x.Select(y => y.LINHKIEN.TenLinhKien).FirstOrDefault<string>()
-                           //DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
-                           //GiaBanLe = kho.LINHKIEN.GiaBanLe,
-                           //GiaBanSi = kho.LINHKIEN.GiaBanSi,
-                           //GiaNhap = (decimal)kho.LINHKIEN.GiaNhap,
-                           //TinhTrangLK = kho.LINHKIEN.TinhTrang,
-                           //MoTaLK = kho.LINHKIEN.MoTa,
-                           //ThoiGianBaoHanh = kho.LINHKIEN.ThoiGianBaoHanh,
-                           //ThuongHieu = kho.LINHKIEN.THUONGHIEU.TenThuongHieu
+                           MaLinhKien = kho.MaLinhKien,
+                           TenLinhKien = kho.LINHKIEN.TenLinhKien,
+                           NgayNhap = kho.NgayNhap,
+                           Seri = kho.Seri,
+                           DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
+                           GiaBanLe = kho.LINHKIEN.GiaBanLe,
+                           GiaBanSi = kho.LINHKIEN.GiaBanSi,
+                           GiaNhap = (decimal)kho.LINHKIEN.GiaNhap,
+                           TinhTrangLK = kho.LINHKIEN.TinhTrang,
+                           MoTaLK = kho.LINHKIEN.MoTa,
+                           ThoiGianBaoHanh = kho.LINHKIEN.ThoiGianBaoHanh,
+                           ThuongHieu = kho.LINHKIEN.THUONGHIEU.TenThuongHieu
                        };
-            return kho1.ToList();
+
+            List<Kho_View> myHD = new List<Kho_View>();
+            bool isHave = false;
+            foreach (var item in kho1.ToList())
+            {
+                if (myHD.Count > 0)
+                {
+                    isHave = false;
+                    foreach (var item1 in myHD)
+                    {
+                        if (item.MaLinhKien == item1.MaLinhKien)
+                        {
+                            item1.SoSeri.Add(item.Seri);
+                            item1.SoLuong += 1;
+                            isHave = true;
+                            break;
+                        }
+                    }
+                    if (!isHave)
+                    {
+                        item.SoSeri = new List<string>();
+                        item.SoSeri.Add(item.Seri);
+                        item.SoLuong += 1;
+                        myHD.Add(item);
+                    }
+
+                }
+                else
+                {
+                    item.SoSeri = new List<string>();
+                    item.SoSeri.Add(item.Seri);
+                    item.SoLuong += 1;
+                    myHD.Add(item);
+                }
+
+            }
+            return myHD;
         }
 
         public static List<Kho_View> get_AllLinhKien_By_MaLinhKien(string maLK)

@@ -135,6 +135,7 @@ namespace PresentationLayer.DAL
             {
                 try
                 {
+                    kh.TrangThai = 1;
                     Context.getInstance().db.Entry(kh.toKhachHang()).State = System.Data.Entity.EntityState.Added;
                     
                     Context.getInstance().db.SaveChanges();

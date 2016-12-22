@@ -9,11 +9,11 @@ namespace PresentationLayer.ViewObject
     public class HoaDon_View 
     {
         public string MaHoaDon { get; set; }
-        public string MaPhieu { get; set; }
         public DateTime NgayLap { get; set; }
         public string MaNhanVien { get; set; }
         public string NhanVien { get; set; }
         public Decimal TongTien { get; set; }
+        public Decimal TongLoiNhuan { get; set; }
         public int TrangThai { get; set; }
         public string KhachHang { get; set; }
         public string MaKhachHang { get; set; }
@@ -32,6 +32,7 @@ namespace PresentationLayer.ViewObject
             hd.NgayLap = NgayLap;
             hd.MaNguoiLap = MaNhanVien;
             hd.TongTien = TongTien;
+            hd.TongLoiNhuan = TongLoiNhuan;
             hd.GhiChu = GhiChu;
             hd.MaKhachHang = MaKhachHang;
 

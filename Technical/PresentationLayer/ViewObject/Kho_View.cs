@@ -11,6 +11,7 @@ namespace PresentationLayer.ViewObject
         public string MaLinhKien { get; set; }
         public string Seri { get; set; }
         public string TenLinhKien { get; set; }
+        public DateTime NgayNhap { get; set; }
         public int SoLuong { get; set; }
         public string ThuongHieu { get; set; }
         public string NhaCungCap { get; set; }
@@ -21,5 +22,6 @@ namespace PresentationLayer.ViewObject
         public int TinhTrangLK { get; set; }
         public string MoTaLK { get; set; }
         public int ThoiGianBaoHanh { get; set; }
+        public List<string> SoSeri { get; set; }
     }
 }

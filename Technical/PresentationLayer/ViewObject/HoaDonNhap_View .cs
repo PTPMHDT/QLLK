@@ -28,7 +28,7 @@ namespace PresentationLayer.ViewObject
                 hd = new HOADON_NHAPHANG();
                 hd.MaHoaDon = MaHoaDon;
             }
-            hd.NgayLap = NgayLap;
+            hd.NgayLap =  NgayLap;
             hd.MaNguoiLap = MaNhanVien;
             hd.TongTien = TongTien;
             hd.GhiChu = GhiChu;

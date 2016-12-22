@@ -46,7 +46,7 @@ namespace PresentationLayer
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    ct_hd.SoSeri = form.list_Seri;
+                    ct_hd.SoSeris = form.list_Seri;
                     gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
                 }
@@ -310,16 +310,18 @@ namespace PresentationLayer
 
                     List<Kho_View> list_LK_In_Kho = Kho_DAL.getAll_LinhKien();
                     Kho_View kho_v;
+                    LinhKien_View lk_v;
                     foreach (var cthd in ls_cthd)
                     {
                         //tinh lai gia nhap
                         kho_v = list_LK_In_Kho.Where(temp => temp.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                        lk_v = LinhKien_DAL.get_LinhKien_ByMaLK(cthd.MaLinhKien);
 
-                        if (kho_v != null)
+                        if (lk_v != null)
                         {
-                            if (!(kho_v.GiaNhap == cthd.GiaNhap))
+                            if (!(lk_v.GiaNhap == cthd.GiaNhap))
                             {
-                                cthd.GiaNhap = ((kho_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
+                                cthd.GiaNhap = ((lk_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
                             }
                         }
                     }

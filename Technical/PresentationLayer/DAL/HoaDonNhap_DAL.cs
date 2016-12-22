@@ -73,17 +73,17 @@ namespace PresentationLayer.DAL
                 {
                     Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Added;
                     Context.getInstance().db.SaveChanges();
-                    KHO kho;
                     LINHKIEN lk;
                     ct_hds.ForEach(x =>
                     {
-                        foreach (var seri in x.SoSeri)
+                        foreach (var seri in x.SoSeris)
                         {
                             Context.getInstance().db.Entry(x.toCT_HoaDonNhap(seri)).State = System.Data.Entity.EntityState.Added;
                             //nhap kho
                             KHO myK = new KHO();
                             myK.MaLinhKien = x.MaLinhKien;
                             myK.Seri = seri;
+                            myK.NgayNhap = hd.NgayLap;
                             Context.getInstance().db.Entry(myK).State = System.Data.Entity.EntityState.Added;
                         }
                         lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
@@ -94,7 +94,6 @@ namespace PresentationLayer.DAL
                             lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanBuon);
                             Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
                         }
-
                     });
                     //update so tien nhap hang cua nha cc
                     NHACUNGCAP ncc = Context.getInstance().db.NHACUNGCAPs.Where(key => key.MaNhaCungCap == hd.MaNhaCungCap).FirstOrDefault();

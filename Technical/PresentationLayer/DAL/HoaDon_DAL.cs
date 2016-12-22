@@ -98,10 +98,13 @@ namespace PresentationLayer.DAL
                     KHO kho;
                     ct_hds.ForEach(x =>
                     {
-                        Context.getInstance().db.Entry(x.toCT_HoaDon()).State = System.Data.Entity.EntityState.Added;
-                        //giam so luong trong kho
-                        kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                        foreach (var item in x.SoSeri)
+                        {
+                            Context.getInstance().db.Entry(x.toCT_HoaDon(item)).State = System.Data.Entity.EntityState.Added;
+                            //giam so luong trong kho
+                            kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == item).FirstOrDefault();
+                            Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Deleted;
+                        }
                     });
                     //update so tien mua hang cua khach hang
                     KHACHHANG kh = Context.getInstance().db.KHACHHANGs.Where(key => key.MaKhachHang == hd.MaKhachHang).FirstOrDefault();
@@ -119,7 +122,6 @@ namespace PresentationLayer.DAL
                     Console.WriteLine("ERROR--------------------------------------" + ex.Message);
                     return false;
                 }
-
             }
             return true;
         }
