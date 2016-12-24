@@ -41,7 +41,7 @@ namespace PresentationLayer
         void add_seriNumber_Click(object sender, EventArgs e)
         {
             CT_HoaDonNhap_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDonNhap_View;
-            using (var form = new Add_SeriNumber(ct_hd.MaLinhKien, ct_hd.TenLinhKien,ct_hd.SoLuong))
+            using (var form = new Add_SeriNumber(ct_hd.MaLinhKien, ct_hd.TenLinhKien, ct_hd.SoLuong))
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
@@ -400,6 +400,19 @@ namespace PresentationLayer
                 if (result == DialogResult.OK)
                 {
                     setGridCtrl_LinhKien();
+                }
+            }
+        }
+
+        private void btnKiemTraKho_Click(object sender, EventArgs e)
+        {
+            using (var form = new LinhKien_Kho())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    //setGridCtrl_LinhKien();
+                    
                 }
             }
         }

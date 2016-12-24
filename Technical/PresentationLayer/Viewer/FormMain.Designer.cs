@@ -48,7 +48,7 @@
             this.btnNhaCungCap = new DevExpress.XtraBars.BarButtonItem();
             this.btnTonKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnNhapKho = new DevExpress.XtraBars.BarButtonItem();
-            this.btnXuatKho = new DevExpress.XtraBars.BarButtonItem();
+            this.btnKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhieuNhapKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhieuXuatKho = new DevExpress.XtraBars.BarButtonItem();
             this.btnChiTietBanHang = new DevExpress.XtraBars.BarButtonItem();
@@ -103,7 +103,7 @@
             this.btnNhaCungCap,
             this.btnTonKho,
             this.btnNhapKho,
-            this.btnXuatKho,
+            this.btnKho,
             this.btnPhieuNhapKho,
             this.btnPhieuXuatKho,
             this.btnChiTietBanHang,
@@ -177,6 +177,7 @@
             this.btnNhanVien.Id = 5;
             this.btnNhanVien.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnNhanVien.LargeGlyph")));
             this.btnNhanVien.Name = "btnNhanVien";
+            this.btnNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNhanVien_ItemClick);
             // 
             // btnKhachHang
             // 
@@ -216,16 +217,17 @@
             this.btnNhapKho.SuperTip = superToolTip1;
             this.btnNhapKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNhapKho_ItemClick);
             // 
-            // btnXuatKho
+            // btnKho
             // 
-            this.btnXuatKho.Caption = "Xuất Kho";
-            this.btnXuatKho.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXuatKho.Glyph")));
-            this.btnXuatKho.Id = 10;
-            this.btnXuatKho.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXuatKho.LargeGlyph")));
-            this.btnXuatKho.Name = "btnXuatKho";
+            this.btnKho.Caption = "Kho";
+            this.btnKho.Glyph = ((System.Drawing.Image)(resources.GetObject("btnKho.Glyph")));
+            this.btnKho.Id = 10;
+            this.btnKho.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnKho.LargeGlyph")));
+            this.btnKho.Name = "btnKho";
             toolTipTitleItem2.Text = "Danh sách các phiếu xuất kho";
             superToolTip2.Items.Add(toolTipTitleItem2);
-            this.btnXuatKho.SuperTip = superToolTip2;
+            this.btnKho.SuperTip = superToolTip2;
+            this.btnKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXuatKho_ItemClick);
             // 
             // btnPhieuNhapKho
             // 
@@ -452,7 +454,7 @@
             this.ribbonPageGroup7.ItemLinks.Add(this.btnPhieuNhapKho);
             this.ribbonPageGroup7.ItemLinks.Add(this.btnNhapKho);
             this.ribbonPageGroup7.ItemLinks.Add(this.btnPhieuXuatKho);
-            this.ribbonPageGroup7.ItemLinks.Add(this.btnXuatKho);
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnKho);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "Nhập/Xuất";
             // 
@@ -551,7 +553,7 @@
         private DevExpress.XtraBars.BarButtonItem btnNhaCungCap;
         private DevExpress.XtraBars.BarButtonItem btnTonKho;
         private DevExpress.XtraBars.BarButtonItem btnNhapKho;
-        private DevExpress.XtraBars.BarButtonItem btnXuatKho;
+        private DevExpress.XtraBars.BarButtonItem btnKho;
         private DevExpress.XtraBars.BarButtonItem btnPhieuNhapKho;
         private DevExpress.XtraBars.BarButtonItem btnPhieuXuatKho;
         private DevExpress.XtraBars.BarButtonItem btnChiTietBanHang;

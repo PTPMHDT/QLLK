@@ -51,7 +51,7 @@
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            //this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
@@ -63,7 +63,7 @@
             this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -218,7 +218,7 @@
             this.DetailReport.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail1});
             this.DetailReport.DataMember = "ChiTietHoaDon";
-            this.DetailReport.DataSource = this.objectDataSource1;
+            //this.DetailReport.DataSource = this.objectDataSource1;
             this.DetailReport.Level = 0;
             this.DetailReport.Name = "DetailReport";
             // 
@@ -291,8 +291,8 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(PresentationLayer.ViewObject.HoaDon_View);
-            this.objectDataSource1.Name = "objectDataSource1";
+            //this.objectDataSource1.DataSource = typeof(PresentationLayer.ViewObject.HoaDon_View);
+           // this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PageHeader
             // 
@@ -418,13 +418,13 @@
             this.PageHeader,
             this.GroupHeader1,
             this.GroupFooter1});
-            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.objectDataSource1});
-            this.DataSource = this.objectDataSource1;
+            //this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
+            //this.objectDataSource1});
+            //this.DataSource = this.objectDataSource1;
             this.Margins = new System.Drawing.Printing.Margins(100, 100, 75, 33);
             this.ScriptReferencesString = "..\\packages\\EntityFramework.6.1.3\\lib\\net45\\EntityFramework.dll";
             this.Version = "15.2";
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -463,7 +463,7 @@
         private DevExpress.XtraReports.UI.XRLine xrLine2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
-        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        //private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel22;
     }
 }

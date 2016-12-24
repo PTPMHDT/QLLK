@@ -178,6 +178,7 @@
             this.btnKiemTraKho.Size = new System.Drawing.Size(109, 23);
             this.btnKiemTraKho.TabIndex = 10;
             this.btnKiemTraKho.Text = "Kiểm tra kho";
+            this.btnKiemTraKho.Click += new System.EventHandler(this.btnKiemTraKho_Click);
             // 
             // txtDiaChi
             // 

@@ -15,6 +15,8 @@ using PresentationLayer.DAL;
 using PresentationLayer.GlobalVariable;
 using PresentationLayer.Viewer;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraReports;
+using DevExpress.XtraPrinting;
 
 namespace PresentationLayer
 {

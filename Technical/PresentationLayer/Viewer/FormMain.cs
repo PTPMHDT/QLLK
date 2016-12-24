@@ -78,5 +78,21 @@ namespace PresentationLayer
             ucDSNhapHang.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucDSNhapHang);
         }
+
+        private void btnNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCNhanVien();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
+        private void btnXuatKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCKhoLinhKien();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
     }
 }
