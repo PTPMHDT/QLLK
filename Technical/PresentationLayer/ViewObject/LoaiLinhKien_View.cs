@@ -35,7 +35,7 @@ namespace PresentationLayer.ViewObject
 
         public THUONGHIEU toThuongHieu()
         {
-            THUONGHIEU th = Context.getInstance().db.THUONGHIEUs.Where(key => key.MaThuongHieu == MaThuongHieu).FirstOrDefault();
+            THUONGHIEU th = Context.getInstance().db.THUONGHIEUx.Where(key => key.MaThuongHieu == MaThuongHieu).FirstOrDefault();
             if (th == null)
             {
                 th = new THUONGHIEU();

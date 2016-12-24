@@ -94,5 +94,13 @@ namespace PresentationLayer
             ucLinhKien.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucLinhKien);
         }
+
+        private void btnKiemKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCKiemKho();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
     }
 }

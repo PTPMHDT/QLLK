@@ -10,7 +10,7 @@ namespace PresentationLayer.GlobalVariable
     public class Context
     {
         static Context context =null;
-        public OOD_QLLKEntities db { get; set; }
+        public QLLKEntities db { get; set; }
         public NhanVien_View nv { get; set; }
         public formLogin formLogin { get; set; }
         public FormMain formMain { get; set; }
@@ -28,7 +28,7 @@ namespace PresentationLayer.GlobalVariable
         }
         public Context()
         {
-            db = new OOD_QLLKEntities();
+            db = new QLLKEntities();
             phanTram_LoiNhuan_BanBuon = (decimal)0.05;
             phanTram_LoiNhuan_BanLe = (decimal)0.1;
         }

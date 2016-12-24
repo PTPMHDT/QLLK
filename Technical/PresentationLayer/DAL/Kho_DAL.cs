@@ -92,7 +92,48 @@ namespace PresentationLayer.DAL
                        };
             return kho1.ToList();
         }
+        public static List<Kho_View> get_AllLinhKien_By_ThuongHieu(string maThuongHieu)
+        {
+            int soluong = (from p in Context.getInstance().db.KHOes
+                           where p.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+                           select p).Count();
 
+            var kho1 = from kho in Context.getInstance().db.KHOes
+                       where kho.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+                       select new Kho_View
+                       {
+                           MaLinhKien = kho.MaLinhKien,
+                           TenLinhKien = kho.LINHKIEN.TenLinhKien,
+                           Seri = kho.Seri,
+                           SoLuong = soluong,
+                           DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
+                           GiaBanLe = kho.LINHKIEN.GiaBanLe,
+                           GiaBanSi = kho.LINHKIEN.GiaBanSi,
+                           TinhTrangLK = kho.LINHKIEN.TinhTrang,
+                           MoTaLK = kho.LINHKIEN.MoTa,
+                           ThuongHieu = kho.LINHKIEN.THUONGHIEU.TenThuongHieu
+                       };
+            return kho1.ToList();
+        } 
+
+        public static List<KiemKho_View> get_AllLinhKien()
+        {
+            //int soluong = (from p in Context.getInstance().db.KHOes
+            //               where p.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+            //               select p).Count();
+            var kho1 = from kho in Context.getInstance().db.KIEMKHOes
+                       //where kho.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+                       select new KiemKho_View
+                       {
+                           MaKiemKho = kho.MaKiemKho,
+                           NgayKiem = kho.NgayKiem,
+                           NhanVien = kho.MaNhanVien,
+                           GhiChu = kho.GhiChu,
+                           TrangThai = kho.TrangThai
+                       };
+            return kho1.ToList();
+
+        }
         //public static string get_KhoMax()
         //{
         //    try

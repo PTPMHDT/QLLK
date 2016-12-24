@@ -11,7 +11,7 @@ namespace PresentationLayer.DAL
     {
         public static List<LoaiLinhKien_View> getAll_ThuongHieu()
         {
-            var temp = from item in Context.getInstance().db.THUONGHIEUs
+            var temp = from item in Context.getInstance().db.THUONGHIEUx
                        where item.TrangThai == 1
                        select new LoaiLinhKien_View
                        {
@@ -27,7 +27,7 @@ namespace PresentationLayer.DAL
 
         public static LoaiLinhKien_View get_TH_By_MaTH(string maTH)
         {
-            var th1 = from th in Context.getInstance().db.THUONGHIEUs
+            var th1 = from th in Context.getInstance().db.THUONGHIEUx
                        where th.MaThuongHieu == maTH
                        select new LoaiLinhKien_View()
                        {
