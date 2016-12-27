@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCNhanVien));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
@@ -38,8 +38,8 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Mode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Xoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -57,8 +57,8 @@
             this.gridColumn5.FieldName = "MoTa";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 5;
-            this.gridColumn5.Width = 96;
+            this.gridColumn5.VisibleIndex = 6;
+            this.gridColumn5.Width = 110;
             // 
             // btnLuu
             // 
@@ -79,11 +79,11 @@
             this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnThem.Appearance.Options.UseFont = true;
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(544, 458);
+            this.btnThem.Location = new System.Drawing.Point(562, 458);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(143, 34);
+            this.btnThem.Size = new System.Drawing.Size(125, 34);
             this.btnThem.TabIndex = 6;
-            this.btnThem.Text = "Thêm nhà cung cấp";
+            this.btnThem.Text = "Thêm nhân viên";
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // gridColumn3
@@ -92,8 +92,8 @@
             this.gridColumn3.FieldName = "SoDienThoai";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 3;
-            this.gridColumn3.Width = 95;
+            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.Width = 109;
             // 
             // gridColumn2
             // 
@@ -102,7 +102,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 111;
+            this.gridColumn2.Width = 99;
             // 
             // gridColumn1
             // 
@@ -113,7 +113,7 @@
             this.gridColumn1.OptionsColumn.AllowFocus = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 100;
+            this.gridColumn1.Width = 109;
             // 
             // gridView1
             // 
@@ -121,10 +121,10 @@
             this.Mode,
             this.gridColumn1,
             this.gridColumn2,
+            this.gridColumn6,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn6,
             this.Xoa});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -145,7 +145,16 @@
             this.Mode.OptionsColumn.ReadOnly = true;
             this.Mode.Visible = true;
             this.Mode.VisibleIndex = 0;
-            this.Mode.Width = 62;
+            this.Mode.Width = 68;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Loại Nhân Viên";
+            this.gridColumn6.FieldName = "MaLoaiNhanVien";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.Width = 86;
             // 
             // gridColumn4
             // 
@@ -153,19 +162,8 @@
             this.gridColumn4.FieldName = "DiaChi";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 104;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Trạng Thái";
-            this.gridColumn6.FieldName = "TrangThai";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.OptionsColumn.AllowFocus = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 141;
+            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.Width = 119;
             // 
             // Xoa
             // 
@@ -173,13 +171,13 @@
             this.Xoa.Name = "Xoa";
             this.Xoa.Visible = true;
             this.Xoa.VisibleIndex = 7;
-            this.Xoa.Width = 36;
+            this.Xoa.Width = 54;
             // 
             // btnXoa
             // 
             this.btnXoa.AutoHeight = false;
             this.btnXoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 

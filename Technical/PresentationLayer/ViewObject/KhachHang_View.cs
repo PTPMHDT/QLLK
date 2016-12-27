@@ -23,7 +23,10 @@ namespace PresentationLayer.ViewObject
 
         public override String ToString()
         {
-            return TenKhachHang.Trim() + "   (" + MaKhachHang.Trim() + ")";
+            if(SoDienThoai.Equals(""))
+                return TenKhachHang.Trim();
+            else
+                return TenKhachHang.Trim() + "   (" + MaKhachHang.Trim() + ")";
         }
 
         public KhachHang_View(int c)

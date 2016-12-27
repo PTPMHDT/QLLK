@@ -19,6 +19,9 @@ namespace PresentationLayer.ViewObject
         public string MaKhachHang { get; set; }
         public string SoDienThoai { get; set; }
         public string GhiChu { get; set; }
+        public string MaNhanVienSua { get; set; }
+        public string TenNhanVienSua { get; set; }
+        public DateTime NgaySua { get; set; }
         public List<CT_HoaDon_View> ChiTietHoaDon { get; set; }
 
         public HOADON toHoaDon()
@@ -35,7 +38,8 @@ namespace PresentationLayer.ViewObject
             hd.TongLoiNhuan = TongLoiNhuan;
             hd.GhiChu = GhiChu;
             hd.MaKhachHang = MaKhachHang;
-
+            hd.MaNguoiSua = MaNhanVienSua;
+            hd.NgaySua = NgaySua;
             return hd;
         }
     }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PresentationLayer.ViewObject
 {
-    public class CT_HoaDon_View
+    public class CT_HoaDon_View 
     {
         public string MaHoaDon { get; set; }
         public string MaLinhKien { get; set; }
@@ -22,6 +22,17 @@ namespace PresentationLayer.ViewObject
         public int ThoiGianBaoHanh { get; set; }
         public string Seri { get; set; }
         public List<string> SoSeri { get; set; }
+        public int TinhTrang { get; set; }
+
+        public CT_HoaDon_View(int c)
+            : base()
+        {
+        }
+
+        public CT_HoaDon_View()
+            : base()
+        {
+        }
 
         public CT_HOADON toCT_HoaDon()
         {
@@ -53,7 +64,31 @@ namespace PresentationLayer.ViewObject
             cthd.Thue = Thue;
             cthd.LoiNhuan = LoiNhuan;
             cthd.GiaBan = GiaBan;
+            cthd.TinhTrang = TinhTrang;
             return cthd;
         }
+        public List<CT_HOADON> toList_CT_HoaDon()
+        {
+            List<CT_HOADON> lst = new List<CT_HOADON>();
+
+            foreach (var item in SoSeri)
+            {
+                CT_HOADON cthd = new CT_HOADON();
+                cthd.MaHoaDon = MaHoaDon;
+                cthd.MaLinhKien = MaLinhKien;
+                cthd.SoLuong = SoLuong;
+                cthd.ThanhTien = ThanhTien;
+                cthd.GhiChu = GhiChu;
+                cthd.Seri = item;
+                cthd.Thue = Thue;
+                cthd.LoiNhuan = LoiNhuan;
+                cthd.GiaBan = GiaBan;
+                cthd.TinhTrang = TinhTrang;
+                lst.Add(cthd);
+            }
+
+            return lst;
+        }
     }
+
 }

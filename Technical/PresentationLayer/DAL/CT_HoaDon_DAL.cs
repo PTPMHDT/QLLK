@@ -13,6 +13,7 @@ namespace PresentationLayer.DAL
         {
             var hd = from ct_hoadon in Context.getInstance().db.CT_HOADON
                      where ct_hoadon.MaHoaDon == maHD
+                     where ct_hoadon.TinhTrang == 1
                      select new CT_HoaDon_View
                      {
                          MaHoaDon = ct_hoadon.MaHoaDon,
@@ -65,6 +66,40 @@ namespace PresentationLayer.DAL
             return myHD;
         }
 
+        public static CT_HoaDon_View get_CTHoaDon_By_MaHD_MaLK(string maHD, string maLK)
+        {
+            var hd = from ct_hoadon in Context.getInstance().db.CT_HOADON
+                     where ct_hoadon.MaHoaDon == maHD
+                     where ct_hoadon.MaLinhKien == maLK
+                     where ct_hoadon.TinhTrang == 1
+                     select new CT_HoaDon_View
+                     {
+                         MaHoaDon = ct_hoadon.MaHoaDon,
+                         MaLinhKien = ct_hoadon.MaLinhKien,
+                         TenLinhKien = ct_hoadon.LINHKIEN.TenLinhKien,
+                         LoaiLinhKien = ct_hoadon.LINHKIEN.THUONGHIEU.TenThuongHieu,
+                         DonViTinh = ct_hoadon.LINHKIEN.DONVITINH.TenDonViTinh,
+                         SoLuong = ct_hoadon.SoLuong,
+                         GiaBan = ct_hoadon.LINHKIEN.GiaBanLe,
+                         ThanhTien = ct_hoadon.ThanhTien,
+                         ThoiGianBaoHanh = ct_hoadon.LINHKIEN.ThoiGianBaoHanh,
+                         Thue = (float)ct_hoadon.Thue,
+                         LoiNhuan = ct_hoadon.LoiNhuan,
+                         Seri = ct_hoadon.Seri,
+                         GhiChu = ct_hoadon.GhiChu
+                     };
 
+            CT_HoaDon_View myHD = new CT_HoaDon_View();
+            if(hd.ToList().Count > 0)
+            {
+                myHD = hd.ToList()[0];
+            }
+            myHD.SoSeri = new List<string>();
+            foreach (var item in hd.ToList())
+            {
+                myHD.SoSeri.Add(item.Seri);
+            }
+            return myHD;
+        }
     }
 }

@@ -91,6 +91,14 @@ namespace PresentationLayer
             mainView.RefreshData();
             return cData;
         }
+        public CGrid addRow()
+        {
+            CGrid cData = CGrid.Create<T>();
+            cData.Mode = TT.NEW;
+            getDatas().Add(cData.ToType<T>());
+            mainView.RefreshData();
+            return cData;
+        }
 
         public void refreshData()
         {

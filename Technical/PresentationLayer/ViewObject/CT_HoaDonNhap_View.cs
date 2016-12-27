@@ -20,7 +20,7 @@ namespace PresentationLayer.ViewObject
         public string GhiChu { get; set; }
         public int TinhTrang;
         public string Seri { get; set; }
-        public List<string> SoSeris { get; set; }
+        public List<string> SoSeri{ get; set; }
 
         public CT_HOADON_NHAPHANG toCT_HoaDonNhap()
         {

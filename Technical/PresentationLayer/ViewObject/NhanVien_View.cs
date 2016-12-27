@@ -1,4 +1,5 @@
-﻿using PresentationLayer.GlobalVariable;
+﻿using PresentationLayer.DAL;
+using PresentationLayer.GlobalVariable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace PresentationLayer.ViewObject
         public NhanVien_View(int c)
             : base()
         {
-            //MaKhachHang = KhachHang_DAL.get_KhachHangMax(c);
+            MaNhanVien = NhanVien_DAL.get_NhanVienMax(c);
         }
 
         public NhanVien_View()

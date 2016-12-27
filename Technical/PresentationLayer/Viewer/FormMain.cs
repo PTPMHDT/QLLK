@@ -102,5 +102,22 @@ namespace PresentationLayer
             ucLinhKien.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucLinhKien);
         }
+
+        private void btnLoaiLinhKien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCLoaiLinhKien();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCThongTinNhanVien();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+
+        }
     }
 }

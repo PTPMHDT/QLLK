@@ -83,6 +83,8 @@ namespace PresentationLayer.DAL
                     list.Inserts.ForEach(x =>
                     {
                         x.TrangThai = 1;
+                        x.TenDangNhap = x.MaNhanVien;
+                        x.MatKhau = "123";
                         Context.getInstance().db.Entry(x.toNhanVien()).State = System.Data.Entity.EntityState.Added;
                     });
 

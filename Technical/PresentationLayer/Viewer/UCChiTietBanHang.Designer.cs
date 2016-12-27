@@ -47,6 +47,8 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
+            this.txt_Seri = new DevExpress.XtraEditors.TextEdit();
+            this.btn_SerchSeri = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -59,6 +61,7 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_Seri.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -82,6 +85,8 @@
             // 
             this.panelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl4.Controls.Add(this.btn_SerchSeri);
+            this.panelControl4.Controls.Add(this.txt_Seri);
             this.panelControl4.Controls.Add(this.dateBatDau);
             this.panelControl4.Controls.Add(this.labelControl1);
             this.panelControl4.Controls.Add(this.labelControl2);
@@ -157,6 +162,10 @@
             this.gridColumn8});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsFind.FindDelay = 100;
+            this.gridView1.OptionsFind.FindNullPrompt = "Nhập vào thông tin tìm kiếm...";
+            this.gridView1.OptionsFind.ShowCloseButton = false;
+            this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn2
@@ -266,6 +275,22 @@
             this.btn_Update.Text = "Sửa đơn hàng";
             this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
+            // txt_Seri
+            // 
+            this.txt_Seri.Location = new System.Drawing.Point(499, 6);
+            this.txt_Seri.Name = "txt_Seri";
+            this.txt_Seri.Size = new System.Drawing.Size(100, 20);
+            this.txt_Seri.TabIndex = 4;
+            // 
+            // btn_SerchSeri
+            // 
+            this.btn_SerchSeri.Location = new System.Drawing.Point(627, 5);
+            this.btn_SerchSeri.Name = "btn_SerchSeri";
+            this.btn_SerchSeri.Size = new System.Drawing.Size(75, 23);
+            this.btn_SerchSeri.TabIndex = 5;
+            this.btn_SerchSeri.Text = "Search Seri";
+            this.btn_SerchSeri.Click += new System.EventHandler(this.btn_SerchSeri_Click);
+            // 
             // UCChiTietBanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +311,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txt_Seri.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,5 +337,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btn_Update;
+        private DevExpress.XtraEditors.TextEdit txt_Seri;
+        private DevExpress.XtraEditors.SimpleButton btn_SerchSeri;
     }
 }

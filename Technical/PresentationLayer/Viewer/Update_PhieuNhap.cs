@@ -1,43 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
+using System.Drawing;
 using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using PresentationLayer.TestFolder;
+using DevExpress.XtraEditors;
 using PresentationLayer.ViewObject;
-using PresentationLayer.DAL;
 using PresentationLayer.GlobalVariable;
-using PresentationLayer.Viewer;
-using PresentationLayer.Classes;
-using System.IO;
+using PresentationLayer.DAL;
 
-namespace PresentationLayer
+namespace PresentationLayer.Viewer
 {
-    public partial class UCNhapKho : UserControl
+    public partial class Update_PhieuNhap : DevExpress.XtraEditors.XtraForm
     {
         DataTable dt_linhKien = new DataTable();
         List<CT_HoaDonNhap_View> ls_cthd;
         HoaDonNhap_View hoadonnhap;
-        bool isNew;     //bien kiem tra xem dang o che do New hay la update
+        bool isNew;
 
-        public UCNhapKho() { }
-
-        public UCNhapKho(string maHoaDon)
+        public Update_PhieuNhap()
         {
             InitializeComponent();
-            this.Load += UCNhapKho_Load;
+        }
 
-            InnitVal(maHoaDon);
-            this.btnXoa.Click += btnXoa_Click;
-            this.repositoryItemSpinEdit1.EditValueChanged += repositoryItemSpinEdit1_EditValueChanged;
-            cbxTenNCC.LostFocus += cbxTenNCC_LostFocus;
-            add_seriNumber.Click += add_seriNumber_Click;
+        public Update_PhieuNhap(string maPhieuNhap)
+        {
+            InitializeComponent();
+            InnitVal(maPhieuNhap);
+            add_seriNumber.Click+=add_seriNumber_Click;
+            cbxTenNCC.LostFocus+=cbxTenNCC_LostFocus;
+            repositoryItemSpinEdit1.EditValueChanged+=repositoryItemSpinEdit1_EditValueChanged;
+            cbxTenNCC.SelectedIndexChanged+=cbTenNCC_SelectedIndexChanged;
+            bnt_arrowLeft.Click+=bnt_arrowLeft_Click;
+            bnt_arrowRight.Click+=bnt_arrowRight_Click;
+            btnXoa.Click+=btnXoa_Click;
+            btnThemNCC.Click+=btnThemNCC_Click;
+            btnThemMoiSP.Click +=btnThemMoiSP_Click;
+            btnHoanTat.Click+=btnHoanTat_Click;
+            text_money.EditValueChanged+=text_money_EditValueChanged;
         }
 
         void add_seriNumber_Click(object sender, EventArgs e)
@@ -71,8 +74,10 @@ namespace PresentationLayer
             }
         }
 
-        void UCNhapKho_Load(object sender, EventArgs e)
+        private void Update_PhieuNhap_Load(object sender, EventArgs e)
         {
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.repositoryItemSpinEdit1.MinValue = 1;
             this.repositoryItemSpinEdit1.MaxValue = 1000;
             this.repositoryItemSpinEdit1.Increment = 1;
@@ -106,6 +111,7 @@ namespace PresentationLayer
             txtNhanVien.Text = hoadonnhap.NhanVien;
             dateNgayBan.Text = hoadonnhap.NgayLap.ToString();
             txtGhiChu.Text = hoadonnhap.GhiChu;
+            
             setGroupBox_NCC();
             if (isNew)
                 ls_cthd = new List<CT_HoaDonNhap_View>();
@@ -136,7 +142,6 @@ namespace PresentationLayer
 
         private void setGroupBox_NCC()
         {
-            setCbxNCC("");
             if (!isNew)
             {
                 NhaCungCap_View ncc_v = NhaCungCap_DAL.get_NCC_By_MaNCC(hoadonnhap.MaNhaCungCap);
@@ -145,6 +150,7 @@ namespace PresentationLayer
                 txtDiaChi.Text = ncc_v.DiaChi;
                 hoadonnhap.MaNhaCungCap = ncc_v.MaNhaCungCap;
             }
+            setCbxNCC(hoadonnhap.MaNhaCungCap);
         }
 
         private void setCbxNCC(string maNCC_WantSelected)
@@ -160,13 +166,14 @@ namespace PresentationLayer
             {
                 if (maNCC_WantSelected.Equals(list_NCC[i].MaNhaCungCap))
                 {
-                    selected_Index = i - 1;
+                    selected_Index = i;
                     break;
                 }
             }
             cbxTenNCC.DataSource = list_NCC;
             cbxTenNCC.SelectedIndex = selected_Index;
             hoadonnhap.MaNhaCungCap = cbxTenNCC.SelectedValue.ToString().Trim();
+            setGridCtrl_LinhKien();
         }
 
         //thay doi so luong lk
@@ -323,10 +330,7 @@ namespace PresentationLayer
                         {
                             if (!(lk_v.GiaNhap == cthd.GiaNhap))
                             {
-                                if (kho_v != null)
-                                {
-                                    cthd.GiaNhap = ((lk_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
-                                }
+                                cthd.GiaNhap = ((lk_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
                             }
                         }
                     }
@@ -409,47 +413,7 @@ namespace PresentationLayer
             }
         }
 
-        private void btnKiemTraKho_Click(object sender, EventArgs e)
-        {
-            using (var form = new LinhKien_Kho())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    //setGridCtrl_LinhKien();
-                    
-                }
-            }
-        }
 
-        private void btn_LoadData_Click(object sender, EventArgs e)
-        {
-            string filePath = string.Empty;
-            string fileExt = string.Empty;
-            OpenFileDialog file = new OpenFileDialog(); //open dialog to choose file  
-            if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) //if there is a file choosen by the user  
-            {
-                filePath = file.FileName; //get the path of the file  
-                fileExt = Path.GetExtension(filePath); //get the file extension  
-                if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
-                {
-                    try
-                    {
-                        ls_cthd = Excel_Helper.readFile(txtMaPhieu.Text.Trim(), filePath);
-                        txtTongTien.Text = count_TongTien().ToString();
-                        gridControl1.DataSource = ls_cthd;
-                        gridControl1.RefreshDataSource();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Chọn file .xls hoặc .xlsx.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error  
-                }
-            }  
-        }
+
     }
 }

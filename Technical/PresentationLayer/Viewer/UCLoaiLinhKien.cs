@@ -15,7 +15,7 @@ namespace PresentationLayer
 {
     public partial class UCLoaiLinhKien : UserControl
     {
-        GridHelper<LoaiLinhKien_View> gridThaoTac;
+        GridHelper<ThuongHieu_View> gridThaoTac;
         int count_row = 0;
         int prvRowFocus = 0;
 
@@ -32,8 +32,8 @@ namespace PresentationLayer
 
         private void InitVal()
         {
-            gridControl1.DataSource = LoaiLinhKien_DAL.getAll_ThuongHieu();
-            gridThaoTac = new GridHelper<LoaiLinhKien_View>(gridControl1);
+            gridControl1.DataSource = ThuongHieu_DAL.getAll_ThuongHieu();
+            gridThaoTac = new GridHelper<ThuongHieu_View>(gridControl1);
             count_row = 0;
         }
 
@@ -83,12 +83,12 @@ namespace PresentationLayer
         bool validateGrid(GridColumn col)
         {
             int error = 0;
-            LoaiLinhKien_View lk = gridView1.GetFocusedRow() as LoaiLinhKien_View;
+            ThuongHieu_View lk = gridView1.GetFocusedRow() as ThuongHieu_View;
             if (lk != null)
             {
                 switch (col.FieldName)
                 {
-                    case "TenLoaiLinhKien":
+                    case "TenThuongHieu":
                         if (lk.TenThuongHieu == null || lk.TenThuongHieu.Trim().Equals(""))
                         {
                             gridView1.SetColumnError(gridView1.Columns["TenThuongHieu"], "Tên Thương Hiệu không được rỗng!");
@@ -111,7 +111,7 @@ namespace PresentationLayer
         bool validateGrid(int preRow)
         {
             int error = 0;
-            LoaiLinhKien_View lk = gridView1.GetRow(preRow) as LoaiLinhKien_View;
+            ThuongHieu_View lk = gridView1.GetRow(preRow) as ThuongHieu_View;
             if (lk != null)
             {
                 if (lk.TenThuongHieu == null || lk.TenThuongHieu.Trim().Equals(""))
@@ -136,7 +136,7 @@ namespace PresentationLayer
         {
             if (validateGrid(gridView1.FocusedRowHandle))
             {
-                LoaiLinhKien_View lk = gridThaoTac.addRow(count_row) as LoaiLinhKien_View;
+                ThuongHieu_View lk = gridThaoTac.addRow(count_row) as ThuongHieu_View;
                 gridThaoTac.refreshData();
                 count_row++;
             }
@@ -154,9 +154,9 @@ namespace PresentationLayer
             var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                DataUpdate<LoaiLinhKien_View> listUpdate = gridThaoTac.update();
+                DataUpdate<ThuongHieu_View> listUpdate = gridThaoTac.update();
 
-                if (LoaiLinhKien_DAL.saves(listUpdate))
+                if (ThuongHieu_DAL.saves(listUpdate))
                 {
                     MessageBox.Show("Lưu thông tin thành công!");
                     InitVal();

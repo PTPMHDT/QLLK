@@ -77,10 +77,25 @@ namespace PresentationLayer
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
                     {
-                        //setCbxKhachHang(form.maKH_Return);
+                        setGridControl();
                     }
                 }
             }
+        }
+
+        private void btn_SerchSeri_Click(object sender, EventArgs e)
+        {
+            List<HoaDon_View> hdv = HoaDon_DAL.searchSeri(txt_Seri.Text.Trim());
+            if (hdv.Count > 0)
+            {
+                gridControl1.DataSource = hdv;
+                gridControl1.RefreshDataSource();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy!");
+            }
+
         }
     }
 }

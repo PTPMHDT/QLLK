@@ -23,7 +23,10 @@ namespace PresentationLayer.Viewer
         HoaDon_View hoadon;
         KhachHang_View kh_vanglai;
         bool isNew;     //bien kiem tra xem dang o che do New hay la update
-        string loaiKH; 
+        string loaiKH;
+        //GridHelper<CT_HoaDon_View> gridThaoTac;
+        DataUpdate<CT_HOADON> dt;
+        decimal tong_tien_old;
 
         public Update_BanHang()
         {
@@ -63,6 +66,11 @@ namespace PresentationLayer.Viewer
 
         private void InnitVal(string maHD)
         {
+            //gridThaoTac = new GridHelper<CT_HoaDon_View>(gridControl1);
+            HoaDon_View hd_view = HoaDon_DAL.get_HoaDon_By_MaHD(maHD);
+            tong_tien_old = hd_view.TongTien;
+            dt = new DataUpdate<CT_HOADON>();
+
             kh_vanglai = KhachHang_DAL.get_KhachHang_VangLai();
             ls_cthd = new List<CT_HoaDon_View>();
 
@@ -87,10 +95,13 @@ namespace PresentationLayer.Viewer
        
         private void setDataLoad()
         {
+
             txtMaPhieu.Text = hoadon.MaHoaDon;
             txtNhanVien.Text = hoadon.NhanVien;
             dateNgayBan.Text = hoadon.NgayLap.ToString();
             txtGhiChu.Text = hoadon.GhiChu;
+            txt_NguoiThayDoi.Text = hoadon.TenNhanVienSua;
+            date_Update.Text = hoadon.NgaySua.ToString();
             setGroupBox_KhachHang();
             setGridCtrl_LinhKien();
             if (isNew)
@@ -168,41 +179,56 @@ namespace PresentationLayer.Viewer
             decimal chenhLech = soluong - ct_hd.SoLuong;
 
             Kho_View kho = list_LK_inKho.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
-
-            foreach (CT_HoaDon_View item in ls_cthd)
+            if(kho!= null)
             {
-                if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
+                foreach (CT_HoaDon_View item in ls_cthd)
                 {
-                    if (kho.SoLuong == 0 && chenhLech > 0)
+                    if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
                     {
-                        MessageBox.Show("Trong kho đã hết mặt hàng này, vui lòng nhập thêm sản phẩm!");
-                        ((DevExpress.XtraEditors.SpinEdit)sender).Value = ct_hd.SoLuong;
-                        kho.SoLuong = 0;
-                        return;
-                    }
-                    else
-                    {
-                        item.SoLuong = (Int32)soluong;
-                        item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
-                        if (chenhLech > 0)
+                        if (kho.SoLuong == 0 && chenhLech > 0)
                         {
-                            item.SoSeri.Add(kho.SoSeri[0]);
-                            kho.SoSeri.RemoveAt(0);
+                            MessageBox.Show("Trong kho đã hết mặt hàng này, vui lòng nhập thêm sản phẩm!");
+                            ((DevExpress.XtraEditors.SpinEdit)sender).Value = ct_hd.SoLuong;
+                            kho.SoLuong = 0;
+                            return;
                         }
                         else
                         {
-                            kho.SoSeri.Insert(0, item.SoSeri[item.SoSeri.Count - 1]);
-                            item.SoSeri.RemoveAt(item.SoSeri.Count - 1);
+                            if(chenhLech != 0)
+                            {
+                                item.SoLuong = (Int32)soluong;
+                                item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
+                                if (chenhLech > 0)
+                                {
+                                    item.SoSeri.Add(kho.SoSeri[0]);
+                                    kho.SoSeri.RemoveAt(0);
+                                }
+                                else
+                                {
+                                    kho.SoSeri.Insert(0, item.SoSeri[item.SoSeri.Count - 1]);
+                                    item.SoSeri.RemoveAt(item.SoSeri.Count - 1);
+                                }
+                                kho.SoLuong = kho.SoSeri.Count();
+                                txtTongTien.Text = count_TongTien().ToString();
+                            }
                         }
-                        kho.SoLuong = kho.SoSeri.Count();                        
-                        txtTongTien.Text = count_TongTien().ToString();
-                    }
 
-                    gridCtrlLoc.RefreshDataSource();
-                    gridControl1.RefreshDataSource();
-                    break;
+                        gridCtrlLoc.RefreshDataSource();
+                        gridControl1.RefreshDataSource();
+                        break;
+                    }
                 }
             }
+            else
+            {
+                if (chenhLech != 0)
+                {
+                    MessageBox.Show("Trong kho đã hết mặt hàng này, vui lòng nhập thêm sản phẩm!");
+                    ((DevExpress.XtraEditors.SpinEdit)sender).Value = ct_hd.SoLuong;
+                    return;
+                }
+            }
+            
         }
 
         private void cbTenKhachHang_SelectedIndexChanged(object sender, EventArgs e)
@@ -265,7 +291,6 @@ namespace PresentationLayer.Viewer
         {
             Kho_View kho = gridViewLoc.GetFocusedRow() as Kho_View;
             bool flat = false;
-
             if (ls_cthd.Count > 0)
             {
                 if (kho.SoLuong <= 0)
@@ -324,49 +349,50 @@ namespace PresentationLayer.Viewer
             txtTongTien.Text = count_TongTien().ToString();
         }
 
-        private void add_LinhKienSeri(string maLK)
-        {
-            List<Kho_View> lK_v = Kho_DAL.get_AllLinhKien_By_MaLinhKien(maLK);
-            CT_HoaDon_View cthd = ls_cthd.Where(key => key.MaLinhKien == maLK).FirstOrDefault();
-            cthd.SoSeri = new List<string>();
-            for (int i = 0; i < cthd.SoLuong; i++)
-            {
-                cthd.SoSeri.Add(lK_v[i].Seri);
-            }
-        }
-
         private void RemoveRowGrid_CT_HoaDon()
         {
             CT_HoaDon_View ct_hd = gridView1.GetFocusedRow() as CT_HoaDon_View;
-            Kho_View kho = list_LK_inKho.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
-
-            var get_item = ls_cthd.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
-            if (get_item != null)
+            if(ct_hd != null)
             {
-                //foreach (var item in get_item.SoSeri)
+                Kho_View kho = list_LK_inKho.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
+                if(kho == null)
+                {
+                    kho = new Kho_View();
+                    kho.MaLinhKien = ct_hd.MaLinhKien;
+                    kho.TenLinhKien = ct_hd.TenLinhKien;
+                    kho.SoSeri = new List<string>();
+                    kho.SoLuong = 0;
+                    list_LK_inKho.Add(kho);
+                }
+
+                var get_item = ls_cthd.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
+                if (get_item != null)
+                {
+                    //foreach (var item in get_item.SoSeri)
+                    //{
+                    //    kho.SoSeri.Add(item);
+                    //}
+                    kho.SoSeri.InsertRange(0, get_item.SoSeri);
+
+                    kho.SoLuong = kho.SoSeri.Count;
+                    ls_cthd.Remove(get_item);
+                    gridControl1.RefreshDataSource();
+                    gridCtrlLoc.RefreshDataSource();
+                }
+
+                //foreach (CT_HoaDon_View item in ls_cthd)
                 //{
-                //    kho.SoSeri.Add(item);
+                //    if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
+                //    {
+                //        ls_cthd.Remove(item);
+
+                //        gridControl1.DataSource = ls_cthd;
+                //        gridControl1.RefreshDataSource();
+                //        break;
+                //    }
                 //}
-                kho.SoSeri.InsertRange(0, get_item.SoSeri);
-
-                kho.SoLuong = kho.SoSeri.Count;
-                ls_cthd.Remove(get_item);
-                gridControl1.RefreshDataSource();
-                gridCtrlLoc.RefreshDataSource();
+                txtTongTien.Text = count_TongTien().ToString();
             }
-
-            //foreach (CT_HoaDon_View item in ls_cthd)
-            //{
-            //    if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
-            //    {
-            //        ls_cthd.Remove(item);
-
-            //        gridControl1.DataSource = ls_cthd;
-            //        gridControl1.RefreshDataSource();
-            //        break;
-            //    }
-            //}
-            txtTongTien.Text = count_TongTien().ToString();
         }
 
         private void bnt_arrowRight_Click(object sender, EventArgs e)
@@ -412,6 +438,9 @@ namespace PresentationLayer.Viewer
                     hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
                     //bien trang thai hoa don
                     hoadon.TrangThai = 1;
+                    //set nguoi sua va ngay sua cua hoa don
+                    hoadon.MaNhanVienSua = Context.getInstance().nv.MaNhanVien;
+                    hoadon.NgaySua = DateTime.Now;
 
                     foreach (var item in ls_cthd)
                     {
@@ -419,9 +448,43 @@ namespace PresentationLayer.Viewer
                         hoadon.TongLoiNhuan += item.LoiNhuan;
                     }
 
-                    if (HoaDon_DAL.add_HoaDon(hoadon, ls_cthd))
+                    List<CT_HoaDon_View> mLstCTHD = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
+
+                    if (mLstCTHD.Count > ls_cthd.Count)
+                    {
+                        foreach (var item in mLstCTHD)
+                        {
+                            CT_HoaDon_View ct = ls_cthd.Where(key => key.MaLinhKien == item.MaLinhKien).FirstOrDefault();
+                            if (ct != null)//neu chi tiet hoa don chua bi xoa
+                            {
+                                getChange(ct.toList_CT_HoaDon(), CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_MaLK(item.MaHoaDon, item.MaLinhKien).toList_CT_HoaDon());
+                            }
+                            else
+                            {
+                                dt.Deletes.AddRange(item.toList_CT_HoaDon());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in ls_cthd)
+                        {
+                            CT_HoaDon_View ct = mLstCTHD.Where(key => key.MaLinhKien == item.MaLinhKien).FirstOrDefault();
+                            if (ct != null)//neu chi tiet hoa don chua bi xoa
+                            {
+                                getChange(item.toList_CT_HoaDon(), ct.toList_CT_HoaDon());
+                            }
+                            else
+                            {
+                                dt.Inserts.AddRange(item.toList_CT_HoaDon());
+                            }
+                        }
+                    }
+                    if (HoaDon_DAL.update_HoaDon(hoadon, dt,tong_tien_old))
                     {
                         MessageBox.Show("Lưu thông tin thành công!");
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                     else
                     {
@@ -429,6 +492,26 @@ namespace PresentationLayer.Viewer
                     }
                 }
             }
+        }
+
+        private DataUpdate<CT_HOADON> getChange(List<CT_HOADON> LNew, List<CT_HOADON> LOld)
+        {
+            
+            foreach (var item_new in LNew)
+            {
+                if (LOld.Where(key => key.MaLinhKien == item_new.MaLinhKien).Where(key => key.MaHoaDon == item_new.MaHoaDon).Where(key => key.Seri == item_new.Seri).FirstOrDefault() != null)
+                    dt.Updates.Add(item_new);
+                else
+                    dt.Inserts.Add(item_new);
+            }
+
+            foreach (var item_old in LOld)
+            {
+                if (LNew.Where(key => key.MaLinhKien == item_old.MaLinhKien).Where(key => key.MaHoaDon == item_old.MaHoaDon).Where(key => key.Seri == item_old.Seri).FirstOrDefault() == null)
+                    dt.Deletes.Add(item_old);
+            }
+
+            return dt;
         }
 
         private void btnThemKhachHang_Click(object sender, EventArgs e)
@@ -463,7 +546,7 @@ namespace PresentationLayer.Viewer
                 {
                     item.GiaBan = giaBan;
                     item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
-                    gridControl1.DataSource = ls_cthd;
+                    //gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
                     txtTongTien.Text = count_TongTien().ToString();
                     break;
@@ -525,14 +608,13 @@ namespace PresentationLayer.Viewer
                 {
                     item.Thue = thue;
                     item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
-                    gridControl1.DataSource = ls_cthd;
+                    //gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
                     txtTongTien.Text = count_TongTien().ToString();
                     break;
                 }
             }
         }
-
 
     }
 }

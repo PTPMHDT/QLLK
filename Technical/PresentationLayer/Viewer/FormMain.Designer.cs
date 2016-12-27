@@ -160,6 +160,7 @@
             this.btnLoaiLinhKien.Id = 3;
             this.btnLoaiLinhKien.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnLoaiLinhKien.LargeGlyph")));
             this.btnLoaiLinhKien.Name = "btnLoaiLinhKien";
+            this.btnLoaiLinhKien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLoaiLinhKien_ItemClick);
             // 
             // btnPhieuBanHang
             // 
@@ -308,6 +309,7 @@
             this.barButtonItem1.Id = 19;
             this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem2
             // 

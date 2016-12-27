@@ -44,7 +44,9 @@ namespace PresentationLayer.DAL
                          SoDienThoai = hoadon.NHACUNGCAP.SoDienThoai,
                          GhiChu = hoadon.GhiChu
                      };
-            return hd.ToList()[0];
+            HoaDonNhap_View hdV = hd.ToList()[0];
+            hdV.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hdV.MaHoaDon);
+            return hdV;
         }
 
         public static string get_HoaDonNhapMax()
@@ -65,18 +67,33 @@ namespace PresentationLayer.DAL
             }
         }
 
+        public static HoaDonNhap_View get_HoaDonNhap_By_Seri(string seri)
+        {
+            var hd = from hoadon in Context.getInstance().db.CT_HOADON_NHAPHANG
+                     where hoadon.Seri == seri
+                     select new HoaDonNhap_View
+                     {
+                         MaHoaDon = hoadon.MaHoaDon
+                     };
+            
+            return get_HoaDonNhap_By_MaHD(hd.ToList()[0].MaHoaDon);
+        }
+
         public static bool add_HoaDonNhap(HoaDonNhap_View hd, List<CT_HoaDonNhap_View> ct_hds)
         {
             using (var transaction = Context.getInstance().db.Database.BeginTransaction())
             {
                 try
                 {
+                    decimal phanTramLoiNhuanBanLe = decimal.Parse(HeThong_DAL.getHeThongByMa("MA002").GiaTri);
+                    decimal phanTramLoiNhuanBanBuon = decimal.Parse(HeThong_DAL.getHeThongByMa("MA003").GiaTri);
+
                     Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Added;
                     Context.getInstance().db.SaveChanges();
                     LINHKIEN lk;
                     ct_hds.ForEach(x =>
                     {
-                        foreach (var seri in x.SoSeris)
+                        foreach (var seri in x.SoSeri)
                         {
                             Context.getInstance().db.Entry(x.toCT_HoaDonNhap(seri)).State = System.Data.Entity.EntityState.Added;
                             //nhap kho
@@ -84,14 +101,15 @@ namespace PresentationLayer.DAL
                             myK.MaLinhKien = x.MaLinhKien;
                             myK.Seri = seri;
                             myK.NgayNhap = hd.NgayLap;
+                            myK.TrangThai = 1;
                             Context.getInstance().db.Entry(myK).State = System.Data.Entity.EntityState.Added;
                         }
                         lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == x.MaLinhKien).FirstOrDefault();
-                        if (!(lk.GiaNhap == x.GiaNhap))
+                        if (lk.GiaNhap != x.GiaNhap)
                         {
                             lk.GiaNhap = x.GiaNhap;
-                            lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanLe);
-                            lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * Context.getInstance().phanTram_LoiNhuan_BanBuon);
+                            lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanLe);
+                            lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanBuon);
                             Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
                         }
                     });

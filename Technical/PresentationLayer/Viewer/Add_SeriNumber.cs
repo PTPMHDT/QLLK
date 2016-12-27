@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using PresentationLayer.ViewObject;
 
 namespace PresentationLayer.Viewer
 {
@@ -20,37 +21,61 @@ namespace PresentationLayer.Viewer
             InitializeComponent();
         }
 
-        public Add_SeriNumber(string maLK, string tenLK,int rowCount)
+        public Add_SeriNumber(CT_HoaDonNhap_View cthd)
         {
             InitializeComponent();
-            initVal(maLK, tenLK,rowCount);
+            initVal(cthd);
         }
 
-        private void initVal(string maLK, string tenLK, int r)
+        private void initVal(CT_HoaDonNhap_View cthd)
         {
             txt_MaLK.ReadOnly = true;
             txt_TenLK.ReadOnly = true;
-            txt_MaLK.Text = maLK;
-            txt_TenLK.Text = tenLK;
+            txt_MaLK.Text = cthd.MaLinhKien;
+            txt_TenLK.Text = cthd.TenLinhKien;
 
             DataTable dt = new DataTable();
             dt.Columns.Add("STT", typeof(int));         
             dt.Columns.Add("SeriNumber", typeof(string));
             DataColumn col = new DataColumn("SeriNumber");
-            for (int i = 1; i <= r; i++)
+            for (int i = 0; i < cthd.SoLuong; i++)
             {
-                dt.Rows.Add(i,"");
+               if(cthd.SoSeri != null)
+               {
+                   dt.Rows.Add(i, cthd.SoSeri[i].ToString());                   
+               }
+               else
+                   dt.Rows.Add(i,"");
             }
             gridControl1.DataSource = dt;
         }
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
+            string str = "";
             list_Seri = new List<string>();
             foreach (DataRow item in ((DataTable)gridControl1.DataSource).Rows)
             {
-                list_Seri.Add(item["SeriNumber"].ToString());  
+                str = item["SeriNumber"].ToString().Trim();
+
+                if(str.Equals(""))
+                {
+                    MessageBox.Show("Số Seri không được rỗng!");
+                    return;
+                }
+
+                list_Seri.Add(str);  
             }
+
+            if (list_Seri.Distinct().Count() != list_Seri.Count)
+            {
+                MessageBox.Show("Số Seri không được trùng nhau!");
+                return;
+            }
+
+            //check them duoi csdl
+
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

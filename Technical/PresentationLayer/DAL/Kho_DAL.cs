@@ -15,6 +15,7 @@ namespace PresentationLayer.DAL
         public static List<Kho_View> getAll_LinhKien()
         {
             var kho1 = from kho in Context.getInstance().db.KHOes
+                       where kho.TrangThai == 1
                        select new Kho_View
                        {
                            MaLinhKien = kho.MaLinhKien,
@@ -73,10 +74,12 @@ namespace PresentationLayer.DAL
         {
             int soluong = (from p in Context.getInstance().db.KHOes
              where p.MaLinhKien == maLK
+             where p.TrangThai == 1
              select p).Count();
 
             var kho1 = from kho in Context.getInstance().db.KHOes
                        where kho.MaLinhKien == maLK
+                       where kho.TrangThai == 1
                        select new Kho_View
                        {
                            MaLinhKien = kho.MaLinhKien,
@@ -96,10 +99,12 @@ namespace PresentationLayer.DAL
         {
             int soluong = (from p in Context.getInstance().db.KHOes
                            where p.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+                           where p.TrangThai == 1
                            select p).Count();
 
             var kho1 = from kho in Context.getInstance().db.KHOes
                        where kho.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
+                       where kho.TrangThai == 1
                        select new Kho_View
                        {
                            MaLinhKien = kho.MaLinhKien,

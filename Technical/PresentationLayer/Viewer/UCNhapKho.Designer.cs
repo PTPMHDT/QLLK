@@ -79,6 +79,7 @@
             this.bnt_arrowRight = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_LoadData = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -124,6 +125,7 @@
             this.groupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Blue;
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl1.Controls.Add(this.btn_LoadData);
             this.groupControl1.Controls.Add(this.cbxTenNCC);
             this.groupControl1.Controls.Add(this.btnThemNCC);
             this.groupControl1.Controls.Add(this.btnKiemTraKho);
@@ -607,6 +609,22 @@
             this.panelControl3.Size = new System.Drawing.Size(285, 51);
             this.panelControl3.TabIndex = 2;
             // 
+            // btn_LoadData
+            // 
+            this.btn_LoadData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_LoadData.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_LoadData.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.btn_LoadData.Appearance.Options.UseFont = true;
+            this.btn_LoadData.Appearance.Options.UseForeColor = true;
+            this.btn_LoadData.Image = ((System.Drawing.Image)(resources.GetObject("btn_LoadData.Image")));
+            this.btn_LoadData.Location = new System.Drawing.Point(770, 104);
+            this.btn_LoadData.Name = "btn_LoadData";
+            this.btn_LoadData.Size = new System.Drawing.Size(145, 40);
+            this.btn_LoadData.TabIndex = 12;
+            this.btn_LoadData.Text = "Load tu file";
+            this.btn_LoadData.Click += new System.EventHandler(this.btn_LoadData_Click);
+            // 
             // UCNhapKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,5 +720,6 @@
         private System.Windows.Forms.ComboBox cbxTenNCC;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit add_seriNumber;
+        private DevExpress.XtraEditors.SimpleButton btn_LoadData;
     }
 }
