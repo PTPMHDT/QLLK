@@ -23,7 +23,7 @@ namespace PresentationLayer.DAL
                           MaLoaiNhanVien = nv.LOAINHANVIEN.MaLoaiNhanVien,
                           SoDienThoai = nv.SoDienThoai,
                           DiaChi = nv.DiaChi,
-                          //Tong = kh.Tong,
+                          Tong = (decimal) nv.TongTien,
                           GhiChu = nv.GhiChu,
                           TrangThai = 1
                       };

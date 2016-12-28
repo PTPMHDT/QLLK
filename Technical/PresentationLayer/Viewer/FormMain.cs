@@ -1,4 +1,6 @@
-﻿using PresentationLayer.GlobalVariable;
+﻿using PresentationLayer.DAL;
+using PresentationLayer.GlobalVariable;
+using PresentationLayer.ViewObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,29 @@ namespace PresentationLayer
         {
             InitializeComponent();
             this.FormClosed += FormMain_FormClosed;
+            this.Load += FormMain_Load;
+        }
+
+        void FormMain_Load(object sender, EventArgs e)
+        {
+            LoaiNhanVien_ViewBoolen lnv = LoaiNhanVien_DAL.get_LoaiNhanVien_ByMaLoaiNV(Context.getInstance().nv.MaLoaiNhanVien);
+            if (!lnv.IsQuanLyBanHang)
+            {
+                btnChiTietBanHang.Enabled = false;
+                btnSale.Enabled = false;
+            }
+            if (!lnv.IsQuanLyKhachHang)
+                btnKhachHang.Enabled = false;
+            if (!lnv.IsQuanLyKho)
+            {
+                btnNhapKho.Enabled = false;
+            }
+            if (!lnv.IsQuanLyLinhKien)
+                btnLinhKien.Enabled = false;
+
+            if (!lnv.IsQuanLyNhanVien)
+                btnNhanVien.Enabled = false;
+
         }
 
         void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -117,7 +142,21 @@ namespace PresentationLayer
             var ucLinhKien = new UCThongTinNhanVien();
             ucLinhKien.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucLinhKien);
-
         }
+
+        private void btn_LoaiNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCLoaiNhanVien();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
+        //dang xuat
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Hide();
+            Context.getInstance().formLogin.Show();
+        }
+
     }
 }

@@ -67,6 +67,7 @@
             this.ribbonGalleryBarItem2 = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.skinRibbonGalleryBarItem2 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.ribbonGalleryBarItem3 = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.btn_LoaiNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -85,6 +86,7 @@
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.panelMain = new DevExpress.XtraEditors.PanelControl();
+            this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.SuspendLayout();
@@ -121,9 +123,10 @@
             this.ribbonGalleryBarItem1,
             this.ribbonGalleryBarItem2,
             this.skinRibbonGalleryBarItem2,
-            this.ribbonGalleryBarItem3});
+            this.ribbonGalleryBarItem3,
+            this.btn_LoaiNhanVien});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 29;
+            this.ribbonControl1.MaxItemId = 32;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -333,6 +336,7 @@
             this.barButtonItem4.Id = 22;
             this.barButtonItem4.LargeGlyph = global::PresentationLayer.Properties.Resources.exit;
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
             // barButtonItem5
             // 
@@ -382,6 +386,15 @@
             this.ribbonGalleryBarItem3.Id = 27;
             this.ribbonGalleryBarItem3.Name = "ribbonGalleryBarItem3";
             // 
+            // btn_LoaiNhanVien
+            // 
+            this.btn_LoaiNhanVien.Caption = "Loại Nhân Viên";
+            this.btn_LoaiNhanVien.Glyph = ((System.Drawing.Image)(resources.GetObject("btn_LoaiNhanVien.Glyph")));
+            this.btn_LoaiNhanVien.Id = 31;
+            this.btn_LoaiNhanVien.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btn_LoaiNhanVien.LargeGlyph")));
+            this.btn_LoaiNhanVien.Name = "btn_LoaiNhanVien";
+            this.btn_LoaiNhanVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_LoaiNhanVien_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -419,6 +432,7 @@
             // 
             this.ribbonPageGroup3.AllowTextClipping = false;
             this.ribbonPageGroup3.ItemLinks.Add(this.btnNhanVien);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btn_LoaiNhanVien);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Nhân Viên";
             // 
@@ -527,6 +541,13 @@
             this.panelMain.Size = new System.Drawing.Size(911, 549);
             this.panelMain.TabIndex = 1;
             // 
+            // ribbonPageGroup13
+            // 
+            this.ribbonPageGroup13.AllowTextClipping = false;
+            this.ribbonPageGroup13.ItemLinks.Add(this.btnNhaCungCap);
+            this.ribbonPageGroup13.Name = "ribbonPageGroup13";
+            this.ribbonPageGroup13.Text = "Nhà Cung Cấp";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -593,6 +614,8 @@
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem2;
         private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGalleryBarItem3;
         private DevExpress.XtraEditors.PanelControl panelMain;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
+        private DevExpress.XtraBars.BarButtonItem btn_LoaiNhanVien;
 
     }
 }

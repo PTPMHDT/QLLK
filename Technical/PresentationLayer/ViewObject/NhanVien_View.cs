@@ -19,6 +19,7 @@ namespace PresentationLayer.ViewObject
         public string DiaChi { get; set; }
         public string GhiChu { get; set; }
         public int TrangThai { get; set; }
+        public decimal Tong { get; set; }
 
         public NhanVien_View(int c)
             : base()
@@ -47,6 +48,7 @@ namespace PresentationLayer.ViewObject
             nv.DiaChi = DiaChi;
             nv.GhiChu = GhiChu;
             nv.TrangThai = TrangThai;
+            nv.TongTien = Tong;
             return nv;
         }
     }

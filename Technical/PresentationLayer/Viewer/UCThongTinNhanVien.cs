@@ -52,7 +52,6 @@ namespace PresentationLayer
             txtTenDN.Text = nvV.TenDangNhap;
             txtSDT.Text = nvV.SoDienThoai;
             txtDiaChi.Text = nvV.DiaChi;
-            
         }
 
         private NhanVien_View getData()
@@ -70,6 +69,9 @@ namespace PresentationLayer
                 return null;
             }
             nv.SoDienThoai = txtSDT.Text.Trim();
+            nv.DiaChi = txtDiaChi.Text.Trim();
+            nv.MaLoaiNhanVien = Context.getInstance().nv.MaLoaiNhanVien;
+            nv.GhiChu = Context.getInstance().nv.GhiChu;
             if (!testThayDoi())
                 return null;
             return nv;
@@ -90,13 +92,16 @@ namespace PresentationLayer
                     MessageBox.Show("Chưa nhập mật khẩu!");
                     return false;
                 }
-                if(!txtMK1.Text.Trim().Equals(txtMK2.Text.Trim()))
+                if (!txtMK1.Text.Trim().Equals(txtMK2.Text.Trim()))
                 {
                     MessageBox.Show("Mật khẩu không khớp!");
                     return false;
                 }
                 nv.MatKhau = txtMK1.Text.Trim();
             }
+            else
+                nv.MatKhau = Context.getInstance().nv.MatKhau;
+
             return true;
         }
 
@@ -114,6 +119,7 @@ namespace PresentationLayer
                 if (NhanVien_DAL.saves(listUpdate))
                 {
                     MessageBox.Show("Lưu thông tin thành công!");
+                    Context.getInstance().nv = nv;
                     InitVal();
                 }
                 else

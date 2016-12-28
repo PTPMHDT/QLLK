@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using PresentationLayer.Classes;
 using PresentationLayer.GlobalVariable;
 using PresentationLayer.DAL;
+using PresentationLayer.ViewObject;
 
 namespace PresentationLayer
 {
@@ -43,6 +44,7 @@ namespace PresentationLayer
             {
                 Context.getInstance().formLogin = this;
                 FormMain fMain = new FormMain();
+
                 Context.getInstance().formMain = fMain;
                 fMain.Show();
                 this.Hide();
