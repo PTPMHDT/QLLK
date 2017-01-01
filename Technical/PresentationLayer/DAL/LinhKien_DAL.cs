@@ -75,7 +75,10 @@ namespace PresentationLayer.DAL
                           MoTa = lk.MoTa
                       };
             if (lk1 != null)
+            {
+                //lk1.ToList()[0].setDecimal();
                 return lk1.ToList()[0];
+            }
             return null;
         }
 

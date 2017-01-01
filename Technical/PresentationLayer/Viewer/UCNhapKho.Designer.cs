@@ -33,9 +33,9 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btn_LoadData = new DevExpress.XtraEditors.SimpleButton();
             this.cbxTenNCC = new System.Windows.Forms.ComboBox();
             this.btnThemNCC = new DevExpress.XtraEditors.SimpleButton();
-            this.btnKiemTraKho = new DevExpress.XtraEditors.SimpleButton();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.txtSoDienThoai = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -70,6 +70,7 @@
             this.GiaNhap = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txt_ThanhT = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.add_seriNumber = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnXoa_Row = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,8 +79,8 @@
             this.bnt_arrowLeft = new DevExpress.XtraEditors.SimpleButton();
             this.bnt_arrowRight = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_XuatHD = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_LoadData = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -98,6 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ThanhT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_seriNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
@@ -128,7 +130,6 @@
             this.groupControl1.Controls.Add(this.btn_LoadData);
             this.groupControl1.Controls.Add(this.cbxTenNCC);
             this.groupControl1.Controls.Add(this.btnThemNCC);
-            this.groupControl1.Controls.Add(this.btnKiemTraKho);
             this.groupControl1.Controls.Add(this.txtDiaChi);
             this.groupControl1.Controls.Add(this.txtSoDienThoai);
             this.groupControl1.Controls.Add(this.labelControl8);
@@ -147,6 +148,22 @@
             this.groupControl1.Size = new System.Drawing.Size(1077, 155);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông Tin Phiếu Nhập Kho";
+            // 
+            // btn_LoadData
+            // 
+            this.btn_LoadData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_LoadData.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_LoadData.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btn_LoadData.Appearance.Options.UseFont = true;
+            this.btn_LoadData.Appearance.Options.UseForeColor = true;
+            this.btn_LoadData.Image = ((System.Drawing.Image)(resources.GetObject("btn_LoadData.Image")));
+            this.btn_LoadData.Location = new System.Drawing.Point(942, 119);
+            this.btn_LoadData.Name = "btn_LoadData";
+            this.btn_LoadData.Size = new System.Drawing.Size(130, 31);
+            this.btn_LoadData.TabIndex = 12;
+            this.btn_LoadData.Text = "Load từ file";
+            this.btn_LoadData.Click += new System.EventHandler(this.btn_LoadData_Click);
             // 
             // cbxTenNCC
             // 
@@ -168,19 +185,6 @@
             this.btnThemNCC.TabIndex = 15;
             this.btnThemNCC.Text = "Thêm NCC";
             this.btnThemNCC.Click += new System.EventHandler(this.btnThemNCC_Click);
-            // 
-            // btnKiemTraKho
-            // 
-            this.btnKiemTraKho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnKiemTraKho.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnKiemTraKho.Appearance.Options.UseFont = true;
-            this.btnKiemTraKho.Image = ((System.Drawing.Image)(resources.GetObject("btnKiemTraKho.Image")));
-            this.btnKiemTraKho.Location = new System.Drawing.Point(963, 122);
-            this.btnKiemTraKho.Name = "btnKiemTraKho";
-            this.btnKiemTraKho.Size = new System.Drawing.Size(109, 23);
-            this.btnKiemTraKho.TabIndex = 10;
-            this.btnKiemTraKho.Text = "Kiểm tra kho";
-            this.btnKiemTraKho.Click += new System.EventHandler(this.btnKiemTraKho_Click);
             // 
             // txtDiaChi
             // 
@@ -421,7 +425,8 @@
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.text_money,
-            this.add_seriNumber});
+            this.add_seriNumber,
+            this.txt_ThanhT});
             this.gridControl1.Size = new System.Drawing.Size(748, 331);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -512,7 +517,7 @@
             // ThanhTien
             // 
             this.ThanhTien.Caption = "Thành Tiền";
-            this.ThanhTien.ColumnEdit = this.text_money;
+            this.ThanhTien.ColumnEdit = this.txt_ThanhT;
             this.ThanhTien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.ThanhTien.FieldName = "ThanhTien";
             this.ThanhTien.Name = "ThanhTien";
@@ -521,6 +526,11 @@
             this.ThanhTien.Visible = true;
             this.ThanhTien.VisibleIndex = 5;
             this.ThanhTien.Width = 133;
+            // 
+            // txt_ThanhT
+            // 
+            this.txt_ThanhT.AutoHeight = false;
+            this.txt_ThanhT.Name = "txt_ThanhT";
             // 
             // gridColumn4
             // 
@@ -592,6 +602,7 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.btn_XuatHD);
             this.panelControl2.Controls.Add(this.btnHoanTat);
             this.panelControl2.Controls.Add(this.labelControl10);
             this.panelControl2.Controls.Add(this.txtTongTien);
@@ -599,6 +610,22 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(752, 51);
             this.panelControl2.TabIndex = 15;
+            // 
+            // btn_XuatHD
+            // 
+            this.btn_XuatHD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_XuatHD.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btn_XuatHD.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.btn_XuatHD.Appearance.Options.UseFont = true;
+            this.btn_XuatHD.Appearance.Options.UseForeColor = true;
+            this.btn_XuatHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XuatHD.Image")));
+            this.btn_XuatHD.Location = new System.Drawing.Point(416, 5);
+            this.btn_XuatHD.Name = "btn_XuatHD";
+            this.btn_XuatHD.Size = new System.Drawing.Size(180, 40);
+            this.btn_XuatHD.TabIndex = 13;
+            this.btn_XuatHD.Text = "XUẤT HÓA ĐƠN";
+            this.btn_XuatHD.Click += new System.EventHandler(this.btn_XuatHD_Click);
             // 
             // panelControl3
             // 
@@ -608,22 +635,6 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(285, 51);
             this.panelControl3.TabIndex = 2;
-            // 
-            // btn_LoadData
-            // 
-            this.btn_LoadData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_LoadData.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btn_LoadData.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.btn_LoadData.Appearance.Options.UseFont = true;
-            this.btn_LoadData.Appearance.Options.UseForeColor = true;
-            this.btn_LoadData.Image = ((System.Drawing.Image)(resources.GetObject("btn_LoadData.Image")));
-            this.btn_LoadData.Location = new System.Drawing.Point(770, 104);
-            this.btn_LoadData.Name = "btn_LoadData";
-            this.btn_LoadData.Size = new System.Drawing.Size(145, 40);
-            this.btn_LoadData.TabIndex = 12;
-            this.btn_LoadData.Text = "Load tu file";
-            this.btn_LoadData.Click += new System.EventHandler(this.btn_LoadData_Click);
             // 
             // UCNhapKho
             // 
@@ -656,6 +667,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_ThanhT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.add_seriNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
@@ -692,7 +704,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
         private DevExpress.XtraEditors.SimpleButton btnThemMoiSP;
-        private DevExpress.XtraEditors.SimpleButton btnKiemTraKho;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.TextEdit txtTongTien;
         private DevExpress.XtraEditors.SimpleButton btnHoanTat;
@@ -721,5 +732,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit add_seriNumber;
         private DevExpress.XtraEditors.SimpleButton btn_LoadData;
+        private DevExpress.XtraEditors.SimpleButton btn_XuatHD;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txt_ThanhT;
     }
 }

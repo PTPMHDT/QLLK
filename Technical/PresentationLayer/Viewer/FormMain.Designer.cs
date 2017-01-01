@@ -87,12 +87,15 @@
             this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.panelMain = new DevExpress.XtraEditors.PanelControl();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btn_HeThong = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelMain)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.AutoHideEmptyItems = true;
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -124,9 +127,10 @@
             this.ribbonGalleryBarItem2,
             this.skinRibbonGalleryBarItem2,
             this.ribbonGalleryBarItem3,
-            this.btn_LoaiNhanVien});
+            this.btn_LoaiNhanVien,
+            this.btn_HeThong});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 32;
+            this.ribbonControl1.MaxItemId = 156;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -135,6 +139,7 @@
             this.ribbonPage4,
             this.ribbonPage5});
             this.ribbonControl1.Size = new System.Drawing.Size(911, 141);
+            this.ribbonControl1.TransparentEditors = true;
             // 
             // btnSale
             // 
@@ -399,7 +404,8 @@
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup14});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Cửa Hàng";
             // 
@@ -548,6 +554,22 @@
             this.ribbonPageGroup13.Name = "ribbonPageGroup13";
             this.ribbonPageGroup13.Text = "Nhà Cung Cấp";
             // 
+            // ribbonPageGroup14
+            // 
+            this.ribbonPageGroup14.AllowTextClipping = false;
+            this.ribbonPageGroup14.ItemLinks.Add(this.btn_HeThong);
+            this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            this.ribbonPageGroup14.Text = "Hệ Thống";
+            // 
+            // btn_HeThong
+            // 
+            this.btn_HeThong.Caption = "Hệ Thống";
+            this.btn_HeThong.Glyph = ((System.Drawing.Image)(resources.GetObject("btn_HeThong.Glyph")));
+            this.btn_HeThong.Id = 155;
+            this.btn_HeThong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btn_HeThong.LargeGlyph")));
+            this.btn_HeThong.Name = "btn_HeThong";
+            this.btn_HeThong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_HeThong_ItemClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,6 +638,8 @@
         private DevExpress.XtraEditors.PanelControl panelMain;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup13;
         private DevExpress.XtraBars.BarButtonItem btn_LoaiNhanVien;
+        private DevExpress.XtraBars.BarButtonItem btn_HeThong;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
 
     }
 }

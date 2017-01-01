@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PresentationLayer.ViewObject
 {
-    public class HoaDon_View 
+    public class HoaDon_View : CGrid
     {
         public string MaHoaDon { get; set; }
         public DateTime NgayLap { get; set; }
@@ -14,6 +14,7 @@ namespace PresentationLayer.ViewObject
         public string NhanVien { get; set; }
         public Decimal TongTien { get; set; }
         public Decimal TongLoiNhuan { get; set; }
+        public Decimal ChietKhau { get; set; }
         public int TrangThai { get; set; }
         public string KhachHang { get; set; }
         public string MaKhachHang { get; set; }
@@ -23,6 +24,11 @@ namespace PresentationLayer.ViewObject
         public string TenNhanVienSua { get; set; }
         public DateTime NgaySua { get; set; }
         public List<CT_HoaDon_View> ChiTietHoaDon { get; set; }
+
+        public HoaDon_View()
+            : base()
+        {
+        }
 
         public HOADON toHoaDon()
         {

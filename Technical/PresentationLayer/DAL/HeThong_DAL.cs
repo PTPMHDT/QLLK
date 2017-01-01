@@ -15,7 +15,7 @@ namespace PresentationLayer.DAL
             var kh1 = from kh in Context.getInstance().db.HETHONGs
                       select new HeThong_View
                       {
-                          MaHeThong = kh.Ma,
+                          Ma = kh.Ma,
                           Ten = kh.Ten,
                           GiaTri = kh.GiaTri
                       };
@@ -30,7 +30,7 @@ namespace PresentationLayer.DAL
                       where kh.Ma == ma
                       select new HeThong_View
                       {
-                          MaHeThong = kh.Ma,
+                          Ma = kh.Ma,
                           Ten = kh.Ten,
                           GiaTri = kh.GiaTri
                       };
@@ -38,6 +38,41 @@ namespace PresentationLayer.DAL
                 return kh1.ToList()[0];
             
             return null;
+        }
+
+        public static bool saves(DataUpdate<HeThong_View> list)
+        {
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
+            {
+                try
+                {
+                    list.Inserts.ForEach(x =>
+                    {
+                    });
+
+                    list.Updates.ForEach(x =>
+                    {
+                        Context.getInstance().db.Entry(x.toHeThong()).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+                    list.Deletes.ForEach(x =>
+                    {
+                    });
+
+                    Context.getInstance().db.SaveChanges();
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

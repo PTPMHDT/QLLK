@@ -16,6 +16,8 @@ using PresentationLayer.GlobalVariable;
 using PresentationLayer.Viewer;
 using PresentationLayer.Classes;
 using System.IO;
+using System.Globalization;
+using DevExpress.XtraReports.UI;
 
 namespace PresentationLayer
 {
@@ -38,7 +40,17 @@ namespace PresentationLayer
             this.repositoryItemSpinEdit1.EditValueChanged += repositoryItemSpinEdit1_EditValueChanged;
             cbxTenNCC.LostFocus += cbxTenNCC_LostFocus;
             add_seriNumber.Click += add_seriNumber_Click;
+            //this.text_money.Leave += text_money_Leave;
         }
+
+        //void text_money_Leave(object sender, EventArgs e)
+        //{
+        //    CT_HoaDonNhap_View lk = gridView1.GetFocusedRow() as CT_HoaDonNhap_View;
+        //    var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
+        //    if (result == DialogResult.Yes)
+        //    { }
+        //}
+
 
         void add_seriNumber_Click(object sender, EventArgs e)
         {
@@ -76,6 +88,17 @@ namespace PresentationLayer
             this.repositoryItemSpinEdit1.MinValue = 1;
             this.repositoryItemSpinEdit1.MaxValue = 1000;
             this.repositoryItemSpinEdit1.Increment = 1;
+
+            this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.text_money.DisplayFormat.FormatString = "c";
+
+            this.txt_ThanhT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txt_ThanhT.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.txt_ThanhT.DisplayFormat.FormatString = "c";
+
+            this.txtTongTien.RightToLeft = System.Windows.Forms.RightToLeft.Inherit;
+            this.txtTongTien.ReadOnly = true;
         }
 
         private void InnitVal(string maHD)
@@ -89,7 +112,7 @@ namespace PresentationLayer
                 hoadonnhap.NhanVien = Context.getInstance().nv.TenNhanVien;
                 hoadonnhap.MaNhanVien = Context.getInstance().nv.MaNhanVien;
                 hoadonnhap.MaHoaDon = HoaDonNhap_DAL.get_HoaDonNhapMax();
-                hoadonnhap.NgayLap = DateTime.Today;
+                hoadonnhap.NgayLap = DateTime.Now;
                 hoadonnhap.GhiChu = "";
             }
             else
@@ -104,7 +127,7 @@ namespace PresentationLayer
         {
             txtMaPhieu.Text = hoadonnhap.MaHoaDon;
             txtNhanVien.Text = hoadonnhap.NhanVien;
-            dateNgayBan.Text = hoadonnhap.NgayLap.ToString();
+            dateNgayBan.Value = hoadonnhap.NgayLap;
             txtGhiChu.Text = hoadonnhap.GhiChu;
             setGroupBox_NCC();
             if (isNew)
@@ -112,7 +135,7 @@ namespace PresentationLayer
             else
                 ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hoadonnhap.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
         }
 
         private void reset_ls_cthd()
@@ -184,7 +207,7 @@ namespace PresentationLayer
                     item.ThanhTien = item.SoLuong * item.GiaNhap;
                     gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
-                    txtTongTien.Text = count_TongTien().ToString();
+                    count_TongTien();
                     break;
                 }
             }
@@ -247,7 +270,7 @@ namespace PresentationLayer
             }
 
             gridControl1.RefreshDataSource();
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
         }
 
         private void RemoveRowGrid_CT_HoaDon()
@@ -263,7 +286,7 @@ namespace PresentationLayer
                     break;
                 }
             }
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
         }
 
         private void bnt_arrowRight_Click(object sender, EventArgs e)
@@ -281,7 +304,7 @@ namespace PresentationLayer
             RemoveRowGrid_CT_HoaDon();
         }
 
-        private decimal count_TongTien()
+        private void count_TongTien()
         {
             decimal tongtien = 0;
             if (ls_cthd.Count > 0)
@@ -291,7 +314,8 @@ namespace PresentationLayer
                     tongtien += (Int32)(item.GiaNhap * item.SoLuong);
                 }
             }
-            return tongtien;
+            hoadonnhap.TongTien = tongtien;
+            txtTongTien.Text = hoadonnhap.TongTien.ToString("c", new CultureInfo("vi-VN"));
         }
 
         private void btnHoanTat_Click(object sender, EventArgs e)
@@ -299,47 +323,54 @@ namespace PresentationLayer
             var result = MessageBox.Show("Bạn có muốn lưu sự thay đổi xuống cơ sở dữ liệu hay không?", "Lưu thông tin", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                if (ls_cthd.Count == 0)
-                    MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
-                else
+                string str = checkSeri();
+                if (str.Equals(""))
                 {
-                    hoadonnhap.MaHoaDon = txtMaPhieu.Text.Trim();
-                    hoadonnhap.GhiChu = txtGhiChu.Text.Trim();
-                    hoadonnhap.NgayLap = dateNgayBan.Value;
-                    hoadonnhap.TongTien = Decimal.Parse(txtTongTien.Text);
-                    //bien trang thai hoa don
-                    hoadonnhap.TrangThai = 1;
-
-                    List<Kho_View> list_LK_In_Kho = Kho_DAL.getAll_LinhKien();
-                    Kho_View kho_v;
-                    LinhKien_View lk_v;
-                    foreach (var cthd in ls_cthd)
+                    if (ls_cthd.Count == 0)
+                        MessageBox.Show("Chưa có sản phẩm nào được chọn, xin vui lòng kiểm tra lại!");
+                    else
                     {
-                        //tinh lai gia nhap
-                        kho_v = list_LK_In_Kho.Where(temp => temp.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
-                        lk_v = LinhKien_DAL.get_LinhKien_ByMaLK(cthd.MaLinhKien);
+                        hoadonnhap.MaHoaDon = txtMaPhieu.Text.Trim();
+                        hoadonnhap.GhiChu = txtGhiChu.Text.Trim();
+                        hoadonnhap.NgayLap = dateNgayBan.Value;
+                        //bien trang thai hoa don
+                        hoadonnhap.TrangThai = 1;
 
-                        if (lk_v != null)
+                        List<Kho_View> list_LK_In_Kho = Kho_DAL.getAll_LinhKien();
+                        Kho_View kho_v;
+                        LinhKien_View lk_v;
+                        foreach (var cthd in ls_cthd)
                         {
-                            if (!(lk_v.GiaNhap == cthd.GiaNhap))
+                            //tinh lai gia nhap
+                            kho_v = list_LK_In_Kho.Where(temp => temp.MaLinhKien == cthd.MaLinhKien).FirstOrDefault();
+                            lk_v = LinhKien_DAL.get_LinhKien_ByMaLK(cthd.MaLinhKien);
+
+                            if (lk_v != null)
                             {
-                                if (kho_v != null)
+                                if (!(lk_v.GiaNhap == cthd.GiaNhap))
                                 {
-                                    cthd.GiaNhap = ((lk_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
+                                    if (kho_v != null)
+                                    {
+                                        cthd.GiaNhap = ((lk_v.GiaNhap * kho_v.SoLuong) + (cthd.GiaNhap * cthd.SoLuong)) / (kho_v.SoLuong + cthd.SoLuong);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
-                    {
-                        MessageBox.Show("Lưu thông tin thành công!");
-                        f_Clear();
+                        if (HoaDonNhap_DAL.add_HoaDonNhap(hoadonnhap, ls_cthd))
+                        {
+                            MessageBox.Show("Lưu thông tin thành công!");
+                            f_Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa nhập đầy đủ số Seri của linh kiện " + str);
                 }
             }
         }
@@ -378,7 +409,7 @@ namespace PresentationLayer
                     item.ThanhTien = item.SoLuong * item.GiaNhap;
                     gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
-                    txtTongTien.Text = count_TongTien().ToString();
+                    count_TongTien();
                     break;
                 }
             }
@@ -417,7 +448,7 @@ namespace PresentationLayer
                 if (result == DialogResult.OK)
                 {
                     //setGridCtrl_LinhKien();
-                    
+
                 }
             }
         }
@@ -436,7 +467,7 @@ namespace PresentationLayer
                     try
                     {
                         ls_cthd = Excel_Helper.readFile(txtMaPhieu.Text.Trim(), filePath);
-                        txtTongTien.Text = count_TongTien().ToString();
+                        count_TongTien();
                         gridControl1.DataSource = ls_cthd;
                         gridControl1.RefreshDataSource();
                     }
@@ -449,7 +480,43 @@ namespace PresentationLayer
                 {
                     MessageBox.Show("Chọn file .xls hoặc .xlsx.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error  
                 }
-            }  
+            }
+        }
+
+        private void btn_XuatHD_Click(object sender, EventArgs e)
+        {
+            string result = checkSeri(); 
+            if (result.Equals(""))
+            {
+                List<HoaDonNhap_View> lst = new List<HoaDonNhap_View>();
+                hoadonnhap.ChiTietHoaDon = ls_cthd;
+                hoadonnhap.GhiChu = txtGhiChu.Text.Trim();
+                hoadonnhap.NgayLap = dateNgayBan.Value;
+
+                hoadonnhap.NhaCungCap = cbxTenNCC.Text.Trim();
+                //bien trang thai hoa don
+                hoadonnhap.TrangThai = 1;
+                lst.Add(hoadonnhap);
+                //r = HoaDon_DAL.getAll_HoaDon();
+                RHoaDonNhap r = new RHoaDonNhap(lst);
+
+                var tool = new ReportPrintTool(r);
+                tool.ShowPreview();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa nhập đầy đủ số Seri của linh kiện " + result);
+            }
+        }
+
+        private string checkSeri()
+        {
+            foreach (var item in ls_cthd)
+            {
+                if (item.SoSeri == null || item.SoLuong != item.SoSeri.Count)
+                    return item.TenLinhKien + " (" + item.MaLinhKien + ")" ;
+            }
+            return "";
         }
     }
 }

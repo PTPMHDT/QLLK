@@ -39,6 +39,11 @@ namespace PresentationLayer.ViewObject
             : base()
         { }
 
+        public void setDecimal()
+        {
+            GiaBanLe = decimal.Parse(GiaBanLe.ToString("0"));
+        }
+
         public LINHKIEN toLinhKien()
         {
             LINHKIEN lk = Context.getInstance().db.LINHKIENs.Where(key => key.MaLinhKien == MaLinhKien).FirstOrDefault();

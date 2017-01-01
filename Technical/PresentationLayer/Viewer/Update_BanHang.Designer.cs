@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Update_BanHang));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btn_XuatHD = new DevExpress.XtraEditors.SimpleButton();
             this.btnHoanTat = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.txtTongTien = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.gridCtrlLoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewLoc = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -85,9 +83,12 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaPhieu = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lbTongTien = new DevExpress.XtraEditors.LabelControl();
+            this.lbChietKhau = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTongTien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCtrlLoc)).BeginInit();
@@ -118,13 +119,15 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.lbTongTien);
+            this.panelControl2.Controls.Add(this.lbChietKhau);
+            this.panelControl2.Controls.Add(this.labelControl10);
+            this.panelControl2.Controls.Add(this.labelControl12);
             this.panelControl2.Controls.Add(this.btn_XuatHD);
             this.panelControl2.Controls.Add(this.btnHoanTat);
-            this.panelControl2.Controls.Add(this.labelControl10);
-            this.panelControl2.Controls.Add(this.txtTongTien);
-            this.panelControl2.Location = new System.Drawing.Point(285, 505);
+            this.panelControl2.Location = new System.Drawing.Point(285, 485);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(788, 51);
+            this.panelControl2.Size = new System.Drawing.Size(788, 71);
             this.panelControl2.TabIndex = 20;
             // 
             // btn_XuatHD
@@ -136,9 +139,9 @@
             this.btn_XuatHD.Appearance.Options.UseFont = true;
             this.btn_XuatHD.Appearance.Options.UseForeColor = true;
             this.btn_XuatHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XuatHD.Image")));
-            this.btn_XuatHD.Location = new System.Drawing.Point(442, 5);
+            this.btn_XuatHD.Location = new System.Drawing.Point(442, 21);
             this.btn_XuatHD.Name = "btn_XuatHD";
-            this.btn_XuatHD.Size = new System.Drawing.Size(180, 40);
+            this.btn_XuatHD.Size = new System.Drawing.Size(180, 44);
             this.btn_XuatHD.TabIndex = 12;
             this.btn_XuatHD.Text = "XUẤT HÓA ĐƠN";
             // 
@@ -151,33 +154,11 @@
             this.btnHoanTat.Appearance.Options.UseFont = true;
             this.btnHoanTat.Appearance.Options.UseForeColor = true;
             this.btnHoanTat.Image = ((System.Drawing.Image)(resources.GetObject("btnHoanTat.Image")));
-            this.btnHoanTat.Location = new System.Drawing.Point(638, 5);
+            this.btnHoanTat.Location = new System.Drawing.Point(638, 21);
             this.btnHoanTat.Name = "btnHoanTat";
-            this.btnHoanTat.Size = new System.Drawing.Size(145, 40);
+            this.btnHoanTat.Size = new System.Drawing.Size(145, 44);
             this.btnHoanTat.TabIndex = 11;
             this.btnHoanTat.Text = "HOÀN TẤT";
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.labelControl10.Location = new System.Drawing.Point(5, 12);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(141, 29);
-            this.labelControl10.TabIndex = 3;
-            this.labelControl10.Text = "Tổng Tiền : ";
-            // 
-            // txtTongTien
-            // 
-            this.txtTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTongTien.Location = new System.Drawing.Point(152, 7);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.txtTongTien.Properties.Appearance.Options.UseFont = true;
-            this.txtTongTien.Size = new System.Drawing.Size(234, 36);
-            this.txtTongTien.TabIndex = 4;
             // 
             // groupControl2
             // 
@@ -263,7 +244,7 @@
             this.repositoryItemSpinEdit1,
             this.text_money,
             this.txtThue});
-            this.gridControl1.Size = new System.Drawing.Size(784, 322);
+            this.gridControl1.Size = new System.Drawing.Size(784, 299);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -402,7 +383,7 @@
             // 
             this.btnXoa.AutoHeight = false;
             this.btnXoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -441,7 +422,7 @@
             this.groupControl3.Controls.Add(this.gridControl1);
             this.groupControl3.Location = new System.Drawing.Point(284, 160);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(788, 344);
+            this.groupControl3.Size = new System.Drawing.Size(788, 321);
             this.groupControl3.TabIndex = 18;
             this.groupControl3.Text = "Thông tin chi tiết phiếu bán hàng";
             // 
@@ -678,6 +659,46 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã Phiếu (*) :";
             // 
+            // lbTongTien
+            // 
+            this.lbTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbTongTien.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.lbTongTien.Location = new System.Drawing.Point(152, 34);
+            this.lbTongTien.Name = "lbTongTien";
+            this.lbTongTien.Size = new System.Drawing.Size(141, 29);
+            this.lbTongTien.TabIndex = 19;
+            this.lbTongTien.Text = "Tổng Tiền : ";
+            // 
+            // lbChietKhau
+            // 
+            this.lbChietKhau.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lbChietKhau.Location = new System.Drawing.Point(153, 9);
+            this.lbChietKhau.Name = "lbChietKhau";
+            this.lbChietKhau.Size = new System.Drawing.Size(65, 16);
+            this.lbChietKhau.TabIndex = 18;
+            this.lbChietKhau.Text = "Chiết khấu:";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl10.Location = new System.Drawing.Point(63, 9);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(73, 16);
+            this.labelControl10.TabIndex = 16;
+            this.labelControl10.Text = "Chiết khấu  :";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.labelControl12.Location = new System.Drawing.Point(5, 34);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(141, 29);
+            this.labelControl12.TabIndex = 17;
+            this.labelControl12.Text = "Tổng Tiền : ";
+            // 
             // Update_BanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -693,7 +714,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTongTien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCtrlLoc)).EndInit();
@@ -728,8 +748,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btn_XuatHD;
         private DevExpress.XtraEditors.SimpleButton btnHoanTat;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit txtTongTien;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraGrid.GridControl gridCtrlLoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewLoc;
@@ -780,6 +798,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private System.Windows.Forms.DateTimePicker date_Update;
         private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LabelControl lbTongTien;
+        private DevExpress.XtraEditors.LabelControl lbChietKhau;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
 
     }
 }

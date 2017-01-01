@@ -158,5 +158,13 @@ namespace PresentationLayer
             Context.getInstance().formLogin.Show();
         }
 
+        private void btn_HeThong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCHeThong();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
+
     }
 }

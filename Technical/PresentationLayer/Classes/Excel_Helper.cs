@@ -17,9 +17,6 @@ namespace PresentationLayer.Classes
     {
         public static List<CT_HoaDonNhap_View> readFile(string maHD, string fileName)
         {
-            
-
-
             List<CT_HoaDonNhap_View> lst = new List<CT_HoaDonNhap_View>();
 
             // Reference to Excel Application.
@@ -40,48 +37,71 @@ namespace PresentationLayer.Classes
             object[,] valueArray = (object[,])xlRange.get_Value(
                         Excel.XlRangeValueDataType.xlRangeValueDefault);
 
-            CT_HoaDonNhap_View cthd;
-            string maLK;
-            string tenLK;
-            Decimal giaNhap;
-            float thue;
-            string seri;
+            CT_HoaDonNhap_View cthd = new CT_HoaDonNhap_View();
+
+            bool ischange = true;
 
             // iterate through each cell and display the contents.
             for (int row = 2; row <= xlWorksheet.UsedRange.Rows.Count; ++row)
             {
-                maLK = valueArray[row, 1].ToString().Trim();
-                tenLK = valueArray[row, 2].ToString().Trim();
-                giaNhap = Decimal.Parse(valueArray[row, 3].ToString().Trim());
-                thue = float.Parse(valueArray[row, 4].ToString().Trim());
-                seri = valueArray[row, 5].ToString().Trim();
+                try
+                {
+                    if (ischange)
+                    {
+                        cthd = new CT_HoaDonNhap_View();
+                        cthd.MaLinhKien = valueArray[row, 1].ToString().Trim();
+                        cthd.TenLinhKien = valueArray[row, 2].ToString().Trim();
+                        cthd.GiaNhap = Decimal.Parse(valueArray[row, 3].ToString().Trim());
+                        cthd.SoLuong = Int32.Parse(valueArray[row, 4].ToString().Trim());
+                        cthd.SoSeri = new List<string>();
+                        cthd.Thue = 0;
+                        cthd.ThanhTien = (cthd.GiaNhap * cthd.SoLuong) + (cthd.GiaNhap * cthd.SoLuong) * (Decimal)(cthd.Thue / 100);
+                        ischange = false;
+                    }
+                    else
+                    {
+                        cthd.SoSeri.Add(valueArray[row, 5].ToString().Trim());
+                        if (cthd.SoSeri.Count == cthd.SoLuong)
+                        {
+                            ischange = true;
+                            lst.Add(cthd);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("File dữ liệu không đúng định dạng hoặc dữ liệu bị sai, trùng. Xin vui lòng kiểm tra lại!");
+                    return new List<CT_HoaDonNhap_View>();
+                }
 
-                var ct = lst.Where(key => key.MaLinhKien == maLK).FirstOrDefault();
-                if (ct != null)
-                {
-                    ct.SoLuong += 1;
-                    ct.ThanhTien = (ct.GiaNhap * ct.SoLuong) + (ct.GiaNhap * ct.SoLuong) * (Decimal)(ct.Thue / 100);
-                    ct.SoSeri.Add(seri);
-                }
-                else
-                {
-                    cthd = new CT_HoaDonNhap_View();
-                    cthd.MaHoaDon = maHD;
-                    cthd.SoLuong = 1;
-                    cthd.GiaNhap = giaNhap;
-                    cthd.MaLinhKien = maLK;
-                    LinhKien_View lk = LinhKien_DAL.get_LinhKien_ByMaLK(maLK);
-                    if(lk!= null)
-                        cthd.TenLinhKien = lk.TenLinhKien;
-                    cthd.Seri = seri;
-                    cthd.SoSeri = new List<string>();
-                    cthd.SoSeri.Add(seri);
-                    cthd.Thue = thue;
-                    cthd.ThanhTien = (cthd.GiaNhap * cthd.SoLuong) + (cthd.GiaNhap * cthd.SoLuong) * (Decimal)(cthd.Thue / 100); 
-                    cthd.TinhTrang = 1;
-                    lst.Add(cthd);
-                }
-                
+
+
+                //var ct = lst.Where(key => key.MaLinhKien == maLK).FirstOrDefault();
+                //if (ct != null)
+                //{
+                //    ct.SoLuong += 1;
+                //    ct.ThanhTien = (ct.GiaNhap * ct.SoLuong) + (ct.GiaNhap * ct.SoLuong) * (Decimal)(ct.Thue / 100);
+                //    ct.SoSeri.Add(seri);
+                //}
+                //else
+                //{
+                //    cthd = new CT_HoaDonNhap_View();
+                //    cthd.MaHoaDon = maHD;
+                //    cthd.SoLuong = 1;
+                //    cthd.GiaNhap = giaNhap;
+                //    cthd.MaLinhKien = maLK;
+                //    LinhKien_View lk = LinhKien_DAL.get_LinhKien_ByMaLK(maLK);
+                //    if(lk!= null)
+                //        cthd.TenLinhKien = lk.TenLinhKien;
+                //    cthd.Seri = seri;
+                //    cthd.SoSeri = new List<string>();
+                //    cthd.SoSeri.Add(seri);
+                //    cthd.Thue = 0;
+                //    cthd.ThanhTien = (cthd.GiaNhap * cthd.SoLuong) + (cthd.GiaNhap * cthd.SoLuong) * (Decimal)(cthd.Thue / 100); 
+                //    cthd.TinhTrang = 1;
+                //    lst.Add(cthd);
+                //}
+
             }
 
             // Close the Workbook.

@@ -93,8 +93,14 @@ namespace PresentationLayer.DAL
                          GhiChu = hoadon.GhiChu
                      };
             var khp = hd.ToList();
-            khp.ForEach(k => k.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(k.MaHoaDon));
-            return khp.ToList();
+            foreach (var item in khp)
+            {
+                item.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(item.MaHoaDon);
+                item.InitOldData();
+                if (item.TrangThai == 0)
+                    item.Mode = TT.DELETE; 
+            }
+            return khp;
         }
 
         public static List<HoaDon_View> searchSeri(string seri)
@@ -128,17 +134,8 @@ namespace PresentationLayer.DAL
             {
                 try
                 {
+                    hd.TrangThai = 1;
                     Context.getInstance().db.Entry(hd.toHoaDon()).State = System.Data.Entity.EntityState.Added;
-                    //ct_hds.ForEach(x =>
-                    //{
-                    //    foreach (var item in x.SoSeri)
-                    //    {
-                    //        Context.getInstance().db.Entry(x.toCT_HoaDon(item)).State = System.Data.Entity.EntityState.Added;
-                    //        //giam so luong trong kho
-                    //        kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == item).FirstOrDefault();
-                    //        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Deleted;
-                    //    }
-                    //});
                     list_Change.Inserts.ForEach(x =>
                     {
                         //set trang thai = 1 o day
@@ -179,22 +176,81 @@ namespace PresentationLayer.DAL
             return true;
         }
 
-        public static bool del_HoaDon(List<HOADON> hds)
+        public static bool del_HoaDon(HoaDon_View hd, DataUpdate<CT_HOADON> list_Change)
         {
-            try
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
             {
-                foreach (HOADON hd in hds)
+                try
                 {
-                    Context.getInstance().db.HOADONs.Remove(hd);                    
+                    hd.TrangThai = 0;
+                    Context.getInstance().db.Entry(hd.toHoaDon()).State = System.Data.Entity.EntityState.Modified;
+
+                    list_Change.Inserts.ForEach(x =>
+                    {
+                        CT_HOADON ct = Context.getInstance().db.CT_HOADON.Where(key => key.MaHoaDon == x.MaHoaDon)
+                                                                          .Where(key => key.MaLinhKien == x.MaLinhKien)
+                                                                          .Where(key => key.Seri == x.Seri)
+                                                                         .FirstOrDefault();
+                        if (ct != null)
+                        {
+                            ct.TinhTrang = 1;
+                            Context.getInstance().db.Entry(ct).State = System.Data.Entity.EntityState.Modified;
+                        }
+                        else
+                        {
+                            x.TinhTrang = 1;
+                            Context.getInstance().db.Entry(x).State = System.Data.Entity.EntityState.Added;
+                        }
+
+                        //xoa trong kho
+                        KHO kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == x.Seri).FirstOrDefault();
+                        kho.TrangThai = 0;
+                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+                    list_Change.Updates.ForEach(x =>
+                    {
+                        x.TinhTrang = 1;
+                        Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+                    list_Change.Deletes.ForEach(x =>
+                    {
+                        //set trang thai = 0 o day
+                        x.TinhTrang = 0;
+                        Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
+
+                        //them trong kho
+                        KHO kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == x.Seri).FirstOrDefault();
+                        kho.TrangThai = 1;
+                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+
+                    //update so tien mua hang cua khach hang
+                    KHACHHANG kh = Context.getInstance().db.KHACHHANGs.Where(key => key.MaKhachHang == hd.MaKhachHang).FirstOrDefault();
+                    kh.Tong += hd.TongTien;
+                    kh.Tong -= tongTien_old;
+                    Context.getInstance().db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
+
+                    //update so luong ban hang cua nhan vien
+                    NHANVIEN mNV = Context.getInstance().db.NHANVIENs.Where(key => key.MaNhanVien == hd.MaNhanVien).FirstOrDefault();
+                    mNV.TongTien += hd.TongTien;
+                    mNV.TongTien -= tongTien_old;
+                    Context.getInstance().db.Entry(mNV).State = System.Data.Entity.EntityState.Modified;
+
+                    Context.getInstance().db.SaveChanges();
+                    transaction.Commit();
                 }
-                Context.getInstance().db.SaveChanges();
-                return true;
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
+                    return false;
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.InnerException);
-                return false;
-            }
+            return true;
         }
 
         public static bool update_HoaDon(HoaDon_View hd, DataUpdate<CT_HOADON> list_Change, decimal tongTien_old)

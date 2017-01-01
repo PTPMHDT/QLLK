@@ -27,6 +27,8 @@ namespace PresentationLayer.Viewer
         //GridHelper<CT_HoaDon_View> gridThaoTac;
         DataUpdate<CT_HOADON> dt;
         decimal tong_tien_old;
+        decimal phanTramChietKhau;
+        decimal phanTramChietKhau_DB;
 
         public Update_BanHang()
         {
@@ -95,7 +97,8 @@ namespace PresentationLayer.Viewer
        
         private void setDataLoad()
         {
-
+            phanTramChietKhau_DB = decimal.Parse(HeThong_DAL.getHeThongByMa("HT001").GiaTri);
+            phanTramChietKhau = 0;
             txtMaPhieu.Text = hoadon.MaHoaDon;
             txtNhanVien.Text = hoadon.NhanVien;
             dateNgayBan.Text = hoadon.NgayLap.ToString();
@@ -109,7 +112,7 @@ namespace PresentationLayer.Viewer
             else
                 ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
         }
 
         private void setGridCtrl_LinhKien()
@@ -179,17 +182,19 @@ namespace PresentationLayer.Viewer
             decimal chenhLech = soluong - ct_hd.SoLuong;
 
             Kho_View kho = list_LK_inKho.Where(key => key.MaLinhKien == ct_hd.MaLinhKien).FirstOrDefault();
+            decimal chechLechVsKho = chenhLech - kho.SoLuong;
+
             if(kho!= null)
             {
                 foreach (CT_HoaDon_View item in ls_cthd)
                 {
                     if (item.MaLinhKien.Equals(ct_hd.MaLinhKien))
                     {
-                        if (kho.SoLuong == 0 && chenhLech > 0)
+                        if (chechLechVsKho > 0 && chenhLech > 0)
                         {
                             MessageBox.Show("Trong kho đã hết mặt hàng này, vui lòng nhập thêm sản phẩm!");
                             ((DevExpress.XtraEditors.SpinEdit)sender).Value = ct_hd.SoLuong;
-                            kho.SoLuong = 0;
+                            //kho.SoLuong = 0;
                             return;
                         }
                         else
@@ -200,16 +205,17 @@ namespace PresentationLayer.Viewer
                                 item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
                                 if (chenhLech > 0)
                                 {
-                                    item.SoSeri.Add(kho.SoSeri[0]);
-                                    kho.SoSeri.RemoveAt(0);
+                                    item.SoSeri.AddRange(kho.SoSeri.GetRange(0, (int)chenhLech));
+                                    kho.SoSeri.RemoveRange(0, (int)chenhLech);
                                 }
                                 else
                                 {
-                                    kho.SoSeri.Insert(0, item.SoSeri[item.SoSeri.Count - 1]);
-                                    item.SoSeri.RemoveAt(item.SoSeri.Count - 1);
+                                    chenhLech = -chenhLech;
+                                    kho.SoSeri.InsertRange(0, item.SoSeri.GetRange(item.SoSeri.Count - (int)chenhLech, (int)chenhLech));
+                                    item.SoSeri.RemoveRange(item.SoSeri.Count - (int)chenhLech, (int)chenhLech);
                                 }
                                 kho.SoLuong = kho.SoSeri.Count();
-                                txtTongTien.Text = count_TongTien().ToString();
+                                count_TongTien();
                             }
                         }
 
@@ -269,16 +275,20 @@ namespace PresentationLayer.Viewer
                 {
                     case "L001":
                         cthd.GiaBan = lk_view.GiaBanLe;
+                        phanTramChietKhau = 0;
                         break;
                     case "L002":
                         cthd.GiaBan = lk_view.GiaBanSi;
+                        phanTramChietKhau = 0;
                         break;
                     case "L003":
+                        cthd.GiaBan = lk_view.GiaBanLe;
+                        phanTramChietKhau = phanTramChietKhau_DB;
                         break;
                 }
                 cthd.ThanhTien = (cthd.GiaBan * cthd.SoLuong) + (cthd.GiaBan * cthd.SoLuong) * (Decimal)(cthd.Thue / 100);
             }
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
             gridControl1.RefreshDataSource();
         }
 
@@ -290,7 +300,7 @@ namespace PresentationLayer.Viewer
         private void addRowGrid_CT_HoaDon()
         {
             Kho_View kho = gridViewLoc.GetFocusedRow() as Kho_View;
-            bool flat = false;
+            bool flat = false;  
             if (ls_cthd.Count > 0)
             {
                 if (kho.SoLuong <= 0)
@@ -329,11 +339,15 @@ namespace PresentationLayer.Viewer
                 {
                     case "L001":
                         ct_hd.GiaBan = lk_view.GiaBanLe;
+                        phanTramChietKhau = 0;
                         break;
                     case "L002":
                         ct_hd.GiaBan = lk_view.GiaBanSi;
+                        phanTramChietKhau = 0;
                         break;
                     case "L003":
+                        ct_hd.GiaBan = lk_view.GiaBanLe;
+                        phanTramChietKhau = phanTramChietKhau_DB;
                         break;
                 }
                 ct_hd.SoLuong = 1;
@@ -346,7 +360,7 @@ namespace PresentationLayer.Viewer
             }
             gridCtrlLoc.RefreshDataSource();
             gridControl1.RefreshDataSource();
-            txtTongTien.Text = count_TongTien().ToString();
+            count_TongTien();
         }
 
         private void RemoveRowGrid_CT_HoaDon()
@@ -391,7 +405,7 @@ namespace PresentationLayer.Viewer
                 //        break;
                 //    }
                 //}
-                txtTongTien.Text = count_TongTien().ToString();
+                count_TongTien();
             }
         }
 
@@ -410,7 +424,7 @@ namespace PresentationLayer.Viewer
             RemoveRowGrid_CT_HoaDon();
         }
 
-        private decimal count_TongTien()
+        private void count_TongTien()
         {
             decimal tongtien = 0;
             // decimal thue = 0;
@@ -421,7 +435,9 @@ namespace PresentationLayer.Viewer
                     tongtien += item.ThanhTien;
                 }
             }
-            return tongtien;
+            decimal ck = (tongtien * phanTramChietKhau / 100);
+            lbChietKhau.Text = ck.ToString("0") + "(VNĐ)";
+            lbTongTien.Text = (tongtien - ck).ToString("0") + "(VNĐ)";
         }
 
         private void btnHoanTat_Click(object sender, EventArgs e)
@@ -435,7 +451,7 @@ namespace PresentationLayer.Viewer
                 {
                     hoadon.GhiChu = txtGhiChu.Text.Trim();
                     hoadon.NgayLap = dateNgayBan.Value;
-                    hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
+                    hoadon.TongTien = Decimal.Parse(lbTongTien.Text);
                     //bien trang thai hoa don
                     hoadon.TrangThai = 1;
                     //set nguoi sua va ngay sua cua hoa don
@@ -445,6 +461,7 @@ namespace PresentationLayer.Viewer
                     foreach (var item in ls_cthd)
                     {
                         item.LoiNhuan = (item.SoLuong * item.GiaBan) - (item.SoLuong * LinhKien_DAL.get_LinhKien_ByMaLK(item.MaLinhKien).GiaNhap);
+                        item.LoiNhuan = item.LoiNhuan - (item.LoiNhuan * phanTramChietKhau / 100);
                         hoadon.TongLoiNhuan += item.LoiNhuan;
                     }
 
@@ -548,7 +565,7 @@ namespace PresentationLayer.Viewer
                     item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
                     //gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
-                    txtTongTien.Text = count_TongTien().ToString();
+                    count_TongTien();
                     break;
                 }
             }
@@ -561,7 +578,7 @@ namespace PresentationLayer.Viewer
             hoadon.GhiChu = txtGhiChu.Text.Trim();
             hoadon.NgayLap = DateTime.Parse(dateNgayBan.Value.ToShortDateString());
 
-            hoadon.TongTien = Decimal.Parse(txtTongTien.Text);
+            hoadon.TongTien = Decimal.Parse(lbTongTien.Text);
             hoadon.KhachHang = cbTenKhachHang.Text.Trim();
             //bien trang thai hoa don
             hoadon.TrangThai = 1;
@@ -610,7 +627,7 @@ namespace PresentationLayer.Viewer
                     item.ThanhTien = (item.SoLuong * item.GiaBan) + (item.SoLuong * item.GiaBan) * (Decimal)(item.Thue / 100);
                     //gridControl1.DataSource = ls_cthd;
                     gridControl1.RefreshDataSource();
-                    txtTongTien.Text = count_TongTien().ToString();
+                    count_TongTien();
                     break;
                 }
             }

@@ -85,8 +85,8 @@ namespace PresentationLayer.DAL
             {
                 try
                 {
-                    decimal phanTramLoiNhuanBanLe = decimal.Parse(HeThong_DAL.getHeThongByMa("MA002").GiaTri);
-                    decimal phanTramLoiNhuanBanBuon = decimal.Parse(HeThong_DAL.getHeThongByMa("MA003").GiaTri);
+                    decimal phanTramLoiNhuanBanLe = decimal.Parse(HeThong_DAL.getHeThongByMa("HT002").GiaTri);
+                    decimal phanTramLoiNhuanBanBuon = decimal.Parse(HeThong_DAL.getHeThongByMa("HT003").GiaTri);
 
                     Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Added;
                     Context.getInstance().db.SaveChanges();

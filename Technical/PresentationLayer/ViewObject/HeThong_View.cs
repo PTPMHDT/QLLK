@@ -9,7 +9,7 @@ namespace PresentationLayer.ViewObject
 {
     public class HeThong_View : CGrid
     {
-        public string MaHeThong { get; set; }
+        public string Ma { get; set; }
         public string Ten { get; set; }
         public string GiaTri { get; set; }
 
@@ -18,12 +18,12 @@ namespace PresentationLayer.ViewObject
 
         public HETHONG toHeThong()
         {
-            HETHONG ht = Context.getInstance().db.HETHONGs.Where(key => key.Ma == MaHeThong).FirstOrDefault();
+            HETHONG ht = Context.getInstance().db.HETHONGs.Where(key => key.Ma == Ma).FirstOrDefault();
             if (ht == null)
             {
                 ht = new HETHONG();
             }
-            ht.Ma = MaHeThong;
+            ht.Ma = Ma;
             ht.Ten = Ten;
             ht.GiaTri = GiaTri;
 
