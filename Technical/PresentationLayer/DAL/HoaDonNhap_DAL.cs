@@ -108,8 +108,8 @@ namespace PresentationLayer.DAL
                         if (lk.GiaNhap != x.GiaNhap)
                         {
                             lk.GiaNhap = x.GiaNhap;
-                            lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanLe);
-                            lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanBuon);
+                            lk.GiaBanLe = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanLe / 100);
+                            lk.GiaBanSi = x.GiaNhap + (x.GiaNhap * phanTramLoiNhuanBanBuon / 100);
                             Context.getInstance().db.Entry(lk).State = System.Data.Entity.EntityState.Modified;
                         }
                     });

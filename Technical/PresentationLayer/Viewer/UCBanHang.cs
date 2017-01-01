@@ -103,7 +103,7 @@ namespace PresentationLayer
             if (isNew)
                 ls_cthd = new List<CT_HoaDon_View>();
             else
-                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
+                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(hoadon.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
             count_TongTien();
         }
@@ -116,7 +116,7 @@ namespace PresentationLayer
             }
             else
             {
-                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
+                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(hoadon.MaHoaDon);
             }
         }
 

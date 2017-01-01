@@ -49,7 +49,10 @@ namespace PresentationLayer.DAL
                          GhiChu = hoadon.GhiChu
                      };
             HoaDon_View hdV = hd.ToList()[0];
-            hdV.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hdV.MaHoaDon);
+            hdV.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(hdV.MaHoaDon);
+            hdV.InitOldData();
+            if(hdV.TrangThai == 0)
+                hdV.Mode = TT.DELETE;
             return hdV;
         }
 
@@ -71,7 +74,7 @@ namespace PresentationLayer.DAL
             }
         }
 
-        internal static object getAll_HoaDon_TheoThoiGian(DateTime startD, DateTime endD)
+        internal static List<HoaDon_View> getAll_HoaDon_TheoThoiGian(DateTime startD, DateTime endD)
         {
             var hd = from hoadon in Context.getInstance().db.HOADONs
                      where hoadon.NgayLap >= startD.Date 
@@ -83,19 +86,20 @@ namespace PresentationLayer.DAL
                          NhanVien = hoadon.NHANVIEN.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,
                          TongTien = hoadon.TongTien,
+                         TongLoiNhuan = hoadon.TongLoiNhuan,
                          TrangThai = hoadon.TrangThai,
                          KhachHang = hoadon.KHACHHANG.TenKhachHang,
                          MaKhachHang = hoadon.MaKhachHang,
                          SoDienThoai = hoadon.KHACHHANG.SoDienThoai,
                          MaNhanVienSua = hoadon.MaNguoiSua,
-                         TenNhanVienSua = hoadon.NHANVIEN1.MaNhanVien,
+                         TenNhanVienSua = hoadon.NHANVIEN1.TenNhanVien,
                          NgaySua = (DateTime)hoadon.NgaySua,
                          GhiChu = hoadon.GhiChu
                      };
             var khp = hd.ToList();
             foreach (var item in khp)
             {
-                item.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(item.MaHoaDon);
+                item.ChiTietHoaDon = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(item.MaHoaDon);
                 item.InitOldData();
                 if (item.TrangThai == 0)
                     item.Mode = TT.DELETE; 
@@ -185,34 +189,15 @@ namespace PresentationLayer.DAL
                     hd.TrangThai = 0;
                     Context.getInstance().db.Entry(hd.toHoaDon()).State = System.Data.Entity.EntityState.Modified;
 
-                    list_Change.Inserts.ForEach(x =>
-                    {
-                        CT_HOADON ct = Context.getInstance().db.CT_HOADON.Where(key => key.MaHoaDon == x.MaHoaDon)
-                                                                          .Where(key => key.MaLinhKien == x.MaLinhKien)
-                                                                          .Where(key => key.Seri == x.Seri)
-                                                                         .FirstOrDefault();
-                        if (ct != null)
-                        {
-                            ct.TinhTrang = 1;
-                            Context.getInstance().db.Entry(ct).State = System.Data.Entity.EntityState.Modified;
-                        }
-                        else
-                        {
-                            x.TinhTrang = 1;
-                            Context.getInstance().db.Entry(x).State = System.Data.Entity.EntityState.Added;
-                        }
+                    //list_Change.Inserts.ForEach(x =>
+                    //{
+                    //});
 
-                        //xoa trong kho
-                        KHO kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == x.Seri).FirstOrDefault();
-                        kho.TrangThai = 0;
-                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
-                    });
-
-                    list_Change.Updates.ForEach(x =>
-                    {
-                        x.TinhTrang = 1;
-                        Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
-                    });
+                    //list_Change.Updates.ForEach(x =>
+                    //{
+                    //    x.TinhTrang = 1;
+                    //    Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
+                    //});
 
                     list_Change.Deletes.ForEach(x =>
                     {
@@ -229,14 +214,12 @@ namespace PresentationLayer.DAL
 
                     //update so tien mua hang cua khach hang
                     KHACHHANG kh = Context.getInstance().db.KHACHHANGs.Where(key => key.MaKhachHang == hd.MaKhachHang).FirstOrDefault();
-                    kh.Tong += hd.TongTien;
-                    kh.Tong -= tongTien_old;
+                    kh.Tong -= hd.TongTien;
                     Context.getInstance().db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
 
                     //update so luong ban hang cua nhan vien
                     NHANVIEN mNV = Context.getInstance().db.NHANVIENs.Where(key => key.MaNhanVien == hd.MaNhanVien).FirstOrDefault();
-                    mNV.TongTien += hd.TongTien;
-                    mNV.TongTien -= tongTien_old;
+                    mNV.TongTien -= hd.TongTien;
                     Context.getInstance().db.Entry(mNV).State = System.Data.Entity.EntityState.Modified;
 
                     Context.getInstance().db.SaveChanges();

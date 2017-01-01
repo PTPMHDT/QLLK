@@ -110,7 +110,7 @@ namespace PresentationLayer.Viewer
             if (isNew)
                 ls_cthd = new List<CT_HoaDon_View>();
             else
-                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
+                ls_cthd = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(hoadon.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
             count_TongTien();
         }
@@ -465,7 +465,7 @@ namespace PresentationLayer.Viewer
                         hoadon.TongLoiNhuan += item.LoiNhuan;
                     }
 
-                    List<CT_HoaDon_View> mLstCTHD = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD(hoadon.MaHoaDon);
+                    List<CT_HoaDon_View> mLstCTHD = CT_HoaDon_DAL.get_CTHoaDon_By_MaHD_TT01(hoadon.MaHoaDon);
 
                     if (mLstCTHD.Count > ls_cthd.Count)
                     {

@@ -46,6 +46,7 @@ namespace PresentationLayer.ViewObject
             hd.MaKhachHang = MaKhachHang;
             hd.MaNguoiSua = MaNhanVienSua;
             hd.NgaySua = NgaySua;
+            hd.TrangThai = TrangThai;
             return hd;
         }
     }
