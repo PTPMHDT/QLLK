@@ -11,6 +11,7 @@ using PresentationLayer.DAL;
 using PresentationLayer.ViewObject;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
+using System.Globalization;
 
 namespace PresentationLayer.Viewer
 {
@@ -31,12 +32,20 @@ namespace PresentationLayer.Viewer
         public Add_LinhKien(string maNCC)
         {
             InitializeComponent();
+            this.Load += Add_LinhKien_Load;
             this.maNCC = maNCC;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridView1.FocusedColumnChanged += gridView1_FocusedColumnChanged;
             InitVal();
             btnXoa_Grid.Click += btnXoa_Grid_Click;
             gridView1.ValidatingEditor += gridView1_ValidatingEditor;
+        }
+
+        void Add_LinhKien_Load(object sender, EventArgs e)
+        {
+            this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.text_money.DisplayFormat.FormatString = "c";
         }
 
         void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)

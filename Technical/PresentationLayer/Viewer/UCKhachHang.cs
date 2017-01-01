@@ -10,6 +10,7 @@ using PresentationLayer.DAL;
 using PresentationLayer.ViewObject;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using System.Globalization;
 
 namespace PresentationLayer
 {
@@ -22,12 +23,20 @@ namespace PresentationLayer
         public UCKhachHang()
         {
             InitializeComponent();
+            this.Load += UCKhachHang_Load;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
             gridView1.FocusedColumnChanged += gridView1_FocusedColumnChanged;
             gridView1.ValidatingEditor += gridView1_ValidatingEditor;
             InitVal();
             btnXoa_Grid.Click += btnXoa_Grid_Click;
             gridView1.KeyDown += gridView1_KeyDown;
+        }
+
+        void UCKhachHang_Load(object sender, EventArgs e)
+        {
+            this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.text_money.DisplayFormat.FormatString = "c";
         }
 
         private void InitVal()

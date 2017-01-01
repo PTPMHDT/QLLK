@@ -42,6 +42,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -53,6 +54,7 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -64,7 +66,7 @@
             this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnLuu.Appearance.Options.UseFont = true;
             this.btnLuu.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.Image")));
-            this.btnLuu.Location = new System.Drawing.Point(805, 6);
+            this.btnLuu.Location = new System.Drawing.Point(808, 6);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(75, 35);
             this.btnLuu.TabIndex = 8;
@@ -77,7 +79,7 @@
             this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnThem.Appearance.Options.UseFont = true;
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(662, 6);
+            this.btnThem.Location = new System.Drawing.Point(665, 6);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(137, 35);
             this.btnThem.TabIndex = 7;
@@ -107,7 +109,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnXoa_Grid});
+            this.btnXoa_Grid,
+            this.text_money});
             this.gridControl1.Size = new System.Drawing.Size(884, 551);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -198,15 +201,24 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Giá Nhập";
+            this.gridColumn4.ColumnEdit = this.text_money;
             this.gridColumn4.FieldName = "GiaNhap";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.OptionsColumn.AllowFocus = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 73;
             // 
+            // text_money
+            // 
+            this.text_money.AutoHeight = false;
+            this.text_money.Name = "text_money";
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Giá Bán Sỉ";
+            this.gridColumn5.ColumnEdit = this.text_money;
             this.gridColumn5.FieldName = "GiaBanSi";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
@@ -216,6 +228,7 @@
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Giá Bán Lẻ";
+            this.gridColumn7.ColumnEdit = this.text_money;
             this.gridColumn7.FieldName = "GiaBanLe";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
@@ -263,9 +276,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl1.Controls.Add(this.btnThem);
             this.panelControl1.Controls.Add(this.btnLuu);
-            this.panelControl1.Location = new System.Drawing.Point(3, 580);
+            this.panelControl1.Location = new System.Drawing.Point(0, 580);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(885, 46);
+            this.panelControl1.Size = new System.Drawing.Size(888, 46);
             this.panelControl1.TabIndex = 9;
             // 
             // UCLinhKien
@@ -281,6 +294,7 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa_Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -309,5 +323,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa_Grid;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
     }
 }

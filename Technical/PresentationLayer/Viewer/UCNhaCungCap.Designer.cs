@@ -34,6 +34,7 @@
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtSDT = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -44,13 +45,14 @@
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.txtSDT = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             this.SuspendLayout();
             // 
             // gridColumn5
@@ -97,6 +99,13 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
             this.gridColumn3.Width = 95;
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.AutoHeight = false;
+            this.txtSDT.Mask.EditMask = "f0";
+            this.txtSDT.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtSDT.Name = "txtSDT";
             // 
             // gridColumn2
             // 
@@ -162,6 +171,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Tổng tiền giao dịch";
+            this.gridColumn6.ColumnEdit = this.text_money;
             this.gridColumn6.FieldName = "Tong";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
@@ -195,7 +205,8 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnXoa,
-            this.txtSDT});
+            this.txtSDT,
+            this.text_money});
             this.gridControl1.Size = new System.Drawing.Size(763, 426);
             this.gridControl1.TabIndex = 3;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -217,12 +228,10 @@
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Thông Tin Nhà Cung Cấp";
             // 
-            // txtSDT
+            // text_money
             // 
-            this.txtSDT.AutoHeight = false;
-            this.txtSDT.Mask.EditMask = "f0";
-            this.txtSDT.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtSDT.Name = "txtSDT";
+            this.text_money.AutoHeight = false;
+            this.text_money.Name = "text_money";
             // 
             // UCNhaCungCap
             // 
@@ -233,12 +242,13 @@
             this.Controls.Add(this.btnThem);
             this.Name = "UCNhaCungCap";
             this.Size = new System.Drawing.Size(773, 497);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSDT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,5 +270,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtSDT;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
     }
 }

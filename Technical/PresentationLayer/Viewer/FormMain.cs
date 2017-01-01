@@ -166,5 +166,14 @@ namespace PresentationLayer
             panelMain.Controls.Add(ucLinhKien);
         }
 
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có muốn thoát khỏi chương trình hay không?", "Hệ thống", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
     }
 }

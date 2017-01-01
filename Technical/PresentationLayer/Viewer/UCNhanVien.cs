@@ -10,6 +10,7 @@ using PresentationLayer.ViewObject;
 using PresentationLayer.DAL;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using System.Globalization;
 
 namespace PresentationLayer
 {
@@ -22,12 +23,20 @@ namespace PresentationLayer
         public UCNhanVien()
         {
             InitializeComponent();
+            this.Load += UCNhanVien_Load;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged; ;
             gridView1.FocusedColumnChanged += gridView1_FocusedColumnChanged;
             gridView1.ValidatingEditor += gridView1_ValidatingEditor;
             InitVal();
             gridView1.KeyDown += gridView1_KeyDown;
             btnXoa.Click+=btnXoa_Click;
+        }
+
+        void UCNhanVien_Load(object sender, EventArgs e)
+        {
+            this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.text_money.DisplayFormat.FormatString = "c";
         }
 
         void gridView1_KeyDown(object sender, KeyEventArgs e)

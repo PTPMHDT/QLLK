@@ -11,6 +11,7 @@ using PresentationLayer.DAL;
 using PresentationLayer.Viewer;
 using PresentationLayer.GlobalVariable;
 using DevExpress.XtraReports.UI;
+using System.Globalization;
 
 namespace PresentationLayer
 {
@@ -21,7 +22,15 @@ namespace PresentationLayer
         public UCChiTietBanHang()
         {
             InitializeComponent();
+            this.Load += UCChiTietBanHang_Load;
             InitVal();
+        }
+
+        void UCChiTietBanHang_Load(object sender, EventArgs e)
+        {
+            this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
+            this.text_money.DisplayFormat.FormatString = "c";
         }
 
         private void InitVal()
@@ -75,25 +84,28 @@ namespace PresentationLayer
             HoaDon_View hd = gridView1.GetFocusedRow() as HoaDon_View;
             if (hd != null)
             {
-                var result = MessageBox.Show("Bạn có muốn xóa hóa đơn bán hàng " + hd.MaHoaDon + "?", "Lưu thông tin", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if(hd.Mode != TT.DELETE)
                 {
-                    DataUpdate<CT_HOADON> dt = new DataUpdate<CT_HOADON>();
-                    foreach (var item in hd.ChiTietHoaDon)
+                    var result = MessageBox.Show("Bạn có muốn xóa hóa đơn bán hàng " + hd.MaHoaDon + "?", "Lưu thông tin", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
                     {
-                        dt.Deletes.AddRange(item.toList_CT_HoaDon());                        
-                    }
-                    hd.MaNhanVienSua = Context.getInstance().nv.MaNhanVien;
-                    hd.NgaySua = DateTime.Now;
-                    if(HoaDon_DAL.del_HoaDon(hd, dt))
-                    {
-                        MessageBox.Show("Lưu thông tin thành công!");
-                        gridThaoTac.Delete();
-                        gridControl1.RefreshDataSource();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                        DataUpdate<CT_HOADON> dt = new DataUpdate<CT_HOADON>();
+                        foreach (var item in hd.ChiTietHoaDon)
+                        {
+                            dt.Deletes.AddRange(item.toList_CT_HoaDon());
+                        }
+                        hd.MaNhanVienSua = Context.getInstance().nv.MaNhanVien;
+                        hd.NgaySua = DateTime.Now;
+                        if (HoaDon_DAL.del_HoaDon(hd, dt))
+                        {
+                            MessageBox.Show("Lưu thông tin thành công!");
+                            gridThaoTac.Delete();
+                            gridControl1.RefreshDataSource();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                        }
                     }
                 }
             }
@@ -123,11 +135,16 @@ namespace PresentationLayer
             thd.NgayKetThuc = dateKetThuc.Value.ToString("dd/MM/yyyy");
             thd.NhanVien = Context.getInstance().nv.TenNhanVien;
             thd.ThoiGian = DateTime.Now;
-            thd.List_HoaDon = lstHD;
+            thd.List_HoaDon = new List<HoaDon_View>();
+
             foreach (var item in lstHD)
             {
-                thd.TongTien += item.TongTien;
-                thd.TongLoiNhuan += item.TongLoiNhuan;
+                if(item.TrangThai == 1)
+                {
+                    thd.TongTien += item.TongTien;
+                    thd.TongLoiNhuan += item.TongLoiNhuan;
+                    thd.List_HoaDon.Add(item);
+                }
             }
             l.Add(thd);
             RTongKetHoaDon r = new RTongKetHoaDon(l);

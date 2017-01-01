@@ -42,8 +42,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.btnXuatFile = new DevExpress.XtraEditors.SimpleButton();
-            this.btnXem = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
@@ -55,6 +55,7 @@
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -142,6 +143,8 @@
             this.gridControl1.Location = new System.Drawing.Point(2, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.text_money});
             this.gridControl1.Size = new System.Drawing.Size(736, 402);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -198,17 +201,23 @@
             // gridColumn8
             // 
             this.gridColumn8.Caption = "Tổng Tiền";
+            this.gridColumn8.ColumnEdit = this.text_money;
             this.gridColumn8.FieldName = "TongTien";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 4;
             this.gridColumn8.Width = 180;
             // 
+            // text_money
+            // 
+            this.text_money.AutoHeight = false;
+            this.text_money.Name = "text_money";
+            // 
             // btnXuatFile
             // 
             this.btnXuatFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXuatFile.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnXuatFile.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.btnXuatFile.Appearance.ForeColor = System.Drawing.Color.Black;
             this.btnXuatFile.Appearance.Options.UseFont = true;
             this.btnXuatFile.Appearance.Options.UseForeColor = true;
             this.btnXuatFile.Location = new System.Drawing.Point(666, 5);
@@ -216,19 +225,7 @@
             this.btnXuatFile.Size = new System.Drawing.Size(75, 36);
             this.btnXuatFile.TabIndex = 5;
             this.btnXuatFile.Text = "Xuất File";
-            // 
-            // btnXem
-            // 
-            this.btnXem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnXem.Appearance.Options.UseFont = true;
-            this.btnXem.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnXem.AppearancePressed.Options.UseFont = true;
-            this.btnXem.Location = new System.Drawing.Point(575, 5);
-            this.btnXem.Name = "btnXem";
-            this.btnXem.Size = new System.Drawing.Size(85, 36);
-            this.btnXem.TabIndex = 4;
-            this.btnXem.Text = "Xem Báo Cáo";
+            this.btnXuatFile.Click += new System.EventHandler(this.btnXuatFile_Click);
             // 
             // panelControl1
             // 
@@ -245,7 +242,6 @@
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl2.Controls.Add(this.btn_Update);
-            this.panelControl2.Controls.Add(this.btnXem);
             this.panelControl2.Controls.Add(this.btnXuatFile);
             this.panelControl2.Location = new System.Drawing.Point(0, 470);
             this.panelControl2.Name = "panelControl2";
@@ -282,6 +278,7 @@
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_money)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -293,7 +290,6 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton btnXem;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.DateTimePicker dateKetThuc;
         private System.Windows.Forms.DateTimePicker dateBatDau;
@@ -311,5 +307,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btn_Update;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
     }
 }

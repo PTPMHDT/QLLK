@@ -179,7 +179,7 @@ namespace PresentationLayer.DAL
             return true;
         }
 
-        internal static object getAll_HoaDonNhap_TheoThoiGian(DateTime startD, DateTime endD)
+        internal static List<HoaDonNhap_View> getAll_HoaDonNhap_TheoThoiGian(DateTime startD, DateTime endD)
         {
             var hd = from hoadon in Context.getInstance().db.HOADON_NHAPHANG
                      where hoadon.NgayLap >= startD.Date
