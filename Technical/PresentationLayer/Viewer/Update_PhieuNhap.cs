@@ -116,7 +116,7 @@ namespace PresentationLayer.Viewer
             if (isNew)
                 ls_cthd = new List<CT_HoaDonNhap_View>();
             else
-                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hoadonnhap.MaHoaDon);
+                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(hoadonnhap.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
             txtTongTien.Text = count_TongTien().ToString();
         }
@@ -129,7 +129,7 @@ namespace PresentationLayer.Viewer
             }
             else
             {
-                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hoadonnhap.MaHoaDon);
+                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(hoadonnhap.MaHoaDon);
             }
         }
 

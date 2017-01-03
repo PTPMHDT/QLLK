@@ -16,6 +16,7 @@ namespace PresentationLayer.ViewObject
         public string MatKhau { get; set; }
         public string SoDienThoai { get; set; }
         public string MaLoaiNhanVien { get; set; }
+        public string TenLoaiNhanVien { get; set; }
         public string DiaChi { get; set; }
         public string GhiChu { get; set; }
         public int TrangThai { get; set; }

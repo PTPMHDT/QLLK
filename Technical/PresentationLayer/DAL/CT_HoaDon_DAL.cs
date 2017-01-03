@@ -121,6 +121,7 @@ namespace PresentationLayer.DAL
             }
             return myHD;
         }
+      
         public static CT_HoaDon_View get_CTHoaDon_By_MaHD_MaLK(string maHD, string maLK)
         {
             var hd = from ct_hoadon in Context.getInstance().db.CT_HOADON

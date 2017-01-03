@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCLoaiNhanVien));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
@@ -40,20 +40,20 @@
             this.Mode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IsQuanLyBanHang = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Xoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.IsQuanLyBanHang = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IsQuanLyBanHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IsQuanLyBanHang)).BeginInit();
             this.SuspendLayout();
             // 
             // gridColumn5
@@ -173,6 +173,36 @@
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 119;
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Quản lý hệ thống";
+            this.gridColumn9.FieldName = "IsQuanLyHeThong";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 7;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Quản lý bán hàng";
+            this.gridColumn8.ColumnEdit = this.IsQuanLyBanHang;
+            this.gridColumn8.FieldName = "IsQuanLyBanHang";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 8;
+            // 
+            // IsQuanLyBanHang
+            // 
+            this.IsQuanLyBanHang.AutoHeight = false;
+            this.IsQuanLyBanHang.Name = "IsQuanLyBanHang";
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Mô tả";
+            this.gridColumn7.FieldName = "MoTa";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 9;
+            // 
             // Xoa
             // 
             this.Xoa.ColumnEdit = this.btnXoa;
@@ -185,7 +215,7 @@
             // 
             this.btnXoa.AutoHeight = false;
             this.btnXoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btnXoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -219,36 +249,6 @@
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Thông Tin Nhân Viên";
             // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Mô tả";
-            this.gridColumn7.FieldName = "MoTa";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 9;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Quản lý bán hàng";
-            this.gridColumn8.ColumnEdit = this.IsQuanLyBanHang;
-            this.gridColumn8.FieldName = "IsQuanLyBanHang";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 8;
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.Caption = "Quản lý hệ thống";
-            this.gridColumn9.FieldName = "IsQuanLyHeThong";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
-            // 
-            // IsQuanLyBanHang
-            // 
-            this.IsQuanLyBanHang.AutoHeight = false;
-            this.IsQuanLyBanHang.Name = "IsQuanLyBanHang";
-            // 
             // UCLoaiNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,11 +259,11 @@
             this.Name = "UCLoaiNhanVien";
             this.Size = new System.Drawing.Size(773, 497);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IsQuanLyBanHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.IsQuanLyBanHang)).EndInit();
             this.ResumeLayout(false);
 
         }

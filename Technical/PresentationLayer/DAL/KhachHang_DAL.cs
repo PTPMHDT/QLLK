@@ -28,7 +28,8 @@ namespace PresentationLayer.DAL
                           SoDienThoai = kh.SoDienThoai,
                           DiaChi = kh.DiaChi,
                           Tong = kh.Tong,
-                          GhiChu = kh.GhiChu
+                          GhiChu = kh.GhiChu,
+                          TrangThai = (int)kh.TrangThai
                       };
             var khp = kh1.ToList();
             khp.ForEach(k => k.InitOldData());

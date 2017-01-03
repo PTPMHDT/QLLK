@@ -11,6 +11,9 @@ using PresentationLayer.DAL;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using System.Globalization;
+using PresentationLayer.GlobalVariable;
+using PresentationLayer.Viewer;
+using DevExpress.XtraReports.UI;
 
 namespace PresentationLayer
 {
@@ -19,6 +22,7 @@ namespace PresentationLayer
         GridHelper<NhaCungCap_View> gridThaoTac;
         int count_row = 0;
         int prvRowFocus = 0;
+        List<NhaCungCap_View> lstHD = new List<NhaCungCap_View>();
 
         public UCNhaCungCap()
         {
@@ -41,7 +45,8 @@ namespace PresentationLayer
 
         private void InitVal()
         {
-            gridControl1.DataSource = NhaCungCap_DAL.getAll_NhaCungCap();
+            lstHD = NhaCungCap_DAL.getAll_NhaCungCap();
+            gridControl1.DataSource = lstHD;
             gridThaoTac = new GridHelper<NhaCungCap_View>(gridControl1);
             count_row = 0;
         }
@@ -203,6 +208,38 @@ namespace PresentationLayer
         {
             gridThaoTac.addRow(count_row);
             count_row += 1;
+        }
+
+        private void btnXuatFile_Click(object sender, EventArgs e)
+        {
+            List<NhaCungCap_Report> l = new List<NhaCungCap_Report>();
+
+            NhaCungCap_Report thd = new NhaCungCap_Report();
+            thd.NhanVien = Context.getInstance().nv.TenNhanVien;
+            thd.ThoiGian = DateTime.Now;
+            thd.List_NhaCungCap = new List<NhaCungCap_View>();
+
+            foreach (var item in lstHD)
+            {
+                if (item.TrangThai == 1)
+                {
+                    thd.TongTien += item.Tong;
+                    thd.List_NhaCungCap.Add(item);
+                }
+            }
+            l.Add(thd);
+
+            if (l.Count > 0)
+            {
+                RNhaCungCap r = new RNhaCungCap(l);
+
+                var tool = new ReportPrintTool(r);
+                tool.ShowPreview();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu!");
+            }
         }
     }
 }

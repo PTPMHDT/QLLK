@@ -147,10 +147,18 @@ namespace PresentationLayer
                 }
             }
             l.Add(thd);
-            RTongKetHoaDon r = new RTongKetHoaDon(l);
 
-            var tool = new ReportPrintTool(r);
-            tool.ShowPreview();
+            if (l.Count > 0)
+            {
+                RTongKetHoaDon r = new RTongKetHoaDon(l);
+
+                var tool = new ReportPrintTool(r);
+                tool.ShowPreview();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu!");
+            }
         }
     }
 }

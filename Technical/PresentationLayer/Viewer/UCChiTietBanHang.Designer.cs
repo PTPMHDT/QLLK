@@ -260,6 +260,8 @@
             this.gridColumn6.Caption = "Người sửa";
             this.gridColumn6.FieldName = "TenNhanVienSua";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.OptionsColumn.AllowFocus = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 7;
             this.gridColumn6.Width = 126;
@@ -269,6 +271,8 @@
             this.gridColumn7.Caption = "Thời gian sửa";
             this.gridColumn7.FieldName = "NgaySua";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.OptionsColumn.AllowFocus = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 8;
             this.gridColumn7.Width = 152;
@@ -296,6 +300,8 @@
             this.gridColumn9.ColumnEdit = this.text_money;
             this.gridColumn9.FieldName = "TongLoiNhuan";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
+            this.gridColumn9.OptionsColumn.AllowFocus = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 6;
             this.gridColumn9.Width = 126;

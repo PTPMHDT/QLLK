@@ -10,6 +10,7 @@ using PresentationLayer.ViewObject;
 using PresentationLayer.DAL;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
+using PresentationLayer.GlobalVariable;
 
 namespace PresentationLayer
 {

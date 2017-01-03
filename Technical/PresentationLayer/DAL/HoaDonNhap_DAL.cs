@@ -35,17 +35,23 @@ namespace PresentationLayer.DAL
                      {
                          MaHoaDon = hoadon.MaHoaDon,
                          NgayLap = hoadon.NgayLap,
-                         NhanVien = hoadon.NHANVIEN.TenNhanVien,
+                         NhanVien = hoadon.NHANVIEN1.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,
                          TongTien = hoadon.TongTien,
                          TrangThai = hoadon.TrangThai,
                          NhaCungCap = hoadon.NHACUNGCAP.TenNhaCungCap,
                          MaNhaCungCap = hoadon.MaNhaCungCap,
                          SoDienThoai = hoadon.NHACUNGCAP.SoDienThoai,
+                         MaNhanVienSua = hoadon.MaNguoiSua,
+                         TenNhanVienSua = hoadon.NHANVIEN.TenNhanVien,
+                         NgaySua = (DateTime)hoadon.NgaySua,
                          GhiChu = hoadon.GhiChu
                      };
             HoaDonNhap_View hdV = hd.ToList()[0];
-            hdV.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hdV.MaHoaDon);
+            hdV.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(hdV.MaHoaDon);
+            hdV.InitOldData();
+            if (hdV.TrangThai == 0)
+                hdV.Mode = TT.DELETE;
             return hdV;
         }
 
@@ -133,22 +139,73 @@ namespace PresentationLayer.DAL
             return true;
         }
 
-        public static bool del_HoaDon(List<HOADON> hds)
+        public static bool del_HoaDon(HoaDonNhap_View hd, DataUpdate<CT_HOADON_NHAPHANG> list_Change)
         {
-            try
+            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
             {
-                foreach (HOADON hd in hds)
+                try
                 {
-                    Context.getInstance().db.HOADONs.Remove(hd);
+                    hd.TrangThai = 0;
+                    Context.getInstance().db.Entry(hd.toHoaDonNhap()).State = System.Data.Entity.EntityState.Modified;
+
+                    //list_Change.Inserts.ForEach(x =>
+                    //{
+                    //});
+
+                    //list_Change.Updates.ForEach(x =>
+                    //{
+                    //    x.TinhTrang = 1;
+                    //    Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
+                    //});
+
+                    list_Change.Deletes.ForEach(x =>
+                    {
+                        //set trang thai = 0 o day
+                        x.TinhTrang = 0;
+                        Context.getInstance().db.Entry(getCTHD(x)).State = System.Data.Entity.EntityState.Modified;
+
+                        //them trong kho
+                        KHO kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == x.Seri).FirstOrDefault();
+                        kho.TrangThai = 0;
+                        Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+                    });
+
+                    //update so tien nhap hang cua nha cung cap
+                    NHACUNGCAP kh = Context.getInstance().db.NHACUNGCAPs.Where(key => key.MaNhaCungCap == hd.MaNhaCungCap).FirstOrDefault();
+                    kh.Tong -= hd.TongTien;
+                    Context.getInstance().db.Entry(kh).State = System.Data.Entity.EntityState.Modified;
+
+                    Context.getInstance().db.SaveChanges();
+                    transaction.Commit();
                 }
-                Context.getInstance().db.SaveChanges();
-                return true;
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Context.Refresh();
+                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
+                    return false;
+                }
             }
-            catch (Exception ex)
+            return true;
+        }
+
+        private static CT_HOADON_NHAPHANG getCTHD(CT_HOADON_NHAPHANG x)
+        {
+            CT_HOADON_NHAPHANG ct = Context.getInstance().db.CT_HOADON_NHAPHANG.Where(key => key.MaHoaDon == x.MaHoaDon)
+                                                                          .Where(key => key.MaLinhKien == x.MaLinhKien)
+                                                                          .Where(key => key.Seri == x.Seri)
+                                                                         .FirstOrDefault();
+            if (ct == null)
             {
-                Console.WriteLine(ex.InnerException);
-                return false;
+                ct = new CT_HOADON_NHAPHANG();
             }
+            ct.ThanhTien = x.ThanhTien;
+            ct.Thue = x.Thue;
+            ct.TinhTrang = x.TinhTrang;
+            ct.SoLuong = x.SoLuong;
+            ct.GiaNhap = x.GiaNhap;
+            ct.GhiChu = x.GhiChu;
+            return ct;
         }
 
         public static bool update_HoaDon(HoaDon_View hd, List<CT_HoaDon_View> ct_hds)
@@ -195,11 +252,45 @@ namespace PresentationLayer.DAL
                          NhaCungCap = hoadon.NHACUNGCAP.TenNhaCungCap,
                          MaNhaCungCap = hoadon.MaNhaCungCap,
                          SoDienThoai = hoadon.NHACUNGCAP.SoDienThoai,
-                         GhiChu = hoadon.GhiChu
+                         GhiChu = hoadon.GhiChu,
+                         MaNhanVienSua = hoadon.MaNguoiSua,
+                         TenNhanVienSua = hoadon.NHANVIEN1.TenNhanVien,
+                         NgaySua = (DateTime)hoadon.NgaySua
                      };
             var khp = hd.ToList();
-            khp.ForEach(k => k.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(k.MaHoaDon));
-            return khp.ToList();
+            foreach (var item in khp)
+            {
+                item.ChiTietHoaDon = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(item.MaHoaDon);
+                item.InitOldData();
+                if (item.TrangThai == 0)
+                    item.Mode = TT.DELETE;
+            }
+            return khp;
+        }
+
+        public static List<HoaDonNhap_View> searchSeri(string seri)
+        {
+            var hd = from hoadon in Context.getInstance().db.CT_HOADON_NHAPHANG
+                     where hoadon.Seri.Contains(seri)
+                     select new HoaDonNhap_View
+                     {
+                         MaHoaDon = hoadon.MaHoaDon
+                     };
+            List<string> lstMaHD = new List<string>();
+            List<HoaDonNhap_View> lstHDV = new List<HoaDonNhap_View>();
+            if (hd != null)
+            {
+                foreach (var item in hd.ToList())
+                {
+                    if (lstHDV.Where(key => key.MaHoaDon == item.MaHoaDon).FirstOrDefault() == null)
+                    {
+                        lstHDV.Add(get_HoaDonNhap_By_MaHD(item.MaHoaDon));
+                    }
+                }
+                return lstHDV;
+            }
+
+            return null;
         }
     }
 }

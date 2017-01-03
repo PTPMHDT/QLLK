@@ -11,6 +11,9 @@ using PresentationLayer.ViewObject;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using System.Globalization;
+using PresentationLayer.GlobalVariable;
+using PresentationLayer.Viewer;
+using DevExpress.XtraReports.UI;
 
 namespace PresentationLayer
 {
@@ -19,6 +22,7 @@ namespace PresentationLayer
         GridHelper<KhachHang_View> gridThaoTac;
         int count_row = 0;
         int prvRowFocus = 0;
+        List<KhachHang_View> lstHD = new List<KhachHang_View>();
 
         public UCKhachHang()
         {
@@ -41,7 +45,8 @@ namespace PresentationLayer
 
         private void InitVal()
         {
-            gridControl1.DataSource = KhachHang_DAL.getAll_KhachHang();
+            lstHD = KhachHang_DAL.getAll_KhachHang();
+            gridControl1.DataSource = lstHD;
             gridThaoTac = new GridHelper<KhachHang_View>(gridControl1);
             gridThaoTac.Mapping("MaLoaiKhachHang", LoaiKhachHang_DAL.getAll_LoaiKhachHang());
             count_row = 0;
@@ -221,6 +226,38 @@ namespace PresentationLayer
             if (!gridThaoTac.isDeleted()) gridThaoTac.Delete();
             else
                 gridThaoTac.Undo();
+        }
+
+        private void btnXuatFile_Click(object sender, EventArgs e)
+        {
+            List<KhachHang_Report> l = new List<KhachHang_Report>();
+
+            KhachHang_Report thd = new KhachHang_Report();
+            thd.NhanVien = Context.getInstance().nv.TenNhanVien;
+            thd.ThoiGian = DateTime.Now;
+            thd.List_KhachHang = new List<KhachHang_View>();
+
+            foreach (var item in lstHD)
+            {
+                if (item.TrangThai == 1)
+                {
+                    thd.TongTien += item.Tong;
+                    thd.List_KhachHang.Add(item);
+                }
+            }
+            l.Add(thd);
+
+            if (l.Count > 0)
+            {
+                RKhachHang r = new RKhachHang(l);
+
+                var tool = new ReportPrintTool(r);
+                tool.ShowPreview();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu!");
+            }
         }
 
     }

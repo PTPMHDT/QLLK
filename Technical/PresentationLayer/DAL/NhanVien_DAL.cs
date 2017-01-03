@@ -21,6 +21,7 @@ namespace PresentationLayer.DAL
                           TenDangNhap = nv.TenDangNhap,
                           MatKhau = nv.MatKhau,
                           MaLoaiNhanVien = nv.LOAINHANVIEN.MaLoaiNhanVien,
+                          TenLoaiNhanVien = nv.LOAINHANVIEN.TenLoaiNhanVien,
                           SoDienThoai = nv.SoDienThoai,
                           DiaChi = nv.DiaChi,
                           Tong = (decimal) nv.TongTien,

@@ -56,5 +56,27 @@ namespace PresentationLayer.ViewObject
             cthd.GiaNhap = GiaNhap;
             return cthd;
         }
+
+        public List<CT_HOADON_NHAPHANG> toList_CT_HoaDonNhap()
+        {
+            List<CT_HOADON_NHAPHANG> lst = new List<CT_HOADON_NHAPHANG>();
+
+            foreach (var item in SoSeri)
+            {
+                CT_HOADON_NHAPHANG cthd = new CT_HOADON_NHAPHANG();
+                cthd.MaHoaDon = MaHoaDon;
+                cthd.MaLinhKien = MaLinhKien;
+                cthd.SoLuong = SoLuong;
+                cthd.ThanhTien = ThanhTien;
+                cthd.GhiChu = GhiChu;
+                cthd.Seri = item;
+                cthd.Thue = Thue;
+                cthd.GiaNhap = GiaNhap;
+                cthd.TinhTrang = TinhTrang;
+                lst.Add(cthd);
+            }
+
+            return lst;
+        }
     }
 }

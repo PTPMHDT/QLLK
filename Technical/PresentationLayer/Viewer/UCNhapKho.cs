@@ -133,7 +133,7 @@ namespace PresentationLayer
             if (isNew)
                 ls_cthd = new List<CT_HoaDonNhap_View>();
             else
-                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hoadonnhap.MaHoaDon);
+                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(hoadonnhap.MaHoaDon);
             gridControl1.DataSource = ls_cthd;
             count_TongTien();
         }
@@ -146,7 +146,7 @@ namespace PresentationLayer
             }
             else
             {
-                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD(hoadonnhap.MaHoaDon);
+                ls_cthd = CT_HoaDonNhap_DAL.get_CTHoaDonNhap_By_MaHD_TT01(hoadonnhap.MaHoaDon);
             }
         }
 
@@ -311,7 +311,7 @@ namespace PresentationLayer
             {
                 foreach (CT_HoaDonNhap_View item in ls_cthd)
                 {
-                    tongtien += (Int32)(item.GiaNhap * item.SoLuong);
+                    tongtien += (Decimal)(item.GiaNhap * item.SoLuong);
                 }
             }
             hoadonnhap.TongTien = tongtien;
@@ -335,7 +335,8 @@ namespace PresentationLayer
                         hoadonnhap.NgayLap = dateNgayBan.Value;
                         //bien trang thai hoa don
                         hoadonnhap.TrangThai = 1;
-
+                        hoadonnhap.MaNhanVienSua = hoadonnhap.MaNhanVien;
+                        hoadonnhap.NgaySua = hoadonnhap.NgayLap;
                         List<Kho_View> list_LK_In_Kho = Kho_DAL.getAll_LinhKien();
                         Kho_View kho_v;
                         LinhKien_View lk_v;

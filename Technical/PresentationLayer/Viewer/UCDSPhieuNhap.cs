@@ -24,6 +24,8 @@ namespace PresentationLayer
         {
             InitializeComponent();
             this.Load += UCDSPhieuNhap_Load;
+            this.btn_Update.Click +=btn_Update_Click;
+            this.btnXuatFile.Click +=btnXuatFile_Click;
             InitVal();
         }
 
@@ -32,6 +34,7 @@ namespace PresentationLayer
             this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
             this.text_money.DisplayFormat.FormatString = "c";
+
         }
 
         private void InitVal()
@@ -84,12 +87,34 @@ namespace PresentationLayer
             HoaDonNhap_View hd = gridView1.GetFocusedRow() as HoaDonNhap_View;
             if (hd != null)
             {
-                using (var form = new Update_PhieuNhap(hd.MaHoaDon))
+                if (hd.Mode != TT.DELETE)
                 {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
+                    var result = MessageBox.Show("Bạn có muốn xóa hóa đơn nhập hàng " + hd.MaHoaDon + "?", "Lưu thông tin", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
                     {
-                        setGridControl();
+                        HoaDonNhap_View hdn = HoaDonNhap_DAL.get_HoaDonNhap_By_MaHD(hd.MaHoaDon);
+                        if(hdn.TrangThai == 2)
+                        {
+                            MessageBox.Show("Không thể xóa hóa đơn nhập hàng " + hd.MaHoaDon + " vì linh kiện đã được bán");
+                            return;
+                        }
+                        DataUpdate<CT_HOADON_NHAPHANG> dt = new DataUpdate<CT_HOADON_NHAPHANG>();
+                        foreach (var item in hd.ChiTietHoaDon)
+                        {
+                            dt.Deletes.AddRange(item.toList_CT_HoaDonNhap());
+                        }
+                        hd.MaNhanVienSua = Context.getInstance().nv.MaNhanVien;
+                        hd.NgaySua = DateTime.Now;
+                        if (HoaDonNhap_DAL.del_HoaDon(hd, dt))
+                        {
+                            MessageBox.Show("Lưu thông tin thành công!");
+                            gridThaoTac.Delete();
+                            gridControl1.RefreshDataSource();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Đã có lỗi xảy ra, vui lòng kiểm tra dữ liệu!");
+                        }
                     }
                 }
             }
@@ -104,16 +129,28 @@ namespace PresentationLayer
             thd.NgayKetThuc = dateKetThuc.Value.ToString("dd/MM/yyyy");
             thd.NhanVien = Context.getInstance().nv.TenNhanVien;
             thd.ThoiGian = DateTime.Now;
-            thd.List_HoaDonNhap = lstHD;
+            thd.List_HoaDonNhap = new List<HoaDonNhap_View>();
             foreach (var item in lstHD)
             {
-                thd.TongTien += item.TongTien;
+                if (item.TrangThai != 0)
+                {
+                    thd.TongTien += item.TongTien;
+                    thd.List_HoaDonNhap.Add(item);
+                }
             }
             l.Add(thd);
-            RTongKetHoaDonNhap r = new RTongKetHoaDonNhap(l);
+            if(l.Count > 0)
+            {
+                RTongKetHoaDonNhap r = new RTongKetHoaDonNhap(l);
 
-            var tool = new ReportPrintTool(r);
-            tool.ShowPreview();
+                var tool = new ReportPrintTool(r);
+                tool.ShowPreview();
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu!");
+            }
         }
+
     }
 }

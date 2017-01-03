@@ -39,6 +39,7 @@ namespace PresentationLayer.DAL
                          NhanVien = hoadon.NHANVIEN1.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,
                          TongTien = hoadon.TongTien,
+                         TongLoiNhuan = hoadon.TongLoiNhuan,
                          TrangThai = hoadon.TrangThai,
                          KhachHang = hoadon.KHACHHANG.TenKhachHang,
                          MaKhachHang = hoadon.MaKhachHang,
@@ -83,7 +84,7 @@ namespace PresentationLayer.DAL
                      {
                          MaHoaDon = hoadon.MaHoaDon,
                          NgayLap = hoadon.NgayLap,
-                         NhanVien = hoadon.NHANVIEN.TenNhanVien,
+                         NhanVien = hoadon.NHANVIEN1.TenNhanVien,
                          MaNhanVien = hoadon.MaNguoiLap,
                          TongTien = hoadon.TongTien,
                          TongLoiNhuan = hoadon.TongLoiNhuan,
@@ -92,7 +93,7 @@ namespace PresentationLayer.DAL
                          MaKhachHang = hoadon.MaKhachHang,
                          SoDienThoai = hoadon.KHACHHANG.SoDienThoai,
                          MaNhanVienSua = hoadon.MaNguoiSua,
-                         TenNhanVienSua = hoadon.NHANVIEN1.TenNhanVien,
+                         TenNhanVienSua = hoadon.NHANVIEN.TenNhanVien,
                          NgaySua = (DateTime)hoadon.NgaySua,
                          GhiChu = hoadon.GhiChu
                      };
@@ -150,6 +151,21 @@ namespace PresentationLayer.DAL
                         KHO kho = Context.getInstance().db.KHOes.Where(key => key.MaLinhKien == x.MaLinhKien).Where(k => k.Seri == x.Seri).FirstOrDefault();
                         kho.TrangThai = 0;
                         Context.getInstance().db.Entry(kho).State = System.Data.Entity.EntityState.Modified;
+
+                        //chuyen trang thai cho hoa don nhap sang 2 la ko duoc xoa
+                        List<HoaDonNhap_View> listHDN = HoaDonNhap_DAL.searchSeri(x.Seri);
+                        if (listHDN != null)
+                        {
+                            foreach (var item in listHDN)
+                            {
+                                HOADON_NHAPHANG hdn = item.toHoaDonNhap();
+                                if(hdn.TrangThai == 1)
+                                {
+                                    hdn.TrangThai = 2;
+                                    Context.getInstance().db.Entry(hdn).State = System.Data.Entity.EntityState.Modified;
+                                }
+                            }
+                        }
                     });
 
                     //update so tien mua hang cua khach hang

@@ -518,7 +518,6 @@
             // 
             this.ThanhTien.Caption = "Thành Tiền";
             this.ThanhTien.ColumnEdit = this.txt_ThanhT;
-            this.ThanhTien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.ThanhTien.FieldName = "ThanhTien";
             this.ThanhTien.Name = "ThanhTien";
             this.ThanhTien.OptionsColumn.AllowEdit = false;
