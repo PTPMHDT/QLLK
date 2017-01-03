@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class UCChiTietBanHang
+    partial class UCBCKiemKho
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCChiTietBanHang));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_SerchSeri = new DevExpress.XtraEditors.SimpleButton();
-            this.txt_Seri = new DevExpress.XtraEditors.TextEdit();
             this.dateBatDau = new System.Windows.Forms.DateTimePicker();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -40,14 +37,10 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.btnXuatFile = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -57,7 +50,6 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_Seri.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -84,14 +76,12 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(746, 467);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Chi Tiết Bán Hàng";
+            this.groupControl1.Text = "Báo Cáo Kiểm Kho";
             // 
             // panelControl4
             // 
             this.panelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl4.Controls.Add(this.btn_SerchSeri);
-            this.panelControl4.Controls.Add(this.txt_Seri);
             this.panelControl4.Controls.Add(this.dateBatDau);
             this.panelControl4.Controls.Add(this.labelControl1);
             this.panelControl4.Controls.Add(this.labelControl2);
@@ -100,26 +90,6 @@
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(740, 33);
             this.panelControl4.TabIndex = 7;
-            // 
-            // btn_SerchSeri
-            // 
-            this.btn_SerchSeri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_SerchSeri.Location = new System.Drawing.Point(627, 5);
-            this.btn_SerchSeri.Name = "btn_SerchSeri";
-            this.btn_SerchSeri.Size = new System.Drawing.Size(108, 23);
-            this.btn_SerchSeri.TabIndex = 5;
-            this.btn_SerchSeri.Text = "Tìm kiếm theo seri";
-            this.btn_SerchSeri.Click += new System.EventHandler(this.btn_SerchSeri_Click);
-            // 
-            // txt_Seri
-            // 
-            this.txt_Seri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_Seri.Location = new System.Drawing.Point(521, 6);
-            this.txt_Seri.Name = "txt_Seri";
-            this.txt_Seri.Size = new System.Drawing.Size(100, 20);
-            this.txt_Seri.TabIndex = 4;
             // 
             // dateBatDau
             // 
@@ -182,110 +152,49 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn5,
             this.gridColumn2,
             this.gridColumn1,
             this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn6,
-            this.gridColumn7,
-            this.gridColumn8});
+            this.gridColumn4});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsFind.FindDelay = 100;
-            this.gridView1.OptionsFind.FindNullPrompt = "Nhập vào thông tin tìm kiếm...";
-            this.gridView1.OptionsFind.ShowCloseButton = false;
-            this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Mode";
-            this.gridColumn5.FieldName = "Mode";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.OptionsColumn.AllowFocus = false;
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 0;
-            this.gridColumn5.Width = 61;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Mã Đơn Hàng";
-            this.gridColumn2.FieldName = "MaHoaDon";
+            this.gridColumn2.Caption = "Kì Kiểm Kho";
+            this.gridColumn2.FieldName = "MaKiemKho";
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.AllowFocus = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 70;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 84;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Ngày Bán";
-            this.gridColumn1.FieldName = "NgayLap";
+            this.gridColumn1.Caption = "Nhân Viên";
+            this.gridColumn1.FieldName = "MaNhanVien";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.OptionsColumn.AllowFocus = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 97;
+            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.Width = 108;
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Nhân Viên";
-            this.gridColumn3.FieldName = "NhanVien";
+            this.gridColumn3.Caption = "Ngày Kiểm";
+            this.gridColumn3.FieldName = "NgayKiem";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.OptionsColumn.AllowFocus = false;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 3;
-            this.gridColumn3.Width = 172;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 173;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "Khách Hàng";
-            this.gridColumn4.FieldName = "KhachHang";
+            this.gridColumn4.Caption = "Ghi Chú";
+            this.gridColumn4.FieldName = "GhiChu";
             this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.AllowEdit = false;
-            this.gridColumn4.OptionsColumn.AllowFocus = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 240;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Người sửa";
-            this.gridColumn6.FieldName = "TenNhanVienSua";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.OptionsColumn.AllowFocus = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 126;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Thời gian sửa";
-            this.gridColumn7.FieldName = "NgaySua";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.OptionsColumn.AllowFocus = false;
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 7;
-            this.gridColumn7.Width = 152;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Tổng Tiền";
-            this.gridColumn8.ColumnEdit = this.text_money;
-            this.gridColumn8.FieldName = "TongTien";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
-            this.gridColumn8.OptionsColumn.AllowFocus = false;
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 5;
-            this.gridColumn8.Width = 241;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 173;
             // 
             // text_money
             // 
@@ -294,13 +203,11 @@
             // 
             // btnXuatFile
             // 
-            this.btnXuatFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXuatFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnXuatFile.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnXuatFile.Appearance.ForeColor = System.Drawing.Color.Black;
             this.btnXuatFile.Appearance.Options.UseFont = true;
             this.btnXuatFile.Appearance.Options.UseForeColor = true;
-            this.btnXuatFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatFile.Image")));
             this.btnXuatFile.Location = new System.Drawing.Point(666, 5);
             this.btnXuatFile.Name = "btnXuatFile";
             this.btnXuatFile.Size = new System.Drawing.Size(75, 36);
@@ -331,33 +238,30 @@
             // 
             // btn_Update
             // 
-            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Update.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btn_Update.Appearance.Options.UseFont = true;
             this.btn_Update.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.btn_Update.AppearancePressed.Options.UseFont = true;
-            this.btn_Update.Image = ((System.Drawing.Image)(resources.GetObject("btn_Update.Image")));
             this.btn_Update.Location = new System.Drawing.Point(7, 5);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(107, 36);
-            this.btn_Update.TabIndex = 6;
-            this.btn_Update.Text = "Xóa đơn hàng";
+            this.btn_Update.Size = new System.Drawing.Size(96, 36);
+            this.btn_Update.TabIndex = 7;
+            this.btn_Update.Text = "Sửa Phiếu Nhập";
             this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
-            // UCChiTietBanHang
+            // UCBCKiemKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelControl1);
-            this.Name = "UCChiTietBanHang";
+            this.Name = "UCBCKiemKho";
             this.Size = new System.Drawing.Size(746, 519);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_Seri.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -384,18 +288,12 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraEditors.SimpleButton btnXuatFile;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btn_Update;
-        private DevExpress.XtraEditors.TextEdit txt_Seri;
-        private DevExpress.XtraEditors.SimpleButton btn_SerchSeri;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
     }
 }

@@ -12,73 +12,6 @@ namespace PresentationLayer.DAL
 {
     public class KiemKho_DAL
     {
-        public static List<KiemKho_View> getAll_KiemKho()
-        {
-            var kho1 = from kho in Context.getInstance().db.KIEMKHOes
-                       select new KiemKho_View
-                       {
-                           MaKiemKho = kho.MaKiemKho,
-                           NgayKiem = kho.NgayKiem,
-                           NhanVien = kho.NHANVIEN.MaNhanVien,
-                           TenNhanVien = kho.NHANVIEN.TenNhanVien,
-                           //TenNhanVien = kho.NHANVIEN.TenNhanVien,
-                           //MaLinhKien = kho.MaLinhKien,
-                           //TenLinhKien = kho.LINHKIEN.TenLinhKien,
-                           //MaDonViTinh = kho.LINHKIEN.MaDonViTinh,
-                           //DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
-                           
-                           GhiChu = kho.GhiChu,
-                           TrangThai = kho.TrangThai
-
-                       };
-            return kho1.ToList();
-        }
-        public static List<KiemKho_View> getAll_KiemKho(string maKiemKho)
-        {
-            var kho1 = from kho in Context.getInstance().db.KIEMKHOes
-                       where kho.MaKiemKho == maKiemKho
-                       select new KiemKho_View
-                       {
-                           MaKiemKho = kho.MaKiemKho,
-                           NgayKiem = kho.NgayKiem,
-                           NhanVien = kho.NHANVIEN.MaNhanVien,
-                           TenNhanVien = kho.NHANVIEN.TenNhanVien,
-                           //TenNhanVien = kho.NHANVIEN.TenNhanVien,
-                           //MaLinhKien = kho.MaLinhKien,
-                           //TenLinhKien = kho.LINHKIEN.TenLinhKien,
-                           //MaDonViTinh = kho.LINHKIEN.MaDonViTinh,
-                           //DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
-
-                           GhiChu = kho.GhiChu,
-                           TrangThai = kho.TrangThai
-
-                       };
-            return kho1.ToList();
-        }
-        public static bool add(KiemKho_View item)
-        {
-            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
-            {
-                try
-                {
-                    Context.getInstance().db.Entry(item.toKiemKho()).State = System.Data.Entity.EntityState.Added;
-
-                    Context.getInstance().db.SaveChanges();
-
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    Context.Refresh();
-                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
         public static string getMaxKiemKho(int c)
         {
             try
@@ -98,19 +31,11 @@ namespace PresentationLayer.DAL
         }
         public static List<CT_KiemKho_View> get_AllLinhKien(string maThuongHieu)
         {
-            //int soluong = (from p in Context.getInstance().db.KHOes
-            //               where p.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
-            //               select p).Count();
             var kho1 = from kho in Context.getInstance().db.KHOes
                        where kho.LINHKIEN.THUONGHIEU.MaThuongHieu == maThuongHieu
                        select new CT_KiemKho_View
                        {
-                           //MaKiemKho = kho.MaKiemKho,
-                           //NgayKiem = kho.NgayKiem,
-                           //NhanVien = kho.MaNhanVien,
-                           //GhiChu = kho.GhiChu,
-                           //TrangThai = kho.TrangThai
-                           //MaKiemKho = Context.getInstance().nv.MaNhanVien,
+                           
                            MaLinhKien = kho.MaLinhKien,
                            TenLinhKien = kho.LINHKIEN.TenLinhKien,
                            MaDonViTinh = kho.LINHKIEN.DONVITINH.MaDonViTinh,
@@ -153,62 +78,29 @@ namespace PresentationLayer.DAL
             return myHD;// kho1.ToList();
 
         }
-
-        public static bool add(CT_KiemKho_View item)
+        public static bool add_KiemKho(KiemKho_View hd, DataUpdate<CT_KIEMKHO> list_Change)
         {
             using (var transaction = Context.getInstance().db.Database.BeginTransaction())
             {
                 try
                 {
-                    Context.getInstance().db.Entry(item.toCT_KiemKho()).State = System.Data.Entity.EntityState.Added;
+                    hd.TrangThai = 1;
+                    Context.getInstance().db.Entry(hd.toKiemKho()).State = System.Data.Entity.EntityState.Added;
+                    list_Change.Inserts.ForEach(x =>
+                    {
+                        Context.getInstance().db.Entry(x).State = System.Data.Entity.EntityState.Added;
+                    });
 
                     Context.getInstance().db.SaveChanges();
-
                     transaction.Commit();
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    Context.Refresh();
-                    Console.WriteLine("ERROR--------------------------------------" + ex.Message);
-                    return false;
-                }
-            }
-
-            return true;
-        }
-        public static bool add(KiemKho_View kiemKho, List<CT_KiemKho_View> ctKiemKho)
-        {
-            using (var transaction = Context.getInstance().db.Database.BeginTransaction())
-            {
-                try
-                {
-                    Context.getInstance().db.Entry(kiemKho.toKiemKho()).State = System.Data.Entity.EntityState.Added;
-                    Context.getInstance().db.SaveChanges();
-
-                    foreach(CT_KiemKho_View item in ctKiemKho)
-                    {
-                        try
-                        {
-                            Context.getInstance().db.Entry(item.toCT_KiemKho()).State = System.Data.Entity.EntityState.Added;
-
-                            Context.getInstance().db.SaveChanges();
-
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            Context.Refresh();
-                            Console.WriteLine("ERROR--------------------------------------" + ex.Message);
-                            return false;
-                        }
-                    }
-                    
-                }
-                catch(Exception ex)
-                {
-                    transaction.Rollback();
+                    //Context.getInstance().db.KHOes.Local.Clear();
+                    //Context.getInstance().db.CT_HOADON.Local.Clear();
+                    //Context.getInstance().db.KHACHHANGs.Local.Clear();
+                    //Context.getInstance().db.NHANVIENs.Local.Clear();
                     Context.Refresh();
                     Console.WriteLine("ERROR--------------------------------------" + ex.Message);
                     return false;

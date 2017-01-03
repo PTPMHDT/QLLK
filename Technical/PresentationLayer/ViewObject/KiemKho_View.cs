@@ -11,6 +11,7 @@ namespace PresentationLayer.ViewObject
         public string MaKiemKho { get; set; }
         public DateTime NgayKiem { get; set; }
         public string NhanVien { get; set; }
+        public string MaNhanVien { get; set; }
         public string TenNhanVien { get; set; }
         public string NhomHang { get; set; }
         public string MaLinhKien { get; set; }
@@ -21,7 +22,7 @@ namespace PresentationLayer.ViewObject
         public string GhiChu { get; set; }
         public int TrangThai { get; set; }
 
-        public List<KiemKho_View> ChiTietKiemKho { get; set; }
+        public List<CT_KiemKho_View> ChiTietKiemKho { get; set; }
 
         public KiemKho_View()
         {
@@ -38,7 +39,6 @@ namespace PresentationLayer.ViewObject
             ncc.MaKiemKho = MaKiemKho;
             ncc.NgayKiem = NgayKiem;
             ncc.MaNhanVien  = NhanVien;
-            
             ncc.GhiChu = GhiChu;
             ncc.TrangThai = TrangThai;
             return ncc;

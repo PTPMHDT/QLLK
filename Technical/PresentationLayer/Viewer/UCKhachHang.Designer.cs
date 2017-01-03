@@ -39,7 +39,6 @@
             this.Mode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.text_money = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Xoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnXoa_Grid = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -114,7 +113,6 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn7,
             this.Xoa});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -154,18 +152,6 @@
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 130;
             // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Tổng tiền mua hàng";
-            this.gridColumn7.ColumnEdit = this.text_money;
-            this.gridColumn7.FieldName = "Tong";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.OptionsColumn.AllowEdit = false;
-            this.gridColumn7.OptionsColumn.AllowFocus = false;
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 7;
-            this.gridColumn7.Width = 76;
-            // 
             // text_money
             // 
             this.text_money.AutoHeight = false;
@@ -177,7 +163,7 @@
             this.Xoa.Name = "Xoa";
             this.Xoa.OptionsColumn.TabStop = false;
             this.Xoa.Visible = true;
-            this.Xoa.VisibleIndex = 8;
+            this.Xoa.VisibleIndex = 7;
             this.Xoa.Width = 58;
             // 
             // btnXoa_Grid
@@ -297,7 +283,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Mode;
         private DevExpress.XtraGrid.Columns.GridColumn Xoa;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnXoa_Grid;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtSDT;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit text_money;
         private DevExpress.XtraEditors.SimpleButton btnXuatFile;

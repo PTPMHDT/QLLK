@@ -175,5 +175,45 @@ namespace PresentationLayer
             }
         }
 
+        private void btnChiTietBanHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCBCKiemKho();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
+
+        private void btnTongHopBanHang_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucLinhKien = new UCKhoLinhKien();
+            ucLinhKien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucLinhKien);
+        }
+
+        private void btnDoanhThuNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCBCNhanVien();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
+        private void btnDoanhThuChiTiet_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCBCKhachHang();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
+        private void btnTongDoanhThu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCBCTongDoangThu();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
     }
 }
