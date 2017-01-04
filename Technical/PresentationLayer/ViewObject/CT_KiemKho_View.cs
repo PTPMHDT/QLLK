@@ -9,10 +9,10 @@ namespace PresentationLayer.ViewObject
     public class CT_KiemKho_View
     {
         public string MaKiemKho { get; set; }
-        public string MaNhanVien { get; set; }
+        //public string MaNhanVien { get; set; }
         public string MaLinhKien { get; set; }
         public string TenLinhKien { get; set; }
-        public string MaDonViTinh { get; set; }
+        //public string MaDonViTinh { get; set; }
         public string DonViTinh { get; set; }
         public int SoLuong { get; set; }
         public string GhiChu { get; set; }

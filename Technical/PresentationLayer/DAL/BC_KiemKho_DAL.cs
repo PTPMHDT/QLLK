@@ -18,9 +18,9 @@ namespace PresentationLayer.DAL
                      {
                          MaKiemKho = ct.MaKiemKho,
                          MaLinhKien = ct.MaLinhKien,
-                         MaNhanVien = ct.KIEMKHO.NHANVIEN.TenNhanVien,
+                         //MaNhanVien = ct.KIEMKHO.NHANVIEN.TenNhanVien,
                          TenLinhKien = ct.LINHKIEN.TenLinhKien,
-                         MaDonViTinh = ct.LINHKIEN.DONVITINH.MaDonViTinh,
+                         //MaDonViTinh = ct.LINHKIEN.DONVITINH.MaDonViTinh,
                          DonViTinh = ct.LINHKIEN.DONVITINH.TenDonViTinh,
                          SoLuong = ct.SoLuong,
                          TonSoSach = ct.TonSoSach,

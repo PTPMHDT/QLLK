@@ -38,7 +38,7 @@ namespace PresentationLayer.DAL
                            
                            MaLinhKien = kho.MaLinhKien,
                            TenLinhKien = kho.LINHKIEN.TenLinhKien,
-                           MaDonViTinh = kho.LINHKIEN.DONVITINH.MaDonViTinh,
+                           //MaDonViTinh = kho.LINHKIEN.DONVITINH.MaDonViTinh,
                            DonViTinh = kho.LINHKIEN.DONVITINH.TenDonViTinh,
                            GhiChu = kho.LINHKIEN.MoTa
 
