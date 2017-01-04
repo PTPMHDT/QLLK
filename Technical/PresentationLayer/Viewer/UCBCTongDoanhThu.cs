@@ -31,6 +31,7 @@ namespace PresentationLayer
             this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
             this.text_money.DisplayFormat.FormatString = "c";
+
         }
 
         private void InitVal()

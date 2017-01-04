@@ -31,6 +31,13 @@ namespace PresentationLayer
             this.text_money.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.text_money.DisplayFormat.Format = new CultureInfo("vi-VN");
             this.text_money.DisplayFormat.FormatString = "c";
+
+            LoaiNhanVien_ViewBoolen lnv = LoaiNhanVien_DAL.get_LoaiNhanVien_ByMaLoaiNV(Context.getInstance().nv.MaLoaiNhanVien);
+            if (lnv.IsQuanLyBanHang == true && lnv.IsQuanLyLinhKien == true && lnv.IsQuanLyKho == true
+                && lnv.IsQuanLyKhachHang == true && lnv.IsQuanLyHeThong == true
+                && lnv.IsQuanLyNhanVien == true)
+                btn_Update.Enabled = true;
+            else btn_Update.Enabled = false;
         }
 
         private void InitVal()

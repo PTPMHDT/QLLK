@@ -34,7 +34,6 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cbTenKhachHang = new System.Windows.Forms.ComboBox();
             this.btnThemKhachHang = new DevExpress.XtraEditors.SimpleButton();
-            this.btnThemMoiSP = new DevExpress.XtraEditors.SimpleButton();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.txtSoDienThoai = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -131,7 +130,6 @@
             this.groupControl1.AppearanceCaption.Options.UseForeColor = true;
             this.groupControl1.Controls.Add(this.cbTenKhachHang);
             this.groupControl1.Controls.Add(this.btnThemKhachHang);
-            this.groupControl1.Controls.Add(this.btnThemMoiSP);
             this.groupControl1.Controls.Add(this.txtDiaChi);
             this.groupControl1.Controls.Add(this.txtSoDienThoai);
             this.groupControl1.Controls.Add(this.labelControl8);
@@ -174,18 +172,6 @@
             this.btnThemKhachHang.TabIndex = 15;
             this.btnThemKhachHang.Text = "Thêm Khách Hàng";
             this.btnThemKhachHang.Click += new System.EventHandler(this.btnThemKhachHang_Click);
-            // 
-            // btnThemMoiSP
-            // 
-            this.btnThemMoiSP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThemMoiSP.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnThemMoiSP.Appearance.Options.UseFont = true;
-            this.btnThemMoiSP.Image = ((System.Drawing.Image)(resources.GetObject("btnThemMoiSP.Image")));
-            this.btnThemMoiSP.Location = new System.Drawing.Point(927, 127);
-            this.btnThemMoiSP.Name = "btnThemMoiSP";
-            this.btnThemMoiSP.Size = new System.Drawing.Size(145, 23);
-            this.btnThemMoiSP.TabIndex = 9;
-            this.btnThemMoiSP.Text = "Thêm sản phẩm mới";
             // 
             // txtDiaChi
             // 
@@ -736,7 +722,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-        private DevExpress.XtraEditors.SimpleButton btnThemMoiSP;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.SimpleButton btnHoanTat;
         private DevExpress.XtraEditors.SimpleButton btnThemKhachHang;

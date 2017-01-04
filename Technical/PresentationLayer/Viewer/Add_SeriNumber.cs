@@ -42,7 +42,10 @@ namespace PresentationLayer.Viewer
             {
                if(cthd.SoSeri != null)
                {
-                   dt.Rows.Add(i, cthd.SoSeri[i].ToString());                   
+                   if(i >= cthd.SoSeri.Count)
+                       dt.Rows.Add(i, "");
+                   else
+                    dt.Rows.Add(i, cthd.SoSeri[i].ToString());                   
                }
                else
                    dt.Rows.Add(i,"");

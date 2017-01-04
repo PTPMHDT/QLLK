@@ -51,7 +51,6 @@
             this.btnXuatFile = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Update = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -310,28 +309,11 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl2.Controls.Add(this.btn_Update);
             this.panelControl2.Controls.Add(this.btnXuatFile);
             this.panelControl2.Location = new System.Drawing.Point(0, 470);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(746, 46);
             this.panelControl2.TabIndex = 2;
-            // 
-            // btn_Update
-            // 
-            this.btn_Update.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_Update.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btn_Update.Appearance.Options.UseFont = true;
-            this.btn_Update.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btn_Update.AppearancePressed.Options.UseFont = true;
-            this.btn_Update.Image = ((System.Drawing.Image)(resources.GetObject("btn_Update.Image")));
-            this.btn_Update.Location = new System.Drawing.Point(7, 5);
-            this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(107, 36);
-            this.btn_Update.TabIndex = 6;
-            this.btn_Update.Text = "Xóa đơn hàng";
-            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
             // UCBCTongDoangThu
             // 
@@ -378,7 +360,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.SimpleButton btn_Update;
         private DevExpress.XtraEditors.TextEdit txt_Seri;
         private DevExpress.XtraEditors.SimpleButton btn_SerchSeri;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;

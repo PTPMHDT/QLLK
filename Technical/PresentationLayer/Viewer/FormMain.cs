@@ -1,5 +1,6 @@
 ﻿using PresentationLayer.DAL;
 using PresentationLayer.GlobalVariable;
+using PresentationLayer.Viewer;
 using PresentationLayer.ViewObject;
 using System;
 using System.Collections.Generic;
@@ -23,23 +24,68 @@ namespace PresentationLayer
 
         void FormMain_Load(object sender, EventArgs e)
         {
-            LoaiNhanVien_ViewBoolen lnv = LoaiNhanVien_DAL.get_LoaiNhanVien_ByMaLoaiNV(Context.getInstance().nv.MaLoaiNhanVien);
-            if (!lnv.IsQuanLyBanHang)
-            {
-                btnChiTietBanHang.Enabled = false;
-                btnSale.Enabled = false;
-            }
-            if (!lnv.IsQuanLyKhachHang)
-                btnKhachHang.Enabled = false;
-            if (!lnv.IsQuanLyKho)
-            {
-                btnNhapKho.Enabled = false;
-            }
-            if (!lnv.IsQuanLyLinhKien)
-                btnLinhKien.Enabled = false;
+            btnSale.Enabled = false;
+            btnKhachHang.Enabled = false;
+            btnLoaiLinhKien.Enabled = false;
 
-            if (!lnv.IsQuanLyNhanVien)
-                btnNhanVien.Enabled = false;
+            btnLinhKien.Enabled = false;
+            btn_HeThong.Enabled = false;
+            btnNhanVien.Enabled = false;
+            btn_LoaiNhanVien.Enabled = false;
+
+            btnKho.Enabled = false;
+            btnNhaCungCap.Enabled = false;
+            btnNhapKho.Enabled = false;
+            btnPhieuNhapKho.Enabled = false;
+            btnKiemKho.Enabled = false;
+
+            btBaoCaoNhaCungCap.Enabled = false;
+            btnChiTietBanHang.Enabled = false;
+            btnDoanhThuChiTiet.Enabled = false;
+            btnDoanhThuNhanVien.Enabled = false;
+            btnKetQuaKinhDoanh.Enabled = false;
+            btnTongDoanhThu.Enabled = false;
+
+            LoaiNhanVien_ViewBoolen lnv = LoaiNhanVien_DAL.get_LoaiNhanVien_ByMaLoaiNV(Context.getInstance().nv.MaLoaiNhanVien);
+            if (lnv.IsQuanLyBanHang)
+            {
+                btnSale.Enabled = true;
+                btnKhachHang.Enabled = true;
+                btnLoaiLinhKien.Enabled = true;
+            }
+            if (lnv.IsQuanLyKhachHang)
+            {
+                btBaoCaoNhaCungCap.Enabled = true;
+                btnChiTietBanHang.Enabled = true;
+                btnDoanhThuChiTiet.Enabled = true;
+                btnDoanhThuNhanVien.Enabled = true;
+                btnKetQuaKinhDoanh.Enabled = true;
+                btnTongDoanhThu.Enabled = true;
+            }
+            if (lnv.IsQuanLyKho)
+            {
+                btnKho.Enabled = true;
+                btnNhaCungCap.Enabled = true;
+                btnNhapKho.Enabled = true;
+                btnPhieuNhapKho.Enabled = true;
+                btnKiemKho.Enabled = true;
+            }
+            if (lnv.IsQuanLyLinhKien)
+            {
+                btnLinhKien.Enabled = true;
+                btnLoaiLinhKien.Enabled = true;
+                btnNhaCungCap.Enabled = true;
+            }
+
+            if (lnv.IsQuanLyNhanVien)
+            {
+                btnNhanVien.Enabled = true;
+                btn_LoaiNhanVien.Enabled = true;
+            }
+            if (lnv.IsQuanLyHeThong)
+            {
+                btn_HeThong.Enabled = true;
+            }
 
         }
 
@@ -211,6 +257,22 @@ namespace PresentationLayer
         {
             panelMain.Controls.Clear();
             var ucNhanVien = new UCBCTongDoangThu();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCLienHe();
+            ucNhanVien.Dock = DockStyle.Fill;
+            panelMain.Controls.Add(ucNhanVien);
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelMain.Controls.Clear();
+            var ucNhanVien = new UCGiupDo();
             ucNhanVien.Dock = DockStyle.Fill;
             panelMain.Controls.Add(ucNhanVien);
         }
